@@ -82,16 +82,14 @@ prices go up. And that’s exactly what is happening to BTC prices."
 
 
 def download_packages(method):
-    if method in [1, 2]:
+    if method == 1:
         nltk.download('punkt')
         nltk.download('averaged_perceptron_tagger')
         nltk.download('maxent_ne_chunker')
         nltk.download('words')
-        if method == 2:
-            nltk.download('omw-1.4')
 
 
-# Methods 1 and 2, ref.: https://stackoverflow.com/q/20290870
+# Method 1, ref.: https://stackoverflow.com/q/20290870
 def get_human_names(text):
     tokens = nltk.tokenize.word_tokenize(text)
     pos = nltk.pos_tag(tokens)
@@ -116,10 +114,7 @@ def import_modules(method, download):
     global HumanName, nltk, wordnet
     if method in [1, 2]:
         import nltk
-        if method == 1:
-            from nameparser.parser import HumanName
-        elif method == 2:
-            from nltk.corpus import wordnet
+        from nameparser.parser import HumanName
     if download:
         download_packages(method)
 
@@ -140,8 +135,7 @@ def setup_argparser():
                         help=f'Method to use for extracting the names from texts. Choices are: [{choices_msg}]')
     parser.add_argument(
         '-d', '--download', action='store_true',
-        help='Whether to download the nltk packages: punkt, averaged_perceptron_tagger, '
-             'maxent_ne_chunker, words')
+        help='Whether to download necessary nltk resoures for the selected method')
     return parser
 
 
@@ -156,24 +150,13 @@ if __name__ == '__main__':
         print("#########")
         print(f'# Text{i} #')
         print("#########")
-        if args.method in [1, 2]:
+        if args.method == 1:
             names = get_human_names(text)
-            if args.method == 1:
-                print("LAST, FIRST")
-                print("-----------")
-                for name in names:
-                    last_first = HumanName(name).last + ', ' + HumanName(name).first
-                    print(last_first)
-            else:
-                person_names = names
-                for person in names:
-                    person_split = person.split(" ")
-                    for name in person_split:
-                        if wordnet.synsets(name):
-                            if name in person:
-                                person_names.remove(person)
-                                break
-                print(person_names)
+            print("LAST, FIRST")
+            print("-----------")
+            for name in names:
+                last_first = HumanName(name).last + ', ' + HumanName(name).first
+                print(last_first)
             print()
         else:
             print(f'Unsupported method #{args.method}')
