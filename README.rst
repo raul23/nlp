@@ -16,7 +16,7 @@ This script tests different NLP methods to extract names from text:
   singular) with more than one part from a given text and then the first and last names are returned
 - The `second method <#method-2-spacy>`_ feeds the raw text to the NLP model `en_core_web_md 
   <https://spacy.io/models/en#en_core_web_md>`_ and then ``spacy`` produces a document containing among other 
-  things named entities. 
+  things named entities with the **PERSON** label. 
 
 `:star:` 
 
