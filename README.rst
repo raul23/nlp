@@ -10,10 +10,10 @@ Scripts
 =======
 **extract_names_from_text.py**: Extract names from text
 -------------------------------------------------------
-This script tests different NLP methods to extract names from texts:
+This script tests different NLP methods to extract names from text:
 
-- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text
-- ...
+- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the last name and first name are returned
+- The `second method <#method-2-nltk-part-of-speech-tag-nnp-wordnet>`_ is based on the first one but checks each name found against ``wordnet``, an NLTK corpus reader
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
@@ -129,8 +129,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -m METHOD, --method METHOD
                            Method to use for extracting the names from texts.
                            (default: 1)
-     -d, --download        Whether to download the nltk packages: punkt,
-                           averaged_perceptron_tagger, maxent_ne_chunker, words
+     -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
 
 Method 1: ``nltk`` + part of speech tag ``NNP``
@@ -140,7 +139,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
  This is what I tried (code is below): I am using nltk to find everything marked as a 
  person and then generating a list of all the NNP parts of that person. I am skipping 
  persons where there is only one NNP which avoids grabbing a lone surname.
- 
+
 .. code-block:: python
 
    import nltk
@@ -168,7 +167,6 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
                    person_list.append(name[:-1])
                name = ''
            person = []
-
        return person_list
        
    names = get_human_names(text)
@@ -179,7 +177,8 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
 `:information_source:`
 
-  The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
+  - The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
+  - The Python code returns the last name and first name for each name found in the text
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
@@ -230,6 +229,52 @@ Ouput::
    Krugman, Paul
    Summers, Larry
    Colas, Nick
+
+Method 2: ``nltk`` + part of speech tag ``NNP`` + ``wordnet``
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+From the  `stackoverflow user 'Shivansh bhandari' <https://stackoverflow.com/a/49500219>`_:
+
+ I actually wanted to extract only the person name, so, thought to check all the names that 
+ come as an output against wordnet( A large lexical database of English). More Information on 
+ Wordnet can be found here: http://www.nltk.org/howto/wordnet.html
+
+.. code-block:: python
+
+   import nltk
+   from nltk.corpus import wordnet
+   nltk.download('omw-1.4')
+
+   def get_human_names(text):
+       tokens = nltk.tokenize.word_tokenize(text)
+       pos = nltk.pos_tag(tokens)
+       sentt = nltk.ne_chunk(pos, binary = False)
+       person_list = []
+       person = []
+       name = ""
+       for subtree in sentt.subtrees(filter=lambda t: t.label() == 'PERSON'):
+           for leaf in subtree.leaves():
+               person.append(leaf[0])
+           if len(person) > 1: #avoid grabbing lone surnames
+               for part in person:
+                   name += part + ' '
+               if name[:-1] not in person_list:
+                   person_list.append(name[:-1])
+               name = ''
+           person = []
+       return person_list
+   
+   names = get_human_names(text)
+   person_names = names
+   for person in names:
+       person_split = person.split(" ")
+       for name in person_split:
+           if wordnet.synsets(name):
+               if name in person:
+                   person_names.remove(person)
+                   break
+   print(person_names)
+
+`:warning:` It is important to download the ``nltk`` resource 'omw-1.4' or you won't be able to run the second method (``LookupError``)
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
