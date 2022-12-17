@@ -17,6 +17,8 @@ This script tests different NLP methods to extract names from text:
 
 `:star:` The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
+Texts used for testing
+''''''''''''''''''''''
 The script ``extract_names_from_text.py`` is tested on the following four texts (taken from Wikpedia and stackoverflow):
 
 .. code-block:: python
@@ -135,7 +137,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
 
-`:information_source:` These are the resources that needs to be downloaded for each method:
+`:information_source:` These are the resources that needs to be downloaded for each method (with the ``-d`` flag):
 
   - Method 1: 'punkt', 'averaged_perceptron_tagger', 'maxent_ne_chunker', 'words'
   - Method 2: 'en_core_web_md'
