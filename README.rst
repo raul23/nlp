@@ -151,8 +151,8 @@ To display the script's list of options and their descriptions, use the ``-h`` o
   
 `:star:` Ways to download and install the model 'en_core_web_md' necessary for `method 2 <#method-2-spacy>`_
 
-  - running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
-  - running the command 'python -m spacy download en_core_web_md' on the terminal
+  1. running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
+  2. running the command 'python -m spacy download en_core_web_md' on the terminal
 
 Method 1: ``nltk`` + part of speech tag ``NNP``
 '''''''''''''''''''''''''''''''''''''''''''''''
@@ -276,8 +276,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
 
-  - running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
-  - running the command 'python -m spacy download en_core_web_md' on the terminald'
+  1. running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
+  2. running the command 'python -m spacy download en_core_web_md' on the terminald'
 
 `:information_source:` about the ``if`` condition
 
