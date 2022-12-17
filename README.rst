@@ -18,7 +18,7 @@ This script tests different NLP methods to extract names from text:
 `:star:` 
 
    - The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
-   - The script ``extract_names_from_text.py`` only imports the libraries/modules necessary for the choosen method, i.e. if you choose 
+   - The script ``extract_names_from_text.py`` only imports the libraries/modules necessary for the choosen method, i.e. if you choose the
      `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you are just interested
      in one particular method, you won't need to download unnecessary libraries.
 
