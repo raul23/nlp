@@ -255,6 +255,45 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
            names.append(name)
    print()
 
+`:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
+
+To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
+
+ $ python extract_names_from_text.py -m 2 -d
+ 
+Ouput::
+
+   #########
+   # Text1 #
+   #########
+   Wolfgang Ernst Pauli
+   Albert Einstein
+
+   #########
+   # Text2 #
+   #########
+   Harry Warren Anderson
+   Miles Hartley
+   H. Pierre Noyes
+   Thomas Kuhn
+   Henry Silsbee
+   John Hasbrouck van Vleck
+
+   #########
+   # Text3 #
+   #########
+   Pope Urban VIII
+   Francesco Barberini
+
+   #########
+   # Text4 #
+   #########
+   Francois R. Velde
+   Richard Branson
+   Paul Krugman
+   Larry Summers
+   Nick Colas
+
 Extract DOB and DOD from text [TODO]
 ------------------------------------
 `:warning:` TODO
