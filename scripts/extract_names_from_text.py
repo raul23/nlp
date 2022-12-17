@@ -133,8 +133,11 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=[1, 2],
-                        default=1, type=int, help='Method to use for extracting the names from texts.')
+    choices = [1, 2]
+    choices_msg = ', '.join(map(str, choices))
+    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
+                        default=1, type=int,
+                        help=f'Method to use for extracting the names from texts. Choices are: [{choices_msg}]')
     parser.add_argument(
         '-d', '--download', action='store_true',
         help='Whether to download the nltk packages: punkt, averaged_perceptron_tagger, '
