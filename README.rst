@@ -17,9 +17,9 @@ This script tests different NLP methods to extract names from texts:
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
-Dependencies
-''''''''''''
-This is the environment on which the script was tested:
+Dependencies for **extract_names_from_text.py**
+'''''''''''''''''''''''''''''''''''''''''''''''
+This is the environment on which the script ``extract_names_from_text.py`` was tested:
 
 * **Platforms:** macOS
 * **Python**: versions **3.7** and **3.8**
