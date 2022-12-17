@@ -5,7 +5,7 @@ import time
 import nltk
 from nameparser.parser import HumanName
 
-import ipdb
+# import ipdb
 
 # Examples
 text1 = """
@@ -23,7 +23,7 @@ Anderson was born in Indianapolis, Indiana, and grew up in Urbana, Illinois.
 His father, Harry Warren Anderson, was a professor of plant pathology at the 
 University of Illinois at Urbana; his maternal grandfather was a mathematician 
 at Wabash College, where Anderson's father studied; and his maternal uncle was 
-a Rhodes Scholar who became a professor of English, also at Wabash College. He 
+a Rhodes Scholar who became a professor of qEnglish, also at Wabash College. He 
 graduated from University Laboratory High School in Urbana in 1940. Under the 
 encouragement of a math teacher by the name of Miles Hartley, Anderson enrolled 
 at Harvard University to study under a fully-funded scholarship. He 
