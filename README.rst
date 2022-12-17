@@ -140,7 +140,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
   - Method 1: 'punkt', 'averaged_perceptron_tagger', 'maxent_ne_chunker', 'words'
   - Method 2: 'en_core_web_md'
   
-`:star:` Ways to download and install the model 'en_core_web_md' for method 2
+`:star:` Ways to download and install the model 'en_core_web_md' necessary for method 2
 
 - running the script ``extract_names_from_text.py`` with the ``-d`` flag, or
 - running the command 'python -m spacy download en_core_web_md' on the terminal
