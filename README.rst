@@ -10,7 +10,7 @@ Scripts
 =======
 **extract_names_from_text.py**: Extract names from text
 -------------------------------------------------------
-This script tests different NLP methods to extract names from texts:
+This script tests different NLP methods to extract names from text:
 
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the last name and first name are returned
 - The `second method <#method-2-nltk-part-of-speech-tag-nnp-wordnet>`_ is based on the first one but checks each name found against ``wordnet``, an NLTK corpus reader
