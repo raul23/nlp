@@ -192,44 +192,36 @@ Ouput::
    #########
    # Text1 #
    #########
-   LAST, FIRST
-   -----------
-   Pauli, Ernst
-   Einstein, Albert
+   Ernst Pauli
+   Albert Einstein
 
    #########
    # Text2 #
    #########
-   LAST, FIRST
-   -----------
-   Anderson, Harry
-   Hartley, Miles
-   Noyes, Pierre
-   Kuhn, Thomas
-   Silsbee, Henry
-   Hasbrouck, John
+   Harry Anderson
+   Miles Hartley
+   Pierre Noyes
+   Thomas Kuhn
+   Henry Silsbee
+   John Hasbrouck
 
    #########
    # Text3 #
    #########
-   LAST, FIRST
-   -----------
-   II, Ferdinando
-   Croce, Santa
-   , Urban
-   Barberini, Francesco
+   Ferdinando II
+   Santa Croce
+   Urban 
+   Francesco Barberini
 
    #########
    # Text4 #
    #########
-   LAST, FIRST
-   -----------
-   Velde, Francois
-   Branson, Richard
-   Galactic, Virgin
-   Krugman, Paul
-   Summers, Larry
-   Colas, Nick
+   Francois Velde
+   Richard Branson
+   Virgin Galactic
+   Paul Krugman
+   Larry Summers
+   Nick Colas
 
 Method 2: ``spacy``
 '''''''''''''''''''
