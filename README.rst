@@ -234,6 +234,11 @@ Ouput::
 
 Method 2: ``nltk`` + part of speech tag ``NNP`` + ``wordnet``
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+From the  `stackoverflow user 'Shivansh bhandari' <https://stackoverflow.com/a/49500219>`_:
+
+ I actually wanted to extract only the person name, so, thought to check all the names that 
+ come as an output against wordnet( A large lexical database of English). More Information on 
+ Wordnet can be found here: http://www.nltk.org/howto/wordnet.html
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
