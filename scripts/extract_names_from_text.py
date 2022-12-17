@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 import argparse
+import re
+import shlex
+import subprocess
+import sys
 import time
 
+# Third-party libraries
 HumanName = None
+model = None  # spacy model: en_core_web_md
 nltk = None
-wordnet = None
+spacy = None
 
 # import ipdb
 
@@ -81,12 +87,41 @@ prices go up. And that’s exactly what is happening to BTC prices."
 """
 
 
+# Ref.: https://stackoverflow.com/a/56905694
+def capitalizeWords(text):
+    newText = ''
+    for sentence in text.split('.'):
+        newSentence = ''
+        for word in sentence.split():
+            word = word[0] + word[1:]
+            newSentence += word+' '
+        newText += newSentence+'\n'
+    return newText
+
+
 def download_packages(method):
+    global model
     if method == 1:
         nltk.download('punkt')
         nltk.download('averaged_perceptron_tagger')
         nltk.download('maxent_ne_chunker')
         nltk.download('words')
+    elif method == 2:
+        try:
+            model = spacy.load('en_core_web_md')
+            print("The model 'en_core_web_md' is already installed")
+        except OSError:
+            print("Downloading the model 'en_core_web_md' ...")
+            result = run_cmd('python -m spacy download en_core_web_md')
+            if result.returncode == 1:
+                stdout = result.stdout.decode().strip()
+                # Ref.: https://stackoverflow.com/a/42921196
+                stdout = re.sub(r'\x1b\[[\d;]+m', '', stdout)
+                print(stdout)
+                sys.exit(1)
+            model = spacy.load('en_core_web_md')
+    else:
+        print(f'Unsupported method #{method}')
 
 
 # Method 1, ref.: https://stackoverflow.com/q/20290870
@@ -111,12 +146,41 @@ def get_human_names(text):
 
 
 def import_modules(method, download):
-    global HumanName, nltk, wordnet
-    if method in [1, 2]:
+    global HumanName, model, nltk, spacy
+    if method == 1:
         import nltk
         from nameparser.parser import HumanName
+    elif method == 2:
+        import spacy
+        if not download:
+            try:
+                model = spacy.load('en_core_web_md')
+            except OSError:
+                print("The model 'en_core_web_md' was not found. \nYou can download it "
+                      "by re-running the current script with the '-d' flag or by "
+                      "executing the command 'python -m spacy download "
+                      "en_core_web_md'")
+                sys.exit(1)
+    else:
+        print(f'Unsupported method #{method}')
     if download:
         download_packages(method)
+
+
+def run_cmd(cmd):
+    try:
+        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
+            # TODO: PIPE not working as arguments and capture_output new in
+            # Python 3.7
+            # Ref.: https://stackoverflow.com/a/53209196
+            #       https://bit.ly/3lvdGlG
+            result = subprocess.run(shlex.split(cmd))
+        else:
+            result = subprocess.run(shlex.split(cmd), capture_output=True)
+    except FileNotFoundError:
+        raise
+    else:
+        return result
 
 
 def setup_argparser():
@@ -143,20 +207,28 @@ if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
     texts = [text1, text2, text3, text4]
-    print(f'Extracting names with method #{args.method}\n')
+    print(f'Extracting names with method #{args.method}')
     time.sleep(1)
     import_modules(args.method, args.download)
+    print()
     for i, text in enumerate(texts, start=1):
         print("#########")
         print(f'# Text{i} #')
         print("#########")
         if args.method == 1:
             names = get_human_names(text)
-            print("LAST, FIRST")
-            print("-----------")
             for name in names:
-                last_first = HumanName(name).last + ', ' + HumanName(name).first
-                print(last_first)
+                print(HumanName(name).first + ' ' + HumanName(name).last)
+            print()
+        elif args.method == 2:
+            # doc = nlp(capitalizeWords(text))
+            doc = model(text)
+            names = []
+            for ent in doc.ents:
+                if ent.label_ == 'PERSON' and str(ent) not in names and len(ent) > 1:
+                    name = str(ent).replace('\n', '')
+                    print(name)
+                    names.append(name)
             print()
         else:
             print(f'Unsupported method #{args.method}')
