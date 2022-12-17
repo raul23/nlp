@@ -8,8 +8,8 @@ NLP
 
 Scripts
 =======
-*extract_names_from_text.py*: Extract names from text
------------------------------------------------------
+**extract_names_from_text.py**: Extract names from text
+-------------------------------------------------------
 This script tests different NLP methods to extract names from texts:
 
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text
@@ -28,18 +28,18 @@ This is the environment on which the script was tested:
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary for ``nltk``
 
-Usage for *extract_names_from_text.py*
-''''''''''''''''''''''''''''''''''''''
-Run the script *extract_names_from_text.py*
-```````````````````````````````````````````
+Usage for **extract_names_from_text.py**
+''''''''''''''''''''''''''''''''''''''''
+Run the script **extract_names_from_text.py**
+`````````````````````````````````````````````
 Run the script by specifying the method to use for extracting names from texts::
 
    $ pyton extract_names_from_text.py -m 1
 
 `:information_source:` By default, the `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ is used
 
-List of options for *extract_names_from_text.py*
-````````````````````````````````````````````````
+List of options for **extract_names_from_text.py**
+``````````````````````````````````````````````````
 To display the script's list of options and their descriptions, use the ``-h`` option::
 
    $ python extract_names_from_text.py -h
