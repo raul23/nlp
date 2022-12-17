@@ -2,8 +2,9 @@
 import argparse
 import time
 
-import nltk
-from nameparser.parser import HumanName
+HumanName = None
+nltk = None
+wordnet = None
 
 # import ipdb
 
@@ -80,14 +81,17 @@ prices go up. And that’s exactly what is happening to BTC prices."
 """
 
 
-def download_packages():
-    nltk.download('punkt')
-    nltk.download('averaged_perceptron_tagger')
-    nltk.download('maxent_ne_chunker')
-    nltk.download('words')
+def download_packages(method):
+    if method in [1, 2]:
+        nltk.download('punkt')
+        nltk.download('averaged_perceptron_tagger')
+        nltk.download('maxent_ne_chunker')
+        nltk.download('words')
+        if method == 2:
+            nltk.download('omw-1.4')
 
 
-# Method 1, ref.: https://stackoverflow.com/q/20290870
+# Methods 1 and 2, ref.: https://stackoverflow.com/q/20290870
 def get_human_names(text):
     tokens = nltk.tokenize.word_tokenize(text)
     pos = nltk.pos_tag(tokens)
@@ -105,8 +109,19 @@ def get_human_names(text):
                 person_list.append(name[:-1])
             name = ''
         person = []
-
     return person_list
+
+
+def import_modules(method, download):
+    global HumanName, nltk, wordnet
+    if method in [1, 2]:
+        import nltk
+        if method == 1:
+            from nameparser.parser import HumanName
+        elif method == 2:
+            from nltk.corpus import wordnet
+    if download:
+        download_packages(method)
 
 
 def setup_argparser():
@@ -118,7 +133,7 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=[1],
+    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=[1, 2],
                         default=1, type=int, help='Method to use for extracting the names from texts.')
     parser.add_argument(
         '-d', '--download', action='store_true',
@@ -131,21 +146,31 @@ if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
     texts = [text1, text2, text3, text4]
-    if args.download:
-        download_packages()
     print(f'Extracting names with method #{args.method}\n')
     time.sleep(1)
+    import_modules(args.method, args.download)
     for i, text in enumerate(texts, start=1):
-        names = get_human_names(text)
         print("#########")
         print(f'# Text{i} #')
         print("#########")
-        if args.method == 1:
-            print("LAST, FIRST")
-            print("-----------")
-            for name in names:
-                last_first = HumanName(name).last + ', ' + HumanName(name).first
-                print(last_first)
+        if args.method in [1, 2]:
+            names = get_human_names(text)
+            if args.method == 1:
+                print("LAST, FIRST")
+                print("-----------")
+                for name in names:
+                    last_first = HumanName(name).last + ', ' + HumanName(name).first
+                    print(last_first)
+            else:
+                person_names = names
+                for person in names:
+                    person_split = person.split(" ")
+                    for name in person_split:
+                        if wordnet.synsets(name):
+                            if name in person:
+                                person_names.remove(person)
+                                break
+                print(person_names)
             print()
         else:
             print(f'Unsupported method #{args.method}')
