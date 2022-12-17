@@ -17,7 +17,7 @@ This script tests different NLP methods to extract names from texts:
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
-These are the four texts (taken from Wikpedia) that the script is being tested to extract names:
+The script ``extract_names_from_text.py`` is tested on the following four texts (taken from Wikpedia and stackoverflow):
 
 .. code-block:: python
    
