@@ -103,6 +103,9 @@ This is the environment on which the script ``extract_names_from_text.py`` was t
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary for ``nltk``
   * `nameparser <https://pypi.org/project/nameparser/>`_: **1.1.2**, for parsing human names into their individual components
+* For `method 2 <#method-2-spacy>`_:
+
+  * `spacy`_: 
 
 Usage for **extract_names_from_text.py**
 ''''''''''''''''''''''''''''''''''''''''
@@ -131,6 +134,18 @@ To display the script's list of options and their descriptions, use the ``-h`` o
                            (default: 1)
      -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
+
+`:information_source:` These are the resources downloaded for each method:
+
+  - Method 1: 'punkt', 'averaged_perceptron_tagger', 'maxent_ne_chunker', 'words'
+  - Method 2: 'en_core_web_md'
+  
+`:star:` Ways to download and install the model 'en_core_web_md' for method 2
+
+The model 'en_core_web_md' can either be downloaded by 
+
+- running the script ``extract_names_from_text.py`` with the ``-d`` flag, or
+- running the command 'python -m spacy download en_core_web_md' on the terminal
 
 Method 1: ``nltk`` + part of speech tag ``NNP``
 '''''''''''''''''''''''''''''''''''''''''''''''
