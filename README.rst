@@ -13,7 +13,7 @@ Scripts
 This script tests different NLP methods to extract names from texts:
 
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the last name and first name are returned
-- 
+- The `second method <>`_ is based on the first one but checks each name found against ``wordnet``, an NLTK corpus reader
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
@@ -231,6 +231,9 @@ Ouput::
    Krugman, Paul
    Summers, Larry
    Colas, Nick
+
+Method 2: ``nltk`` + part of speech tag ``NNP`` + ``wordnet``
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
