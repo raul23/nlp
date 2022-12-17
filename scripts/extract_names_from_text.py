@@ -184,7 +184,7 @@ def run_cmd(cmd):
 
 
 def setup_argparser():
-    msg = 'Get names from texts'
+    msg = 'Get names from text'
     parser = argparse.ArgumentParser(
         description='',
         usage=f"python %(prog)s [OPTIONS]\n\n{msg}",
@@ -196,10 +196,10 @@ def setup_argparser():
     choices_msg = ', '.join(map(str, choices))
     parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
                         default=1, type=int,
-                        help=f'Method to use for extracting the names from texts. Choices are: [{choices_msg}]')
+                        help=f'Method to use for extracting the names from text. Choices are: [{choices_msg}]')
     parser.add_argument(
         '-d', '--download', action='store_true',
-        help='Whether to download necessary nltk resoures for the selected method')
+        help='Whether to download necessary nltk/spacy resoures for the selected method')
     return parser
 
 
