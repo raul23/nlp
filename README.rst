@@ -12,7 +12,7 @@ Scripts
 -------------------------------------------------------
 This script tests different NLP methods to extract names from text:
 
-- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the last name and first name are returned
+- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the first and last name is returned
 - ...
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
@@ -168,17 +168,18 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
                name = ''
            person = []
        return person_list
-       
+   
+   text = 'In 1945, after having been nominated by Albert Einstein, Pauli received the Nobel Prize in ' \
+          'Physics for his "decisive contribution through his discovery of a new law of Nature, the ' \
+          'exclusion principle or Pauli principle".'
    names = get_human_names(text)
-   print("LAST, FIRST")
    for name in names: 
-       last_first = HumanName(name).last + ', ' + HumanName(name).first
-       print(last_first)
+       print(HumanName(name).first + ' ' + HumanName(name).last)
 
 `:information_source:`
 
   - The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
-  - The Python code returns the last name and first name (e.g. Einstein, Albert) for each name found in the text
+  - The Python code returns the first and last name (e.g. Albert Einstein) for each name found in the text
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
@@ -230,9 +231,29 @@ Ouput::
    Summers, Larry
    Colas, Nick
 
-Method 2: TODO
-''''''''''''''
-`:warning:` TODO
+Method 2: ``spacy``
+'''''''''''''''''''
+Feeding the raw text to the NLP model 'en_core_web_md', ``spacy`` produces a document containng among other things named entities. The entities that are of interest to us are those labeled as **PERSON**.
+
+.. code-block:: python
+
+   import shlex
+   import subprocess
+   import spacy
+   
+   # Download the model 'en_core_web_md'
+   cmd = 'python -m spacy download en_core_web_md'
+   subprocess.run(shlex.split(cmd), capture_output=True)
+   model = spacy.load('en_core_web_md')
+   
+   doc = model(text)
+   names = []
+   for ent in doc.ents:
+       if ent.label_ == 'PERSON' and str(ent) not in names and len(ent) > 1:
+           name = str(ent).replace('\n', '')
+           print(name)
+           names.append(name)
+   print()
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
