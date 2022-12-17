@@ -274,7 +274,7 @@ From the  `stackoverflow user 'Shivansh bhandari' <https://stackoverflow.com/a/4
                    break
    print(person_names)
 
-`:warning:` It is important the ``nltk`` resource 'omw-1.4' or you won't be able to run the second method
+`:warning:` It is important to download the ``nltk`` resource 'omw-1.4' or you won't be able to run the second method (``LookupError``)
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
