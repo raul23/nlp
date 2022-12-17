@@ -102,10 +102,10 @@ This is the environment on which the script ``extract_names_from_text.py`` was t
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary for ``nltk``
-  * `nameparser <https://pypi.org/project/nameparser/>`_: **1.1.2**, for parsing human names into their individual components
+  * `nameparser <https://pypi.org/project/nameparser/>`_: **v1.1.2**, for parsing human names into their individual components
 * For `method 2 <#method-2-spacy>`_:
 
-  * `spacy`_: 
+  * `spacy <https://spacy.io/>`_: **v2.3.5** (Python 3.7) and **v3.3.1** (Python 3.8)
 
 Usage for **extract_names_from_text.py**
 ''''''''''''''''''''''''''''''''''''''''
