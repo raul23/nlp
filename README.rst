@@ -180,7 +180,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 `:information_source:`
 
   - The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
-  - The Python code returns the last name and first name for each names found in the text
+  - The Python code returns the last name and first name for each name found in the text
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
