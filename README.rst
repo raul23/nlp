@@ -12,8 +12,8 @@ Scripts
 -------------------------------------------------------
 This script tests different NLP methods to extract names from texts:
 
-- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text
-- ...
+- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the last name and first name are returned
+- 
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
@@ -140,7 +140,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
  This is what I tried (code is below): I am using nltk to find everything marked as a 
  person and then generating a list of all the NNP parts of that person. I am skipping 
  persons where there is only one NNP which avoids grabbing a lone surname.
- 
+
 .. code-block:: python
 
    import nltk
@@ -179,7 +179,8 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
 `:information_source:`
 
-  The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
+  - The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
+  - The Python code returns the last name and first name for each names found in the text
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
