@@ -241,6 +241,7 @@ From the  `stackoverflow user 'Shivansh bhandari' <https://stackoverflow.com/a/4
 .. code-block:: python
 
    import nltk
+   from nltk.corpus import wordnet
    nltk.download('omw-1.4')
 
    def get_human_names(text):
