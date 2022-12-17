@@ -15,7 +15,7 @@ This script tests different NLP methods to extract names from text:
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the first and last name is returned
 - ...
 
-`:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
+`:star:` The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
 The script ``extract_names_from_text.py`` is tested on the following four texts (taken from Wikpedia and stackoverflow):
 
