@@ -251,7 +251,7 @@ Ouput::
 
 Method 2: ``spacy``
 '''''''''''''''''''
-Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/en#en_core_web_md>`_, ``spacy`` produces a document containing among other things named entities. The entities that are of interest to us are those labeled as **PERSON**.
+Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/en#en_core_web_md>`_, ``spacy`` then produces a document containing among other things named entities. The entities that are of interest to us are those labeled as **PERSON**.
 
 .. code-block:: python
 
