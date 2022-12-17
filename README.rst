@@ -111,7 +111,7 @@ This is the environment on which the script ``extract_names_from_text.py`` was t
 * For `method 1 <#method-1-nltk-part-of-speech-tag-nnp>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
-  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary for ``nltk``
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
   * `nameparser <https://pypi.org/project/nameparser/>`_: **v1.1.2**, for parsing human names into their individual components
 * For `method 2 <#method-2-spacy>`_:
 
