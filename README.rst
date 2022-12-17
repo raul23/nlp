@@ -12,15 +12,17 @@ Scripts
 -------------------------------------------------------
 This script tests different NLP methods to extract names from text:
 
-- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NPP with more than one part from a given text and then the first and last name is returned
-- ...
+- The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NNP (proper noun, 
+  singular) with more than one part from a given text and then the first and last names are returned
+- The `second method <#method-2-spacy>`_ feeds the raw text to the NLP model `en_core_web_md 
+  <https://spacy.io/models/en#en_core_web_md>`_, spacy produces a document containing among other things named entities. 
 
 `:star:` 
 
    - The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
-   - The script ``extract_names_from_text.py`` only imports the libraries/modules necessary for the choosen method, e.g. if you choose the
-     `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you are just interested
-     in one particular method, you won't need to download unnecessary libraries.
+   - The script ``extract_names_from_text.py`` only imports the libraries/modules necessary for the choosen method, 
+     e.g. if you choose the `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you 
+     are just interested in one particular method, you won't need to download unnecessary libraries.
 
 Texts used for testing
 ''''''''''''''''''''''
@@ -198,8 +200,11 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
 `:information_source:`
 
-  - The `stackoverflow user 'Gihan Gamage' <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, maxent_ne_chunker, words
-  - The Python code returns the first and last name (e.g. Albert Einstein) for each name found in the text
+  - The `stackoverflow user 'Gihan Gamage' 
+    <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ 
+    suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, 
+    maxent_ne_chunker, words
+  - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
