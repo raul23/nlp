@@ -7,7 +7,8 @@ from nameparser.parser import HumanName
 
 # import ipdb
 
-# Examples
+# Examples from Wikipedia and stackoverflow
+# Ref.: https://en.wikipedia.org/wiki/Wolfgang_Pauli
 text1 = """
 Wolfgang Ernst Pauli (/ˈpɔːli/; German: [ˈvɔlfɡaŋ ˈpaʊli]; 25 April 1900 – 
 15 December 1958) was an Austrian theoretical physicist and one of the pioneers 
@@ -18,6 +19,7 @@ principle". The discovery involved spin theory, which is the basis of a theory
 of the structure of matter.
 """
 
+# Ref.: https://en.wikipedia.org/wiki/Philip_W._Anderson
 text2 = """
 Anderson was born in Indianapolis, Indiana, and grew up in Urbana, Illinois. 
 His father, Harry Warren Anderson, was a professor of plant pathology at the 
@@ -38,6 +40,7 @@ Ph.D. in 1949 after completing a doctoral dissertation titled "The theory of
 pressure broadening of spectral lines in the microwave and infrared regions."
 """
 
+# Ref.: https://en.wikipedia.org/wiki/Galileo_Galilei
 text3 = """
 Galileo continued to receive visitors until 1642, when, after suffering fever 
 and heart palpitations, he died on 8 January 1642, aged 77. The Grand Duke of 
@@ -56,6 +59,7 @@ remains. These fingers are currently on exhibition at the Museo Galileo in
 Florence, Italy.
 """
 
+# Ref.: https://stackoverflow.com/q/20290870
 text4 = """
 Some economists have responded positively to Bitcoin, including 
 Francois R. Velde, senior economist of the Federal Reserve in Chicago 
