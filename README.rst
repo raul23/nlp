@@ -129,8 +129,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -m METHOD, --method METHOD
                            Method to use for extracting the names from texts.
                            (default: 1)
-     -d, --download        Whether to download the nltk packages: punkt,
-                           averaged_perceptron_tagger, maxent_ne_chunker, words
+     -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
 
 Method 1: ``nltk`` + part of speech tag ``NNP``
@@ -168,7 +167,6 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
                    person_list.append(name[:-1])
                name = ''
            person = []
-
        return person_list
        
    names = get_human_names(text)
@@ -239,6 +237,43 @@ From the  `stackoverflow user 'Shivansh bhandari' <https://stackoverflow.com/a/4
  I actually wanted to extract only the person name, so, thought to check all the names that 
  come as an output against wordnet( A large lexical database of English). More Information on 
  Wordnet can be found here: http://www.nltk.org/howto/wordnet.html
+
+.. code-block:: python
+
+   import nltk
+   nltk.download('omw-1.4')
+
+   def get_human_names(text):
+       tokens = nltk.tokenize.word_tokenize(text)
+       pos = nltk.pos_tag(tokens)
+       sentt = nltk.ne_chunk(pos, binary = False)
+       person_list = []
+       person = []
+       name = ""
+       for subtree in sentt.subtrees(filter=lambda t: t.label() == 'PERSON'):
+           for leaf in subtree.leaves():
+               person.append(leaf[0])
+           if len(person) > 1: #avoid grabbing lone surnames
+               for part in person:
+                   name += part + ' '
+               if name[:-1] not in person_list:
+                   person_list.append(name[:-1])
+               name = ''
+           person = []
+       return person_list
+   
+   names = get_human_names(text)
+   person_names = names
+   for person in names:
+       person_split = person.split(" ")
+       for name in person_split:
+           if wordnet.synsets(name):
+               if name in person:
+                   person_names.remove(person)
+                   break
+   print(person_names)
+
+`:warning:` It is important the ``nltk`` resource 'omw-1.4' or you won't be able to run the second method
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
