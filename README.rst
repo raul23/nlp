@@ -274,15 +274,15 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
-`:information_source:` about the ``if`` condition
-
-  - ``str(ent) not in names``: to avoid displaying duplicated names
-  - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
-
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
 
   - running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
   - running the command 'python -m spacy download en_core_web_md' on the terminald'
+
+`:information_source:` about the ``if`` condition
+
+  - ``str(ent) not in names``: to avoid displaying duplicated names
+  - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
 
 To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
