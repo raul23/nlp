@@ -271,7 +271,6 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
            name = str(ent).replace('\n', '')
            print(name)
            names.append(name)
-   print()
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
