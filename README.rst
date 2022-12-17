@@ -8,8 +8,10 @@ NLP
 
 Scripts
 =======
-Extract names from text
------------------------
+``get_names_from_text.py``: Extract names from text
+---------------------------------------------------
+The Different NLP methods to extract names from texts.
+
 Method 1: ``nltk`` + part of speech tag ``NNP``
 '''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
