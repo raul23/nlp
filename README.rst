@@ -8,8 +8,8 @@ NLP
 
 Scripts
 =======
-1. Extract names from text
---------------------------
+Extract names from text
+-----------------------
 Method 1: ``nltk`` + part of speech tag ``NNP``
 '''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
@@ -106,6 +106,6 @@ Ouput::
    Summers, Larry
    Colas, Nick
 
-2. Extract DOB and DOD from text [TODO]
----------------------------------------
+Extract DOB and DOD from text [TODO]
+------------------------------------
 `:warning:` TODO
