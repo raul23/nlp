@@ -111,7 +111,7 @@ Usage for **extract_names_from_text.py**
 ''''''''''''''''''''''''''''''''''''''''
 Run the script **extract_names_from_text.py**
 `````````````````````````````````````````````
-Run the script by specifying the method to use for extracting names from texts::
+Run the script by specifying the method to use for extracting names from text::
 
    $ pyton extract_names_from_text.py -m 1
 
