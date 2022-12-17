@@ -17,6 +17,77 @@ This script tests different NLP methods to extract names from texts:
 
 `:star:` This Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
 
+These are the four texts (taken from Wikpedia) that the script is being tested to extract names:
+
+.. code-block:: python
+   
+   # Examples
+   text1 = """
+   Wolfgang Ernst Pauli (/ˈpɔːli/; German: [ˈvɔlfɡaŋ ˈpaʊli]; 25 April 1900 – 
+   15 December 1958) was an Austrian theoretical physicist and one of the pioneers 
+   of quantum physics. In 1945, after having been nominated by Albert Einstein, 
+   Pauli received the Nobel Prize in Physics for his "decisive contribution 
+   through his discovery of a new law of Nature, the exclusion principle or Pauli 
+   principle". The discovery involved spin theory, which is the basis of a theory 
+   of the structure of matter.
+   """
+
+   text2 = """
+   Anderson was born in Indianapolis, Indiana, and grew up in Urbana, Illinois. 
+   His father, Harry Warren Anderson, was a professor of plant pathology at the 
+   University of Illinois at Urbana; his maternal grandfather was a mathematician 
+   at Wabash College, where Anderson's father studied; and his maternal uncle was 
+   a Rhodes Scholar who became a professor of qEnglish, also at Wabash College. He 
+   graduated from University Laboratory High School in Urbana in 1940. Under the 
+   encouragement of a math teacher by the name of Miles Hartley, Anderson enrolled 
+   at Harvard University to study under a fully-funded scholarship. He 
+   concentrated in "Electronic Physics" and completed his B.S. in 1943, after which 
+   he was drafted into the war effort and built antennas at the Naval Research 
+   Laboratory until the end of the Second World War in 1945. As an undergraduate, 
+   his close associates included particle-nuclear physicist H. Pierre Noyes, 
+   philosopher and historian of science Thomas Kuhn and molecular physicist Henry 
+   Silsbee. After the war, Anderson returned to Harvard to pursue graduate studies 
+   in physics under the mentorship of John Hasbrouck van Vleck; he received his 
+   Ph.D. in 1949 after completing a doctoral dissertation titled "The theory of 
+   pressure broadening of spectral lines in the microwave and infrared regions."
+   """
+
+   text3 = """
+   Galileo continued to receive visitors until 1642, when, after suffering fever 
+   and heart palpitations, he died on 8 January 1642, aged 77. The Grand Duke of 
+   Tuscany, Ferdinando II, wished to bury him in the main body of the Basilica of 
+   Santa Croce, next to the tombs of his father and other ancestors, and to erect 
+   a marble mausoleum in his honour.
+   These plans were dropped, however, after Pope Urban VIII and his nephew, 
+   Cardinal Francesco Barberini, protested, because Galileo had been condemned by 
+   the Catholic Church for "vehement suspicion of heresy". He was instead buried 
+   in a small room next to the novices' chapel at the end of a corridor from the 
+   southern transept of the basilica to the sacristy. He was reburied in the main 
+   body of the basilica in 1737 after a monument had been erected there in his 
+   honour; during this move, three fingers and a tooth were removed from his 
+   remains. These fingers are currently on exhibition at the Museo Galileo in 
+   Florence, Italy.
+   """
+
+   text4 = """
+   Some economists have responded positively to Bitcoin, including 
+   Francois R. Velde, senior economist of the Federal Reserve in Chicago 
+   who described it as "an elegant solution to the problem of creating a 
+   digital currency." In November 2013 Richard Branson announced that 
+   Virgin Galactic would accept Bitcoin as payment, saying that he had invested 
+   in Bitcoin and found it "fascinating how a whole new global currency 
+   has been created", encouraging others to also invest in Bitcoin.
+   Other economists commenting on Bitcoin have been critical. 
+   Economist Paul Krugman has suggested that the structure of the currency 
+   incentivizes hoarding and that its value derives from the expectation that 
+   others will accept it as payment. Economist Larry Summers has expressed 
+   a "wait and see" attitude when it comes to Bitcoin. Nick Colas, a market 
+   strategist for ConvergEx Group, has remarked on the effect of increasing 
+   use of Bitcoin and its restricted supply, noting, "When incremental 
+   adoption meets relatively fixed supply, it should be no surprise that 
+   prices go up. And that’s exactly what is happening to BTC prices."
+   """
+
 Dependencies for **extract_names_from_text.py**
 '''''''''''''''''''''''''''''''''''''''''''''''
 This is the environment on which the script ``extract_names_from_text.py`` was tested:
