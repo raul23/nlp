@@ -222,7 +222,7 @@ if __name__ == '__main__':
                 print(HumanName(name).first + ' ' + HumanName(name).last)
             print()
         elif args.method == 2:
-            # doc = nlp(capitalizeWords(text))
+            # doc = model(capitalizeWords(text))
             doc = model(text)
             names = []
             for ent in doc.ents:
