@@ -22,6 +22,7 @@ These are the four texts (taken from Wikpedia) that the script is being tested t
 .. code-block:: python
    
    # Examples
+   # Ref.: https://en.wikipedia.org/wiki/Wolfgang_Pauli
    text1 = """
    Wolfgang Ernst Pauli (/ˈpɔːli/; German: [ˈvɔlfɡaŋ ˈpaʊli]; 25 April 1900 – 
    15 December 1958) was an Austrian theoretical physicist and one of the pioneers 
@@ -32,6 +33,7 @@ These are the four texts (taken from Wikpedia) that the script is being tested t
    of the structure of matter.
    """
 
+   # Ref.: https://en.wikipedia.org/wiki/Philip_W._Anderson
    text2 = """
    Anderson was born in Indianapolis, Indiana, and grew up in Urbana, Illinois. 
    His father, Harry Warren Anderson, was a professor of plant pathology at the 
@@ -52,6 +54,7 @@ These are the four texts (taken from Wikpedia) that the script is being tested t
    pressure broadening of spectral lines in the microwave and infrared regions."
    """
 
+   # Ref.: https://en.wikipedia.org/wiki/Galileo_Galilei
    text3 = """
    Galileo continued to receive visitors until 1642, when, after suffering fever 
    and heart palpitations, he died on 8 January 1642, aged 77. The Grand Duke of 
@@ -68,7 +71,8 @@ These are the four texts (taken from Wikpedia) that the script is being tested t
    remains. These fingers are currently on exhibition at the Museo Galileo in 
    Florence, Italy.
    """
-
+   
+   # Ref.: https://stackoverflow.com/q/20290870
    text4 = """
    Some economists have responded positively to Bitcoin, including 
    Francois R. Velde, senior economist of the Federal Reserve in Chicago 
