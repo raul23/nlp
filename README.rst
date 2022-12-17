@@ -135,14 +135,14 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
 
-`:information_source:` These are the resources downloaded for each method:
+`:information_source:` These are the resources that needs to be downloaded for each method:
 
   - Method 1: 'punkt', 'averaged_perceptron_tagger', 'maxent_ne_chunker', 'words'
   - Method 2: 'en_core_web_md'
   
 `:star:` Ways to download and install the model 'en_core_web_md' necessary for method 2
 
-- running the script ``extract_names_from_text.py`` with the ``-d`` flag, or
+- running the script with the ``-d`` flag, e.g. ``extract_names_from_text.py -d`` 
 - running the command 'python -m spacy download en_core_web_md' on the terminal
 
 Method 1: ``nltk`` + part of speech tag ``NNP``
