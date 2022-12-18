@@ -468,6 +468,12 @@ From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659
    text_vocab = set(w.lower() for w in text if w.lower().isalpha())
    unusual = text_vocab.difference(english_vocab) 
 
+The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nltk-and-language-detection#comment128930397_3384659>`_ comments the following about this code snippet:
+
+ This is such a good answer. The simplicity of checking if the words are in the vocab is an 
+ amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
+ or translate, but if you simply need to know if it's an outlier, this is brilliant.
+
 Extract DOB and DOD from text [TODO]
 ------------------------------------
 `:warning:` TODO
