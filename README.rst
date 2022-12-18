@@ -459,7 +459,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - This option applies to methods 1 and 2.
 - It refers to the % of words or letters that are unusual and above which the given 
   text is not English. By default, the threshold value is 25% which means that if more than 25% of words or letters in a given text
-  unusual, then the text is not English.
+  are unusual, then the text is most likely not English.
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, a given text is considered
   unusual if there are words that are not part of the ``nltk`` English corpus. 
 
