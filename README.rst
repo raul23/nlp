@@ -434,7 +434,7 @@ Run the script by specifying the method to use for detecting the text language::
 
    $ pyton extract_names_from_text.py -m 1
 
-`:information_source:` By default, the `first method <#>`_ is used TODO
+`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ is used
 
 List of options for **detect_lang.py**
 ``````````````````````````````````````````````````
