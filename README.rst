@@ -497,7 +497,7 @@ Thus method 1 is very restricted in its application: it can only tell if a given
 `:information_source:` 
 
    - The **threshold** was not part of the original code snippet. It was added to allow binary classification 
-     of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many non-english words.
+     of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many non-English words.
    - You might even save locally the words from the ``nltk`` English corpus and hence not need to import ``nltk``. Depending on your use case, this
      might be worthwhile as you won't depend on a third-party library for a simple task of detecting whether a given text is English or not.
 
