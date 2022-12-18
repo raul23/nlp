@@ -453,8 +453,8 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words or letters in the text) is exceeded, then the language of the text is not English. (default: 25)
                            
-Method 1: detect only if it is English or not (based on words)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 1: detect only if it is English or not (``nltk`` + based on words)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
