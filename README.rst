@@ -545,7 +545,7 @@ Ouput::
    The text is classified as non-English: 72% of words in the text are unusual (threshold = 25%)
 
    ### Performance of method 1 ###
-   0.0% error classification (labels: ENGLISH and NOT ENGLISH)
+   0.0% error classification (labels: ENGLISH and NON-ENGLISH)
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
