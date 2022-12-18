@@ -514,49 +514,50 @@ Ouput::
    Detecting text language with method #1
    importing nltk
 
-   ###########################
-   Text1: english (true label)
-   ###########################
+   #############################
+   Text1: english (true language)
+   #############################
    The text is classified as English: 10% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text2: french (true label)
-   ###########################
+   #############################
+   Text2: french (true language)
+   #############################
    The text is classified as non-English: 71% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text3: spanish (true label)
-   ###########################
+   #############################
+   Text3: spanish (true language)
+   #############################
    The text is classified as non-English: 75% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text4: english (true label)
-   ###########################
+   #############################
+   Text4: english (true language)
+   #############################
    The text is classified as English: 14% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text5: english (true label)
-   ###########################
+   #############################
+   Text5: english (true language)
+   #############################
    The text is classified as English: 19% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text6: german (true label)
-   ###########################
+   #############################
+   Text6: german (true language)
+   #############################
    The text is classified as non-English: 74% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text7: italian (true label)
-   ###########################
+   #############################
+   Text7: italian (true language)
+   #############################
    The text is classified as non-English: 79% of words in the text are unusual (threshold = 25%)
 
-   ###########################
-   Text8: french (true label)
-   ###########################
+   #############################
+   Text8: french (true language)
+   #############################
    The text is classified as non-English: 72% of words in the text are unusual (threshold = 25%)
 
 
    ### Performance of method 1 ###
-   0.0% error classification (labels: ENGLISH and NON-ENGLISH)
+   binary classification with labels: ENGLISH and NON-ENGLISH
+   0.0% error classification
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
