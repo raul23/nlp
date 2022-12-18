@@ -483,7 +483,7 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
-Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
+Thus method 1 is restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
 
 1. Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
    against the ``nltk`` English corpus
