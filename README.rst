@@ -504,45 +504,45 @@ Ouput::
    Detecting text language with method #1
    importing nltk
 
-   ###############
-   Text1: english 
-   ###############
-   The text is English: 10% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text1: english (true label)
+   ###########################
+   The text is classified as English: 10% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text2: french 
-   ###############
-   The text is not English: 71% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text2: french (true label)
+   ###########################
+   The text is classified as non-English: 71% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text3: spanish 
-   ###############
-   The text is not English: 75% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text3: spanish (true label)
+   ###########################
+   The text is classified as non-English: 75% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text4: english 
-   ###############
-   The text is English: 14% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text4: english (true label)
+   ###########################
+   The text is classified as English: 14% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text5: english 
-   ###############
-   The text is English: 19% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text5: english (true label)
+   ###########################
+   The text is classified as English: 19% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text6: german 
-   ###############
-   The text is not English: 74% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text6: german (true label)
+   ###########################
+   The text is classified as non-English: 74% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text7: italian 
-   ###############
-   The text is not English: 79% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text7: italian (true label)
+   ###########################
+   The text is classified as non-English: 79% of words in the text are unusual (threshold = 25%)
 
-   ###############
-   Text8: french 
-   ###############
-   The text is not English: 72% of words in the text are unusual (threshold = 25%)
+   ###########################
+   Text8: french (true label)
+   ###########################
+   The text is classified as non-English: 72% of words in the text are unusual (threshold = 25%)
 
    ### Performance of method 1 ###
    0.0% error classification (ENGLISH and NOT ENGLISH)
