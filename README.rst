@@ -485,7 +485,8 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
 
 Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still clever: 
 
-- Every word (lowercased and consisting of alphabet letters) from a given text is checked against the ``nltk`` English corpus
+- Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
+  against the ``nltk`` English corpus
 - Those words from the given text that are not part this corpus are considered as unusual
 - The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if proportion in % < threshold (By default, it is 25%), then the text is Englis. Otherwise, the text is not English.
 
