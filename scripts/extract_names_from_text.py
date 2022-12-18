@@ -220,7 +220,6 @@ if __name__ == '__main__':
             names = get_human_names(text)
             for name in names:
                 print(HumanName(name).first + ' ' + HumanName(name).last)
-            print()
         elif args.method == 2:
             # doc = model(capitalizeWords(text))
             doc = model(text)
@@ -230,8 +229,8 @@ if __name__ == '__main__':
                     name = str(ent).replace('\n', '')
                     print(name)
                     names.append(name)
-            print()
         else:
             print(f'Unsupported method #{args.method}')
             sys.exit(1)
+        print()
     print(method_msg)
