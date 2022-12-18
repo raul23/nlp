@@ -21,7 +21,7 @@ This script tests different NLP methods to extract names from text:
 `:star:` 
 
    - The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
-   - The script ``extract_names_from_text.py`` only imports the libraries/modules necessary for the choosen method, 
+   - The script ``extract_names_from_text.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you 
      are just interested in one particular method, you won't need to download unnecessary libraries.
 
@@ -333,7 +333,7 @@ This script tests different NLP methods to detect text language:
 `:star:` 
 
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_
-   - The script ``detect_lang.py`` only imports the libraries/modules necessary for the choosen method, 
+   - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, 
      only the ``nltk`` library is imported.
      
@@ -436,7 +436,7 @@ Run the script by specifying the method to use for detecting the text language::
 
    $ pyton extract_names_from_text.py -m 1
 
-`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ is used
+`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ is used.
 
 List of options for **detect_lang.py**
 ``````````````````````````````````````````````````
