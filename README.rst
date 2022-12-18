@@ -325,7 +325,9 @@ Ouput::
 ----------------------------------------
 This script tests different NLP methods to detect text language:
 
-- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ ... TODO
+- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ checks each word from a given text agains
+  ``ntlkt`` English corpus and if a % of those words are unusual (not part of the corpus) exceeds a threshold, then the text is
+  English. Otherwise, it is non-English. Its application might be restricted but depending on your use case, it might do the job.
 - The second method ... TODO
 
 `:star:` 
