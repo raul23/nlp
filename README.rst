@@ -8,7 +8,7 @@ NLP
 
 Scripts
 =======
-**extract_names_from_text.py**: Extract names from text
+``extract_names_from_text.py``: Extract names from text
 -------------------------------------------------------
 This script tests different NLP methods to extract names from text:
 
