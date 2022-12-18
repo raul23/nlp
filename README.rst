@@ -498,7 +498,7 @@ Thus method 1 is very restricted in its application: it can only tell if a given
 
    - The **threshold** was not part of the original code snippet. It was added to allow binary classification 
      of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many non-English words.
-   - You could even save locally the ``nltk`` English corpus and hence not need to import ``nltk``. Depending on your use case, this
+   - You could even save locally the ``nltk`` English corpus and hence no need to import ``nltk``. Depending on your use case, this
      might be worthwhile as your code won't depend on a third-party library for a simple task of detecting whether a given text is English or not.
    - Another possible addition is to use corpora from other languages (e.g. French, Spanish) so you can detect more 
      than English when checking texts.
