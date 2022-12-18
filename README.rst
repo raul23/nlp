@@ -414,6 +414,58 @@ The script ``detect_lang.py`` is tested on the following eight texts (taken from
    prédit l'existence d'au moins trois familles de quarks dans la nature ».
    """
 
+Dependencies for **detect_lang.py**
+'''''''''''''''''''''''''''''''''''''''''''''''
+This is the environment on which the script ``detect_lang.py`` was tested:
+
+* **Platforms:** macOS
+* **Python**: versions **3.7** and **3.8**
+* For method 1:
+  
+  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
+
+Usage for **detect_lang.py**
+''''''''''''''''''''''''''''''''''''''''
+Run the script **detect_lang.py**
+`````````````````````````````````````````````
+Run the script by specifying the method to use for detecting the text language::
+
+   $ pyton extract_names_from_text.py -m 1
+
+`:information_source:` By default, the `first method <#>`_ is used TODO
+
+List of options for **detect_lang.py**
+``````````````````````````````````````````````````
+To display the script's list of options and their descriptions, use the ``-h`` option::
+
+   $ python detect_lang.py -h
+   
+   usage: python detect_lang.py [OPTIONS]
+
+   Detect text language
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -m METHOD, --method METHOD
+                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
+     -t THRESHOLD, --threshold THRESHOLD
+                           If this threshold (% of words or letters in the text) is exceeded, then the language of the text is not English. (default: 25)
+                           
+Method 1: detect only if it is English or not (based on words)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
+
+ Have you come across the following code snippet?
+ 
+ from http://groups.google.com/group/nltk-users/browse_thread/thread/a5f52af2cbc4cfeb?pli=1&safe=active
+
+.. code-block:: python
+
+   english_vocab = set(w.lower() for w in nltk.corpus.words.words())
+   text_vocab = set(w.lower() for w in text if w.lower().isalpha())
+   unusual = text_vocab.difference(english_vocab) 
+
 Extract DOB and DOD from text [TODO]
 ------------------------------------
 `:warning:` TODO
