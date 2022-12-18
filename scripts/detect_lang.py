@@ -102,24 +102,25 @@ def import_modules(method, download):
 
 
 # Ref.: https://stackoverflow.com/a/3384659
-def is_english_v1(text, threshold):
+def is_english_v1(text, threshold, verbose):
     text = text.split()
     english_vocab = set(w.lower() for w in nltk.corpus.words.words())
     text_vocab = set(w.lower() for w in text if w.lower().isalpha())
     unusual = text_vocab.difference(english_vocab)
-    prop_unusual = len(unusual)/ len(text_vocab)
-    # print(f'{prop_unusual*100}% of words in the text are unusual')
+    prop_unusual = len(unusual) / len(text_vocab)
     msg = f'{round(prop_unusual*100)}% of words in the text are unusual (threshold = {threshold}%)'
+    if verbose:
+        print(f'unusual words: {unusual}')
     if prop_unusual * 100 > threshold:
-        print(f'The text is not English: {msg}')
+        print(f'The text is classified as non-English: {msg}')
         return False
     else:
-        print(f'The text is English: {msg}')
+        print(f'The text is classified as English: {msg}')
         return True
 
 
 # Method based on https://stackoverflow.com/a/3384659 but checks the letters instead of words
-def is_english_v2(text, threshold):
+def is_english_v2(text, threshold, verbose):
     pass
 
 
@@ -153,6 +154,9 @@ def setup_argparser():
                         default=25, type=range_type,
                         help='If this threshold (%% of words or letters in the text that are unusual) '
                              'is exceeded, then the language of the text is not English.')
+    parser.add_argument(
+        '-v', '--verbose', action='store_true',
+        help='Show more information for the given method such as the words considered as unusual (method1).')
     """
     parser.add_argument(
         '-d', '--download', action='store_true',
@@ -172,11 +176,11 @@ if __name__ == '__main__':
     print()
     class_error = 0
     for i, (text, lang) in enumerate(texts, start=1):
-        print("###############")
-        print(f'Text{i}: {lang} ')
-        print("###############")
+        print("###########################")
+        print(f'Text{i}: {lang} (true label)')
+        print("###########################")
         if args.method == 1:
-            is_english = is_english_v1(text, args.threshold)
+            is_english = is_english_v1(text, args.threshold, args.verbose)
             if lang == 'english' and not is_english:
                 class_error += 1
             elif lang != 'english' and is_english:
@@ -185,6 +189,6 @@ if __name__ == '__main__':
             print(f'Unsupported method #{args.method}')
             sys.exit(1)
         print()
-    print(f'### Performance of method {args.method} ###')
+    print(f'\n### Performance of method {args.method} ###')
     if args.method == 1:
-        print(f'{class_error/len(texts)*100}% error classification (ENGLISH and NOT ENGLISH)')
+        print(f'{class_error/len(texts)*100}% error classification (labels: ENGLISH and NON-ENGLISH)')
