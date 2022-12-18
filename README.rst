@@ -474,6 +474,57 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+
+ $ python detect_lang.py -m 1
+ 
+Ouput::
+
+   Detecting text language with method #1
+   importing nltk
+
+   #########
+   # Text1 #
+   #########
+   The text is English: 10% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text2 #
+   #########
+   The text is not English: 71% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text3 #
+   #########
+   The text is not English: 75% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text4 #
+   #########
+   The text is English: 14% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text5 #
+   #########
+   The text is English: 19% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text6 #
+   #########
+   The text is not English: 74% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text7 #
+   #########
+   The text is not English: 79% of words in the text are unusual (threshold = 25%)
+
+   #########
+   # Text8 #
+   #########
+   The text is not English: 72% of words in the text are unusual (threshold = 25%)
+
 Extract DOB and DOD from text [TODO]
 ------------------------------------
 `:warning:` TODO
