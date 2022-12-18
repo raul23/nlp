@@ -155,7 +155,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
   1. running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
   2. running the command 'python -m spacy download en_core_web_md' on the terminal
 
-Method 1: ``nltk`` + part of speech tag ``NNP``
+Method 1: ``nltk`` + part of speech tag **NNP**
 '''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
