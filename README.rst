@@ -325,9 +325,9 @@ Ouput::
 ----------------------------------------
 This script tests different NLP methods to detect text language:
 
-- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ checks each word from a given text against
+- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ checks each unique word from a given text against
   the ``ntlk`` English corpus and if a % of those words are unusual (i.e. not part of the corpus) exceeds a threshold, then the text is
-  English. Otherwise, it is non-English. Its application might be restricted but depending on your use case, it might do the job.
+  English. Otherwise, it is non-English. Its application might be limited but depending on your use case, it might actually do the job.
 - The second method ... TODO
 
 `:star:` 
@@ -451,17 +451,17 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
+                           Method to use to detect text language. Choices are: [1] (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
-                           If this threshold (% of words or letters in the text that are unusual) 
+                           If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. (default: 25)
      -v, --verbose         Show more information for the given method such as the words considered as unusual (method 1). (default: False)
 
 `:information_source:` The ``-t/--threshold`` option 
 
 - This option applies to methods 1 and 2.
-- It refers to the % of words or letters that are unusual and above which the given 
-  text is not English. By default, the threshold value is 25% which means that if more than 25% of words or letters in a given text
+- It refers to the % of unique words from a given text that are unusual and above which the 
+  text is not English. By default, the threshold value is 25% which means that if more than 25% of unique words in a given text
   are unusual, then the text is most likely not English.
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, a given text is considered
   unusual if there are words that are not part of the ``nltk`` English corpus. 
@@ -517,42 +517,42 @@ Ouput::
    #############################
    Text1: english (true language)
    #############################
-   The text is classified as English: 10% of words in the text are unusual (threshold = 25%)
+   The text is classified as English: 10% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text2: french (true language)
    #############################
-   The text is classified as non-English: 71% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-English: 71% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text3: spanish (true language)
    #############################
-   The text is classified as non-English: 75% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-English: 75% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text4: english (true language)
    #############################
-   The text is classified as English: 14% of words in the text are unusual (threshold = 25%)
+   The text is classified as English: 14% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text5: english (true language)
    #############################
-   The text is classified as English: 19% of words in the text are unusual (threshold = 25%)
+   The text is classified as English: 19% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text6: german (true language)
    #############################
-   The text is classified as non-English: 74% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-English: 74% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text7: italian (true language)
    #############################
-   The text is classified as non-English: 79% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-English: 79% of words in the text vocabulary are unusual (threshold = 25%)
 
    #############################
    Text8: french (true language)
    #############################
-   The text is classified as non-English: 72% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-English: 72% of words in the text vocabulary are unusual (threshold = 25%)
 
 
    ### Performance of method 1 ###
