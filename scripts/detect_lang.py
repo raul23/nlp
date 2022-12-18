@@ -102,13 +102,13 @@ def import_modules(method, download):
 
 
 # Ref.: https://stackoverflow.com/a/3384659
-def is_english_v1(text, threshold, verbose):
+def is_text_english(text, threshold, verbose):
     text = text.split()
     english_vocab = set(w.lower() for w in nltk.corpus.words.words())
     text_vocab = set(w.lower() for w in text if w.lower().isalpha())
     unusual = text_vocab.difference(english_vocab)
     prop_unusual = len(unusual) / len(text_vocab)
-    msg = f'{round(prop_unusual*100)}% of words in the text are unusual (threshold = {threshold}%)'
+    msg = f'{round(prop_unusual*100)}% of words in the text vocabulary are unusual (threshold = {threshold}%)'
     if verbose:
         print(f'unusual words: {unusual}')
     if prop_unusual * 100 > threshold:
@@ -117,11 +117,6 @@ def is_english_v1(text, threshold, verbose):
     else:
         print(f'The text is classified as English: {msg}')
         return True
-
-
-# Method based on https://stackoverflow.com/a/3384659 but checks the letters instead of words
-def is_english_v2(text, threshold, verbose):
-    pass
 
 
 # Ref.: https://stackoverflow.com/a/25300927
@@ -145,30 +140,25 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    choices = [1, 2]
+    choices = [1]
     choices_msg = ', '.join(map(str, choices))
     parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
                         default=1, type=int,
                         help=f'Method to use to detect text language. Choices are: [{choices_msg}]')
     parser.add_argument('-t', '--threshold', metavar='THRESHOLD', dest='threshold',
                         default=25, type=range_type,
-                        help='If this threshold (%% of words or letters in the text that are unusual) '
+                        help='If this threshold (%% of words in the text vocabulary that are unusual) '
                              'is exceeded, then the language of the text is not English.')
     parser.add_argument(
         '-v', '--verbose', action='store_true',
-        help='Show more information for the given method such as the words considered as unusual (method1).')
-    """
-    parser.add_argument(
-        '-d', '--download', action='store_true',
-        help='Whether to download necessary nltk resoures for the selected method')
-    """
+        help='Show more information for the given method such as the words considered as unusual (method 1).')
     return parser
 
 
 if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
-    texts = [(v, k.split('_')[-1]) for k, v in globals().items() if 'text' in k]
+    texts = [(v, k.split('_')[-1]) for k, v in globals().items() if k.startswith('text')]
     method_msg = f'Detecting text language with method #{args.method}'
     print(method_msg)
     time.sleep(1)
@@ -176,11 +166,11 @@ if __name__ == '__main__':
     print()
     class_error = 0
     for i, (text, lang) in enumerate(texts, start=1):
-        print("###########################")
-        print(f'Text{i}: {lang} (true label)')
-        print("###########################")
+        print("#############################")
+        print(f'Text{i}: {lang} (true language)')
+        print("#############################")
         if args.method == 1:
-            is_english = is_english_v1(text, args.threshold, args.verbose)
+            is_english = is_text_english(text, args.threshold, args.verbose)
             if lang == 'english' and not is_english:
                 class_error += 1
             elif lang != 'english' and is_english:
@@ -190,5 +180,6 @@ if __name__ == '__main__':
             sys.exit(1)
         print()
     print(f'\n### Performance of method {args.method} ###')
-    if args.method == 1:
-        print(f'{class_error/len(texts)*100}% error classification (labels: ENGLISH and NON-ENGLISH)')
+    if args.method in [1, 2]:
+        print('binary classification with labels: ENGLISH and NON-ENGLISH')
+        print(f'{class_error/len(texts)*100}% error classification')
