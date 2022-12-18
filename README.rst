@@ -453,7 +453,16 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words or letters in the text that are unusual) 
                            is exceeded, then the language of the text is not English. (default: 25)
-                           
+
+`:information_source:` the ``-t/--threshold`` option 
+
+- This option applies to methods 1 and 2.
+- It refers to the % of words or letters that are unusual above which the given 
+text is not English. By default, the threshold value is 25% which means that if more than 25% of words or letters in a given text
+unusual, then the text is not English.
+- As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, a given text is considered
+  unusual if there are words that are not part of the ``nltk`` English corpus. 
+
 Method 1: detect only if it is English or not (``nltk`` + based on words)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
@@ -473,6 +482,14 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  This is such a good answer. The simplicity of checking if the words are in the vocab is an 
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
+
+Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still ingenious: 
+
+- Every word (lowercased and consisting of alphabet letters) from a given text is checked against the ``nltk`` English corpus
+- Those words from the given text that are not part this corpus are considered as unusual
+- The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if proportion in % < threshold (By default, it is 25%), then the text is Englis. Otherwise, the text is not English.
+
+`:information_source:` The threshold was not part of the original code snippet. It was added to allow binary classification of text (English or Not English)
 
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
