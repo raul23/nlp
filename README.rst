@@ -453,6 +453,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words or letters in the text that are unusual) 
                            is exceeded, then the language of the text is not English. (default: 25)
+     -v, --verbose         Show more information for the given method such as the words considered as unusual (method 1). (default: False)
 
 `:information_source:` The ``-t/--threshold`` option 
 
