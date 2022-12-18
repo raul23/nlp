@@ -459,7 +459,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 
 `:information_source:` The ``-t/--threshold`` option 
 
-- This option applies to methods 1 and 2.
+- This option applies to method 1.
 - It refers to the % of unique words from a given text that are unusual and above which the 
   text is not English. By default, the threshold value is 25% which means that if more than 25% of unique words in a given text
   are unusual, then the text is most likely not English.
@@ -486,7 +486,7 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
-Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
+Thus method 1 is limited in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
 
 1. Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
    against the ``nltk`` English corpus
