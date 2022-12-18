@@ -485,10 +485,11 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
 
 Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
 
-- Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
-  against the ``nltk`` English corpus
-- Those words from the given text that are not part of this corpus are considered as unusual
-- The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if the proportion in % is less than the threshold (By default, it is 25%), then the text is English. Otherwise, the text is not English.
+1. Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
+   against the ``nltk`` English corpus
+2. Those words from the given text that are not part of this corpus are considered as unusual
+3. The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if the proportion in % is 
+   less than the threshold (By default, it is 25%), then the text is English. Otherwise, the text is not English.
 
 `:information_source:` The threshold was not part of the original code snippet. It was added to allow binary classification of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many unusual words.
 
