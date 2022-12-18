@@ -325,14 +325,14 @@ Ouput::
 ----------------------------------------
 This script tests different NLP methods to detect text language:
 
-- The `first method <#method-1-detect-only-if-it-is-english-or-not-based-on-words>`_ ... TODO
+- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ ... TODO
 - The second method ... TODO
 
 `:star:` 
 
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_
    - The script ``detect_lang.py`` only imports the libraries/modules necessary for the choosen method, 
-     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-based-on-words>`_, 
+     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, 
      only the ``nltk`` library is imported.
      
 Texts used for testing
@@ -421,7 +421,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 
 * **Platforms:** macOS
 * **Python**: versions **3.7** and **3.8**
-* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-based-on-words>`_:
+* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
