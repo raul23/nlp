@@ -485,45 +485,48 @@ Ouput::
    Detecting text language with method #1
    importing nltk
 
-   #########
-   # Text1 #
-   #########
+   ###############
+   Text1: english 
+   ###############
    The text is English: 10% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text2 #
-   #########
+   ###############
+   Text2: french 
+   ###############
    The text is not English: 71% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text3 #
-   #########
+   ###############
+   Text3: spanish 
+   ###############
    The text is not English: 75% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text4 #
-   #########
+   ###############
+   Text4: english 
+   ###############
    The text is English: 14% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text5 #
-   #########
+   ###############
+   Text5: english 
+   ###############
    The text is English: 19% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text6 #
-   #########
+   ###############
+   Text6: german 
+   ###############
    The text is not English: 74% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text7 #
-   #########
+   ###############
+   Text7: italian 
+   ###############
    The text is not English: 79% of words in the text are unusual (threshold = 25%)
 
-   #########
-   # Text8 #
-   #########
+   ###############
+   Text8: french 
+   ###############
    The text is not English: 72% of words in the text are unusual (threshold = 25%)
+
+   ### Performance of method 1 ###
+   0.0% error classification (ENGLISH and NOT ENGLISH)
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
