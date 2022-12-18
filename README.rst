@@ -491,7 +491,7 @@ Thus method 1 is very restricted in its application: it can only tell if a given
 3. The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if the proportion in % is 
    less than the threshold (By default, it is 25%), then the text is English. Otherwise, the text is not English.
 
-`:information_source:` The threshold was not part of the original code snippet. It was added to allow binary classification of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many unusual words.
+`:information_source:` The threshold was not part of the original code snippet. It was added to allow binary classification of text (English or Not English) instead of just saying a given text is unusual/an outlier for having too many non-english words.
 
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
