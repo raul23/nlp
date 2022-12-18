@@ -325,7 +325,7 @@ Ouput::
 ----------------------------------------
 This script tests different NLP methods to detect text language:
 
-- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk>`_ checks each unique word from a given text against
+- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-english-corpus>`_ checks each unique word from a given text against
   the ``ntlk`` English corpus and if a % of those words are unusual (i.e. not part of the corpus) exceeds a threshold, then the text is
   English. Otherwise, it is non-English. Its application might be limited but depending on your use case, it might actually do the job.
 - The second method ... TODO
@@ -334,7 +334,7 @@ This script tests different NLP methods to detect text language:
 
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
-     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk>`_, 
+     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
      
 Texts used for testing
@@ -423,7 +423,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 
 * **Platforms:** macOS
 * **Python**: versions **3.7** and **3.8**
-* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_:
+* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words-english-corpus>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
@@ -436,7 +436,7 @@ Run the script by specifying the method to use for detecting the text language::
 
    $ pyton extract_names_from_text.py -m 1
 
-`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk>`_ is used.
+`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-english-corpus>`_ is used.
 
 List of options for **detect_lang.py**
 ``````````````````````````````````````````````````
@@ -463,11 +463,11 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - It refers to the % of unique words from a given text that are unusual and above which the 
   text is not English. By default, the threshold value is 25% which means that if more than 25% of unique words in a given text
   are unusual, then the text is most likely not English.
-- As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk>`_, a given text is considered
+- As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-english-corpus>`_, a given text is considered
   unusual if there are words that are not part of the ``nltk`` English corpus. 
 
-Method 1: detect only if it is English or not (``nltk``)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 1: detect only if it is English or not (``nltk`` English corpus)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
