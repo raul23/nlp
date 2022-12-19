@@ -207,7 +207,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
   - The `stackoverflow user 'Gihan Gamage' 
     <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ 
-    suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, 
+    suggests downloading the following NLTK packages after the import statements: punkt, averaged_perceptron_tagger, 
     maxent_ne_chunker, words
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
