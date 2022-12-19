@@ -435,8 +435,9 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-  * `pycountry <>`: **v** it's optional if you want to do multiclass classification (i.e. identify many languages other than English). 
-    If it is not found, then only binary classification will be done (i.e. detect if a given text is English or non-English).
+  * `pycountry <https://pypi.org/project/pycountry/>`: **v22.3.5** it's optional. Used for converting the country 
+    code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+    classification will be done (i.e. detect if a given text is English or non-English).
 
 Usage for **detect_lang.py**
 ''''''''''''''''''''''''''''''''''''''''
@@ -651,6 +652,15 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      English or non-English.
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
+   - If ``pycountry`` is not found, then only binary classification will be done (i.e. detect if a given text is English or non-English).
+   
+`:information_source:` ``pycountry``
+
+  `pycountry <https://pypi.org/project/pycountry/>` is optional. It is used for converting the country code 
+  returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+  classification will be done (i.e. detect if a given text is English or non-English).
+  
+  To install it: ``pip install pycountry``
  
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
@@ -732,7 +742,8 @@ Ouput::
 |
 
 `:star:` By default, the second method performs multiclass classification but if the ``-v/--verbose`` 
-option is used, then results for binary classification are also shown. 
+option is used, then results for binary classification are also shown so you can compare them with 
+those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_
 
 We are only showing results for the last text analyzed::
 
