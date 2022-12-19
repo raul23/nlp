@@ -3,6 +3,7 @@ import sys
 import time
 
 nltk = None
+pycountry = None
 
 # Examples from Wikipedia
 # Ref.: https://en.wikipedia.org/wiki/Freeman_Dyson [ENGLISH]
@@ -79,22 +80,17 @@ prédit l'existence d'au moins trois familles de quarks dans la nature ».
 """
 
 
-def download_packages(method):
-    if method == 1:
-        pass
-    elif method == 2:
-        pass
-    else:
-        print(f'Unsupported method #{method}')
-
-
 def import_modules(method, download):
-    global nltk
-    if method == 1:
+    global nltk, pycountry
+    if method in [1, 2]:
         print('importing nltk')
         import nltk
-    elif method == 2:
-        pass
+        if method == 2:
+            try:
+                import pycountry
+            except ImportError:
+                print("The package pycountry is not installed. Thus only "
+                      "binary classification of text language will be performed.")
     else:
         print(f'Unsupported method #{method}')
     if download:
@@ -112,10 +108,10 @@ def is_text_english(text, threshold, verbose):
     if verbose:
         print(f'unusual words: {unusual}')
     if prop_unusual * 100 > threshold:
-        print(f'The text is classified as non-English: {msg}')
+        print(f'The text is classified as non-english: {msg}')
         return False
     else:
-        print(f'The text is classified as English: {msg}')
+        print(f'The text is classified as english: {msg}')
         return True
 
 
@@ -140,7 +136,7 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    choices = [1]
+    choices = [1, 2]
     choices_msg = ', '.join(map(str, choices))
     parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
                         default=1, type=int,
@@ -164,22 +160,72 @@ if __name__ == '__main__':
     time.sleep(1)
     import_modules(args.method, False)
     print()
-    class_error = 0
-    for i, (text, lang) in enumerate(texts, start=1):
+    binary_class_error = 0
+    multi_class_error = 0
+    total_time = 0
+    for i, (text, true_lang) in enumerate(texts, start=1):
         print("#############################")
-        print(f'Text{i}: {lang} (true language)')
+        print(f'Text{i}: {true_lang} (true language)')
         print("#############################")
+        start_time = time.time()
         if args.method == 1:
             is_english = is_text_english(text, args.threshold, args.verbose)
-            if lang == 'english' and not is_english:
-                class_error += 1
-            elif lang != 'english' and is_english:
-                class_error += 1
+            guess_lang = 'english' if is_english else true_lang
+            if guess_lang != true_lang:
+                binary_class_error += 1
+                print('INVALID classification')
+            else:
+                print('VALID classification')
+        elif args.method == 2:
+            print('classifying ...')
+            tc = nltk.classify.textcat.TextCat()
+            guess_lang = tc.guess_language(text)
+            # Binary classification
+            binary_guess_lang = 'english' if guess_lang == 'eng' else true_lang
+            if binary_guess_lang != true_lang:
+                binary_class_error += 1
+                valid_msg = '[invalid]'
+            else:
+                valid_msg = '[valid]'
+            if args.verbose:
+                msg = 'Binary classification: the text is classified as'
+                if binary_guess_lang != 'english':
+                    print(f'{msg} non-english {valid_msg}')
+                else:
+                    print(f'{msg} english {valid_msg}')
+            # Multi-classification
+            try:
+                guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
+            except ImportError:
+                pass
+            else:
+                if guess_lang_name != true_lang:
+                    multi_class_error += 1
+                    valid_msg = '[invalid]'
+                else:
+                    valid_msg = '[valid]'
+                print(f'The text is classified as {guess_lang_name} {valid_msg}')
         else:
             print(f'Unsupported method #{args.method}')
             sys.exit(1)
+        time_current_text = time.time() - start_time
+        total_time += time_current_text
+        print(f"Took {round(time_current_text, 3)} second{'s' if time_current_text >= 2 else ''}")
         print()
     print(f'\n### Performance of method {args.method} ###')
-    if args.method in [1, 2]:
-        print('binary classification with labels: ENGLISH and NON-ENGLISH')
-        print(f'{class_error/len(texts)*100}% error classification')
+    # Messages for methods 1 and 2
+    msg1 = 'task: binary classification'
+    msg2 = f'{binary_class_error/len(texts)*100}% error classification'
+    if args.method == 1:
+        print(msg1)
+        print(msg2)
+    elif args.method == 2:
+        if args.verbose:
+            print(msg1)
+            print(msg2 + '\n')
+        print('task: multi-classification')
+        print(f'{multi_class_error/len(texts)*100}% error classification')
+    else:
+        print(f'Unsupported method #{args.method}')
+        sys.exit(1)
+    print(f"\nTotal time: {round(total_time, 2)} second{'s' if total_time >= 2 else ''}")
