@@ -184,7 +184,7 @@ def run_cmd(cmd):
 
 
 def setup_argparser():
-    msg = 'Get names from text'
+    msg = 'Extract names from text'
     parser = argparse.ArgumentParser(
         description='',
         usage=f"python %(prog)s [OPTIONS]\n\n{msg}",
