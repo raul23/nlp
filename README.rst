@@ -431,6 +431,12 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
+* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_:
+  
+  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
+  * `pycountry <>`: **v** it's optional if you want to do multiclass classification (i.e. identify many languages other than English). 
+    If it is not found, then only binary classification will be done (i.e. detect if a given text is English or non-English).
 
 Usage for **detect_lang.py**
 ''''''''''''''''''''''''''''''''''''''''
@@ -627,6 +633,9 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
     print(pycountry.languages.get(alpha_3=guess_example).name)
     Konkani (individual language)
 
-Extract DOB and DOD from text [TODO]
-------------------------------------
-`:warning:` TODO
+`:information_source:` 
+
+   - This second method is capable of identifying many languages, unlike the `first method <>`_ which can only tell if the text is
+     English or non-English.
+   - However, compared to the first method, it takes longer to process when performing binary classification: more than 10 times longer.
+ 
