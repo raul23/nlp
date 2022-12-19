@@ -1,6 +1,9 @@
 import argparse
+import logging
 import sys
 import time
+
+logger = logging.getLogger('detect_lang')
 
 nltk = None
 pycountry = None
@@ -80,38 +83,35 @@ prédit l'existence d'au moins trois familles de quarks dans la nature ».
 """
 
 
-def import_modules(method, download):
+def import_modules(method):
     global nltk, pycountry
     if method in [1, 2]:
-        print('importing nltk')
+        logger.info('importing nltk')
         import nltk
         if method == 2:
             try:
                 import pycountry
             except ImportError:
-                print("The package pycountry is not installed. Thus only "
-                      "binary classification of text language will be performed.")
+                logger.warning("WARNING: The package pycountry is not installed. Thus only "
+                               "binary classification of text language will be performed.")
     else:
-        print(f'Unsupported method #{method}')
-    if download:
-        download_packages(method)
+        logger.info(f'Unsupported method #{method}')
 
 
 # Ref.: https://stackoverflow.com/a/3384659
-def is_text_english(text, threshold, verbose):
+def is_text_english(text, threshold):
     text = text.split()
     english_vocab = set(w.lower() for w in nltk.corpus.words.words())
     text_vocab = set(w.lower() for w in text if w.lower().isalpha())
     unusual = text_vocab.difference(english_vocab)
     prop_unusual = len(unusual) / len(text_vocab)
     msg = f'{round(prop_unusual*100)}% of words in the text vocabulary are unusual (threshold = {threshold}%)'
-    if verbose:
-        print(f'unusual words: {unusual}')
+    logger.debug(f'unusual words: {unusual}')
     if prop_unusual * 100 > threshold:
-        print(f'The text is classified as non-english: {msg}')
+        logger.info(f'The text is classified as non-english: {msg}')
         return False
     else:
-        print(f'The text is classified as english: {msg}')
+        logger.info(f'The text is classified as english: {msg}')
         return True
 
 
@@ -144,40 +144,68 @@ def setup_argparser():
     parser.add_argument('-t', '--threshold', metavar='THRESHOLD', dest='threshold',
                         default=25, type=range_type,
                         help='If this threshold (%% of words in the text vocabulary that are unusual) '
-                             'is exceeded, then the language of the text is not English.')
+                             'is exceeded, then the language of the text is not English. NOTE: This '
+                             'is an option for method 1.')
     parser.add_argument(
         '-v', '--verbose', action='store_true',
         help='Show more information for the given method such as the words considered as unusual (method 1).')
+    parser.add_argument(
+        '--log-level', dest='logging_level',
+        choices=['debug', 'info', 'warning', 'error'], default='info',
+        help='Set logging level.')
     return parser
+
+
+def setup_log(verbose=False, logging_level='info'):
+    if verbose:
+        logger.setLevel('DEBUG')
+    else:
+        logging_level = logging_level.upper()
+        logger.setLevel(logging_level)
+    # Create console handler and set level
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+    # Create formatter
+    formatter = logging.Formatter('%(message)s')
+    # Add formatter to ch
+    ch.setFormatter(formatter)
+    # Add ch to logger
+    logger.addHandler(ch)
+    # =============
+    # Start logging
+    # =============
+    logger.info("Verbose option {}".format("enabled" if verbose else "disabled"))
 
 
 if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
+    setup_log(args.verbose, args.logging_level)
     texts = [(v, k.split('_')[-1]) for k, v in globals().items() if k.startswith('text')]
     method_msg = f'Detecting text language with method #{args.method}'
-    print(method_msg)
+    logger.info(method_msg)
     time.sleep(1)
-    import_modules(args.method, False)
-    print()
+    import_modules(args.method)
+    logger.info('')
     binary_class_error = 0
-    multi_class_error = 0
+    multiclass_error = 0
     total_time = 0
     for i, (text, true_lang) in enumerate(texts, start=1):
-        print("#############################")
-        print(f'Text{i}: {true_lang} (true language)')
-        print("#############################")
+        logger.info("#############################")
+        logger.info(f'Text{i}: {true_lang} (true language)')
+        logger.info("#############################")
+        logger.debug(f'Number of words in the text: {len(text.split())}')
         start_time = time.time()
         if args.method == 1:
-            is_english = is_text_english(text, args.threshold, args.verbose)
+            is_english = is_text_english(text, args.threshold)
             guess_lang = 'english' if is_english else true_lang
             if guess_lang != true_lang:
                 binary_class_error += 1
-                print('INVALID classification')
+                logger.info('INVALID classification')
             else:
-                print('VALID classification')
+                logger.info('VALID classification')
         elif args.method == 2:
-            print('classifying ...')
+            logger.info('classifying ...')
             tc = nltk.classify.textcat.TextCat()
             guess_lang = tc.guess_language(text)
             # Binary classification
@@ -187,45 +215,51 @@ if __name__ == '__main__':
                 valid_msg = '[invalid]'
             else:
                 valid_msg = '[valid]'
-            if args.verbose:
+            if args.verbose or pycountry is None:
                 msg = 'Binary classification: the text is classified as'
                 if binary_guess_lang != 'english':
-                    print(f'{msg} non-english {valid_msg}')
+                    logger.info(f'{msg} non-english {valid_msg}')
                 else:
-                    print(f'{msg} english {valid_msg}')
-            # Multi-classification
+                    logger.info(f'{msg} english {valid_msg}')
+            # Multiclass classification
             try:
                 guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
-            except ImportError:
+            except AttributeError:
                 pass
             else:
                 if guess_lang_name != true_lang:
-                    multi_class_error += 1
+                    multiclass_error += 1
                     valid_msg = '[invalid]'
                 else:
                     valid_msg = '[valid]'
-                print(f'The text is classified as {guess_lang_name} {valid_msg}')
+                logger.info(f'The text is classified as {guess_lang_name} {valid_msg}')
         else:
-            print(f'Unsupported method #{args.method}')
+            logger.info(f'Unsupported method #{args.method}')
             sys.exit(1)
         time_current_text = time.time() - start_time
         total_time += time_current_text
-        print(f"Took {round(time_current_text, 3)} second{'s' if time_current_text >= 2 else ''}")
-        print()
-    print(f'\n### Performance of method {args.method} ###')
+        logger.info(f"Took {round(time_current_text, 3)} second{'s' if time_current_text >= 2 else ''}")
+        logger.info('')
+    logger.info(f'\n### Performance of method {args.method} ###')
     # Messages for methods 1 and 2
     msg1 = 'task: binary classification'
     msg2 = f'{binary_class_error/len(texts)*100}% error classification'
     if args.method == 1:
-        print(msg1)
-        print(msg2)
+        logger.info(msg1)
+        logger.info(msg2)
     elif args.method == 2:
         if args.verbose:
-            print(msg1)
-            print(msg2 + '\n')
-        print('task: multi-classification')
-        print(f'{multi_class_error/len(texts)*100}% error classification')
+            logger.debug(msg1)
+            logger.debug(msg2)
+            if pycountry:
+                logger.info('')
+        elif pycountry is None:
+            logger.info(msg1)
+            logger.info(msg2)
+        if pycountry:
+            logger.info('task: multiclass classification')
+            logger.info(f'{multiclass_error/len(texts)*100}% error classification')
     else:
-        print(f'Unsupported method #{args.method}')
+        logger.info(f'Unsupported method #{args.method}')
         sys.exit(1)
-    print(f"\nTotal time: {round(total_time, 2)} second{'s' if total_time >= 2 else ''}")
+    logger.info(f"\nTotal time: {round(total_time, 2)} second{'s' if total_time >= 2 else ''}")
