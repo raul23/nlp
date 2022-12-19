@@ -135,7 +135,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    
    usage: python extract_names_from_text.py [OPTIONS]
 
-   Get names from texts
+   Extract names from texts
 
    optional arguments:
      -h, --help            show this help message and exit
