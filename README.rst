@@ -584,8 +584,8 @@ Ouput::
 
    Total time: 1.63 second
 
-Method 2: identify the text language, i.e. multi-classification (``textcat`` from ``nltk``)
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 2: identify the text language with ``nltk.classify.textcat``
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
 
  Super late but, you could use ``textcat`` classifier in ``nltk``, `here 
