@@ -729,6 +729,8 @@ Ouput::
 
    Total time: 21.74 seconds
 
+|
+
 `:star:` By default, the second method performs multiclass classification but if the ``-v/--verbose`` 
 option is used, then results for binary classification are also shown. 
 
