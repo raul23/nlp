@@ -326,7 +326,7 @@ Ouput::
 This script tests different NLP methods to detect text language:
 
 - The `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ 
-  checks each unique word from a given text against the ``ntlk`` English corpus and if a % of those words are unusual 
+  checks each unique word from a given text against the ``ntlk`` English corpus and if a % of those words that are unusual 
   (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The second method ... TODO
@@ -494,7 +494,7 @@ The way it does it is simple but still interesting depending on your use case:
    against the ``nltk`` English corpus
 2. Those words from the given text that are not part of this corpus are considered as unusual
 3. The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if the proportion in % is 
-   less than the threshold (By default, it is 25%), then the text is English. Otherwise, the text is not English.
+   less than the threshold (by default, it is 25%), then the text is English. Otherwise, the text is non-English.
 
 `:information_source:` 
 
