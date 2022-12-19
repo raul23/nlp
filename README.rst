@@ -517,47 +517,65 @@ Ouput::
    #############################
    Text1: english (true language)
    #############################
-   The text is classified as English: 10% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as english: 10% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.22294092178344727 second
 
    #############################
    Text2: french (true language)
    #############################
-   The text is classified as non-English: 71% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as non-english: 71% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.206862211227417 second
 
    #############################
    Text3: spanish (true language)
    #############################
-   The text is classified as non-English: 75% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as non-english: 75% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.2075178623199463 second
 
    #############################
    Text4: english (true language)
    #############################
-   The text is classified as English: 14% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as english: 14% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.20047712326049805 second
 
    #############################
    Text5: english (true language)
    #############################
-   The text is classified as English: 19% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as english: 19% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.20301294326782227 second
 
    #############################
    Text6: german (true language)
    #############################
-   The text is classified as non-English: 74% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as non-english: 74% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.2040090560913086 second
 
    #############################
    Text7: italian (true language)
    #############################
-   The text is classified as non-English: 79% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as non-english: 79% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.20050978660583496 second
 
    #############################
    Text8: french (true language)
    #############################
-   The text is classified as non-English: 72% of words in the text vocabulary are unusual (threshold = 25%)
+   The text is classified as non-english: 72% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.19675493240356445 second
 
 
    ### Performance of method 1 ###
-   binary classification with labels: ENGLISH and NON-ENGLISH
+   task: binary classification
    0.0% error classification
+
+   Total time: 1.6420848369598389 second
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
