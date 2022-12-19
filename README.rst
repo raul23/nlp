@@ -466,8 +466,8 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-english-corpus>`_, a given text is considered
   unusual if there are words that are not part of the ``nltk`` English corpus. 
 
-Method 1: detect only if it is English or not (``nltk`` English corpus)
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
