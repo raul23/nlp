@@ -135,7 +135,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    
    usage: python extract_names_from_text.py [OPTIONS]
 
-   Get names from texts
+   Extract names from texts
 
    optional arguments:
      -h, --help            show this help message and exit
@@ -145,15 +145,19 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -d, --download        Whether to download necessary resources for the selected method
                            (default: False)
 
-`:information_source:` These are the resources that needs to be downloaded for each method (with the ``-d`` flag):
+`:information_source:` These are the resources that need to be downloaded for each method (with the ``-d`` flag):
 
   - **Method 1:** 'punkt', 'averaged_perceptron_tagger', 'maxent_ne_chunker', 'words'
   - **Method 2:** 'en_core_web_md'
   
 `:star:` Ways to download and install the model 'en_core_web_md' necessary for `method 2 <#method-2-spacy>`_
 
-  1. running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
-  2. running the command 'python -m spacy download en_core_web_md' on the terminal
+  1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
+  
+      $ python extract_names_from_text.py -d
+  2. Installing it separately from the script by running the following command on the terminal::
+  
+      $ python -m spacy download en_core_web_md
 
 Method 1: ``nltk`` + part of speech tag **NNP**
 '''''''''''''''''''''''''''''''''''''''''''''''
@@ -203,7 +207,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
   - The `stackoverflow user 'Gihan Gamage' 
     <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ 
-    suggests downloading the following nltk packages after the import statements: punkt, averaged_perceptron_tagger, 
+    suggests downloading the following NLTK packages after the import statements: punkt, averaged_perceptron_tagger, 
     maxent_ne_chunker, words
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
@@ -216,6 +220,8 @@ To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_
  $ python extract_names_from_text.py -m 1
  
 Ouput::
+
+   Extracting names with method #1
 
    #########
    # Text1 #
@@ -280,8 +286,14 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
 
-  1. running the script with the ``-d`` flag, e.g. ``python extract_names_from_text.py -d`` 
-  2. running the command 'python -m spacy download en_core_web_md' on the terminal
+  1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
+  
+      $ python extract_names_from_text.py -d
+  2. Installing it separately from the script by running the following command on the terminal::
+  
+      $ python -m spacy download en_core_web_md
+
+|
 
 `:information_source:` about the ``if`` condition
 
@@ -295,6 +307,8 @@ To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_
  $ python extract_names_from_text.py -m 2 -d
  
 Ouput::
+
+   Extracting names with method #2
 
    #########
    # Text1 #
@@ -441,7 +455,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-  * `pycountry <https://pypi.org/project/pycountry/>_`: **v22.3.5** it's optional. Used for converting the country 
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
 
@@ -747,13 +761,13 @@ Ouput::
 
 |
 
-`:star:` By default, the second method performs multiclass classification but if the ``-v/--verbose`` 
-option is used, then results for binary classification are also shown so you can compare them with 
-those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_
+`:star:` By default, the second method shows results for the multiclass classification (if the ``pycountry`` package is found) 
+but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
+those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_.
 
 We are only showing results for the last text analyzed::
 
- $ python detect_lang.py -m 2
+ $ python detect_lang.py -m 2 -v
  
 Ouput::
 
