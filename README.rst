@@ -761,8 +761,8 @@ Ouput::
 
 |
 
-`:star:` By default, the second method performs multiclass classification but if the ``-v/--verbose`` 
-option is used, then results for binary classification are also shown so you can compare them with 
+`:star:` By default, the second method shows results for the multiclass classification (if the ``pycountry`` package is found) 
+but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
 those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_
 
 We are only showing results for the last text analyzed::
