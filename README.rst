@@ -331,7 +331,9 @@ This script tests different NLP methods to detect text language:
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The `second method <#method-2-identify-the-text-language-i-e-multi-classification-textcat-from-nltk>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
-  than the first method, but it is able to identify the text language which is returned as a country code in ISO 639-3).
+  than the first method, but it is able to identify the text language which is returned as a country code in ISO 639-3, unlike
+  `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ which only 
+  tells you if the text is English or not.
 
 `:star:` 
 
