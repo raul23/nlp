@@ -221,6 +221,8 @@ To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_
  
 Ouput::
 
+   Extracting names with method #1
+
    #########
    # Text1 #
    #########
@@ -305,6 +307,8 @@ To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_
  $ python extract_names_from_text.py -m 2 -d
  
 Ouput::
+
+   Extracting names with method #2
 
    #########
    # Text1 #
