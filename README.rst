@@ -616,7 +616,7 @@ Output::
  English
  Afrikaans
    
-However, `RK1 <https://stackoverflow.com/a/58432286>`_ warns that this method is not 100% reliable:
+However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this method is not 100% reliable:
 
  Disclaimer obviously this will not always work, especially for sparse data
 
