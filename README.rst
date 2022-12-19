@@ -291,6 +291,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
   
       $ python -m spacy download en_core_web_md
 
+|
+
 `:information_source:` about the ``if`` condition
 
   - ``str(ent) not in names``: to avoid displaying duplicated names
