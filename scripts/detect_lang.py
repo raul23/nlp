@@ -93,7 +93,8 @@ def import_modules(method):
                 import pycountry
             except ImportError:
                 logger.warning("WARNING: The package pycountry is not installed. Thus only "
-                               "binary classification of text language will be performed.")
+                               "binary classification of text language will be performed.\n"
+                               "Install it with: pip install pycountry")
     else:
         logger.info(f'Unsupported method #{method}')
 
