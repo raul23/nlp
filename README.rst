@@ -327,8 +327,8 @@ This script tests different NLP methods to detect text language:
 
 - The `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ 
   checks each unique word from a given text against the ``ntlk`` English corpus and if a % of those words are unusual 
-  (i.e. not part of the corpus) exceeds a threshold, then the text is 
-  English. Otherwise, it is non-English. Its application might be limited but depending on your use case, it might actually do the job.
+  (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
+  a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The second method ... TODO
 
 `:star:` 
@@ -487,7 +487,8 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
-Thus method 1 is limited in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
+Thus method 1 is limited in its application: it can only tell if a given text is English or not (a simple binary classifier). 
+The way it does it is simple but still interesting depending on your use case: 
 
 1. Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
    against the ``nltk`` English corpus
