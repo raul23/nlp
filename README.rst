@@ -431,7 +431,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_:
+* For `method 2 <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
@@ -474,12 +474,16 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 
 `:information_source:` The ``-t/--threshold`` option 
 
-- This option applies to method 1.
+- This option applies to `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_.
 - It refers to the % of unique words from a given text that are unusual and above which the 
   text is not English. By default, the threshold value is 25% which means that if more than 25% of unique words in a given text
   are unusual, then the text is most likely not English.
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
   a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
+
+`:star:` By default, the `second method <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_ 
+performs multiclass classification but if the ``-v/--verbose`` option is used, then results for binary 
+classification are also shown.
 
 Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -720,3 +724,31 @@ Ouput::
    25.0% error classification
 
    Total time: 21.74 seconds
+
+`:star:` By default, the second method performs multiclass classification but if the ``-v/--verbose`` 
+option is used, then results for binary classification are also shown. 
+
+We are only showing results for the last text analyzed::
+
+ ``$ python detect_lang.py -m 2``::
+ 
+Ouput::
+
+   #############################
+   Text8: french (true language)
+   #############################
+   Number of words in the text: 45
+   classifying ...
+   Binary classification: the text is classified as non-english [valid]
+   The text is classified as french [valid]
+   Took 1.674 second
+
+
+   ### Performance of method 2 ###
+   task: binary classification
+   12.5% error classification
+
+   task: multiclass classification
+   25.0% error classification
+
+   Total time: 22.53 seconds
