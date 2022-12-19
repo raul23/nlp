@@ -642,6 +642,8 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
     print(pycountry.languages.get(alpha_3=guess_example).name)
     Konkani (individual language)
 
+|
+
 `:information_source:` 
 
    - This second method is capable of identifying many languages, unlike the `first method 
@@ -651,6 +653,8 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      binary classification: more than 10 times longer.
  
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+|
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
