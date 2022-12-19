@@ -329,7 +329,8 @@ This script tests different NLP methods to detect text language:
   checks each unique word from a given text against the ``ntlk`` English corpus and if the % of words that are unusual 
   (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
-- The second method ... TODO
+- The `second method <>`_ TODO uses ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
+  than the first method, but it is able to identify the text language which is returned as a country code in ISO 639-3).
 
 `:star:` 
 
@@ -452,7 +453,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are: [1] (default: 1)
+                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. (default: 25)
@@ -579,6 +580,50 @@ Ouput::
    0.0% error classification
 
    Total time: 1.63 second
+
+Method 2: identify the text language, i.e. multi-classification (``textcat`` from ``nltk``)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
+
+ Super late but, you could use ``textcat`` classifier in ``nltk``, `here 
+ <https://www.nltk.org/api/nltk.classify.html#nltk.classify.textcat.TextCat>`_. 
+ This `paper <http://www.let.rug.nl/~vannoord/TextCat/textcat.pdf>`_ discusses the algorithm.
+
+ It returns a country code in ISO 639-3, so I would use ``pycountry`` to get the full name.
+
+.. code-block:: python
+
+   import nltk
+   import pycountry
+   
+   phrase_one = "good morning"
+   phrase_two = "goeie more"
+
+   tc = nltk.classify.textcat.TextCat() 
+   guess_one = tc.guess_language(phrase_one)
+   guess_two = tc.guess_language(phrase_two)
+
+   guess_one_name = pycountry.languages.get(alpha_3=guess_one).name
+   guess_two_name = pycountry.languages.get(alpha_3=guess_two).name
+   print(guess_one_name)
+   print(guess_two_name)
+
+Output::
+
+ English
+ Afrikaans
+   
+However, `RK1 <https://stackoverflow.com/a/58432286>`_ warns that this method is not 100% reliable:
+
+ Disclaimer obviously this will not always work, especially for sparse data
+
+ Extreme example
+
+ .. code-block:: python
+ 
+    guess_example = tc.guess_language("hello")
+    print(pycountry.languages.get(alpha_3=guess_example).name)
+    Konkani (individual language)
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
