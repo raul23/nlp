@@ -207,8 +207,7 @@ if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
     texts = [text1, text2, text3, text4]
-    method_msg = f'Extracting names with method #{args.method}'
-    print(method_msg)
+    print(f'Extracting names with method #{args.method}')
     time.sleep(1)
     import_modules(args.method, args.download)
     print()
@@ -233,4 +232,4 @@ if __name__ == '__main__':
             print(f'Unsupported method #{args.method}')
             sys.exit(1)
         print()
-    print(method_msg)
+    print(f'Names extracted with method #{args.method}')
