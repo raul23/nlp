@@ -641,3 +641,77 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
  
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+
+ $ python detect_lang.py -m 2
+ 
+Ouput::
+
+   Verbose option disabled
+   Detecting text language with method #2
+   importing nltk
+
+   #############################
+   Text1: english (true language)
+   #############################
+   classifying ...
+   The text is classified as english [valid]
+   Took 5.247 seconds
+
+   #############################
+   Text2: french (true language)
+   #############################
+   classifying ...
+   The text is classified as french [valid]
+   Took 1.654 second
+
+   #############################
+   Text3: spanish (true language)
+   #############################
+   classifying ...
+   The text is classified as portuguese [invalid]
+   Took 3.893 seconds
+
+   #############################
+   Text4: english (true language)
+   #############################
+   classifying ...
+   The text is classified as english [valid]
+   Took 3.52 seconds
+
+   #############################
+   Text5: english (true language)
+   #############################
+   classifying ...
+   The text is classified as english [valid]
+   Took 2.924 seconds
+
+   #############################
+   Text6: german (true language)
+   #############################
+   classifying ...
+   The text is classified as german [valid]
+   Took 1.998 second
+
+   #############################
+   Text7: italian (true language)
+   #############################
+   classifying ...
+   The text is classified as english [invalid]
+   Took 0.898 second
+
+   #############################
+   Text8: french (true language)
+   #############################
+   classifying ...
+   The text is classified as french [valid]
+   Took 1.604 second
+
+
+   ### Performance of method 2 ###
+   task: multiclass classification
+   25.0% error classification
+
+   Total time: 21.74 seconds
