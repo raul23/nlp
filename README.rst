@@ -325,16 +325,17 @@ Ouput::
 ----------------------------------------
 This script tests different NLP methods to detect text language:
 
-- The `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ checks each word from a given text against
-  the ``ntlk`` English corpus and if a % of those words are unusual (i.e. not part of the corpus) exceeds a threshold, then the text is
-  English. Otherwise, it is non-English. Its application might be restricted but depending on your use case, it might do the job.
+- The `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ 
+  checks each unique word from a given text against the ``ntlk`` English corpus and if the % of words that are unusual 
+  (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
+  a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The second method ... TODO
 
 `:star:` 
 
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
-     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, 
+     e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
      
 Texts used for testing
@@ -423,7 +424,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 
 * **Platforms:** macOS
 * **Python**: versions **3.7** and **3.8**
-* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_:
+* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
@@ -436,7 +437,7 @@ Run the script by specifying the method to use for detecting the text language::
 
    $ pyton extract_names_from_text.py -m 1
 
-`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_ is used.
+`:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ is used.
 
 List of options for **detect_lang.py**
 ``````````````````````````````````````````````````
@@ -451,23 +452,23 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
+                           Method to use to detect text language. Choices are: [1] (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
-                           If this threshold (% of words or letters in the text that are unusual) 
+                           If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. (default: 25)
      -v, --verbose         Show more information for the given method such as the words considered as unusual (method 1). (default: False)
 
 `:information_source:` The ``-t/--threshold`` option 
 
-- This option applies to methods 1 and 2.
-- It refers to the % of words or letters that are unusual and above which the given 
-  text is not English. By default, the threshold value is 25% which means that if more than 25% of words or letters in a given text
+- This option applies to method 1.
+- It refers to the % of unique words from a given text that are unusual and above which the 
+  text is not English. By default, the threshold value is 25% which means that if more than 25% of unique words in a given text
   are unusual, then the text is most likely not English.
-- As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-nltk-based-on-words>`_, a given text is considered
-  unusual if there are words that are not part of the ``nltk`` English corpus. 
+- As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
+  a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
 
-Method 1: detect only if it is English or not (``nltk`` + based on words)
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
@@ -486,13 +487,15 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
-Thus method 1 is very restricted in its application: it can only tell if a given text is English or not. The way it does it is simple but still interesting depending on your use case: 
+Thus method 1 is limited in its application: it can only tell if a given text is English or not (a simple binary classifier). 
+The way it does it is simple but still interesting depending on your use case: 
 
-1. Every word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
+1. Every unique word (making sure they are all lowercase and consisting of alphabet letters) from a given text is checked 
    against the ``nltk`` English corpus
 2. Those words from the given text that are not part of this corpus are considered as unusual
-3. The proportion of words from the given text that are unusual is used to determine if the given text is English or not: if the proportion in % is 
-   less than the threshold (By default, it is 25%), then the text is English. Otherwise, the text is not English.
+3. The proportion of unique words from the given text that are unusual is used to determine if the given text is English or 
+   not: if the proportion in % is less than the threshold (by default, it is 25%), then the text is English. Otherwise, the 
+   text is non-English.
 
 `:information_source:` 
 
@@ -517,47 +520,65 @@ Ouput::
    #############################
    Text1: english (true language)
    #############################
-   The text is classified as English: 10% of words in the text are unusual (threshold = 25%)
+   The text is classified as english: 10% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.212 second
 
    #############################
    Text2: french (true language)
    #############################
-   The text is classified as non-English: 71% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-english: 71% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.206 second
 
    #############################
    Text3: spanish (true language)
    #############################
-   The text is classified as non-English: 75% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-english: 75% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.208 second
 
    #############################
    Text4: english (true language)
    #############################
-   The text is classified as English: 14% of words in the text are unusual (threshold = 25%)
+   The text is classified as english: 14% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.198 second
 
    #############################
    Text5: english (true language)
    #############################
-   The text is classified as English: 19% of words in the text are unusual (threshold = 25%)
+   The text is classified as english: 19% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.201 second
 
    #############################
    Text6: german (true language)
    #############################
-   The text is classified as non-English: 74% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-english: 74% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.202 second
 
    #############################
    Text7: italian (true language)
    #############################
-   The text is classified as non-English: 79% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-english: 79% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.199 second
 
    #############################
    Text8: french (true language)
    #############################
-   The text is classified as non-English: 72% of words in the text are unusual (threshold = 25%)
+   The text is classified as non-english: 72% of words in the text vocabulary are unusual (threshold = 25%)
+   VALID classification
+   Took 0.202 second
 
 
    ### Performance of method 1 ###
-   binary classification with labels: ENGLISH and NON-ENGLISH
+   task: binary classification
    0.0% error classification
+
+   Total time: 1.63 second
 
 Extract DOB and DOD from text [TODO]
 ------------------------------------
