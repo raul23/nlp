@@ -767,7 +767,7 @@ those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-cla
 
 We are only showing results for the last text analyzed::
 
- $ python detect_lang.py -m 2
+ $ python detect_lang.py -m 2 -v
  
 Ouput::
 
