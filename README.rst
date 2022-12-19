@@ -658,9 +658,9 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      
      To install it: ``pip install pycountry``
  
-`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
-
 |
+ 
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
