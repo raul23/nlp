@@ -464,8 +464,13 @@ To display the script's list of options and their descriptions, use the ``-h`` o
                            Method to use to detect text language. Choices are: [1, 2] (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
-                           is exceeded, then the language of the text is not English. (default: 25)
-     -v, --verbose         Show more information for the given method such as the words considered as unusual (method 1). (default: False)
+                           is exceeded, then the language of the text is not English. NOTE: This is
+                           an option for method 1.(default: 25)
+     -v, --verbose         Show more information for the given method such as the words considered 
+                           as unusual (method 1). (default: False)
+     --log-level {debug,info,warning,error}
+                           Set logging level. (default: info)
+
 
 `:information_source:` The ``-t/--threshold`` option 
 
