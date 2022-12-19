@@ -207,6 +207,8 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
     maxent_ne_chunker, words
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
+|
+
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
@@ -272,6 +274,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
            print(name)
            names.append(name)
 
+|
+
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
@@ -283,6 +287,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
   - ``str(ent) not in names``: to avoid displaying duplicated names
   - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
+
+|
 
 To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
@@ -506,6 +512,8 @@ The `stackoverflow user 'whege' <https://stackoverflow.com/questions/3182268/nlt
  amazingly direct approach to this kind of task. Granted it doesn't give you the actual language 
  or translate, but if you simply need to know if it's an outlier, this is brilliant.
 
+|
+
 Thus method 1 is limited in its application: it can only tell if a given text is English or not (a simple binary classifier). 
 The way it does it is simple but still interesting depending on your use case: 
 
@@ -524,6 +532,8 @@ The way it does it is simple but still interesting depending on your use case:
      might be worthwhile as your code won't depend on a third-party library for a simple task of detecting whether a given text is English or not.
    - Another possible addition is to use corpora from other languages (e.g. French, Spanish) so you can convert this binary classifier
      into a multiclass classifier capable of identifying many text languages.
+
+|
 
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
