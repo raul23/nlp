@@ -635,7 +635,9 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
 
 `:information_source:` 
 
-   - This second method is capable of identifying many languages, unlike the `first method <>`_ which can only tell if the text is
+   - This second method is capable of identifying many languages, unlike the `first method 
+     <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ which can only tell if the text is
      English or non-English.
-   - However, compared to the first method, it takes longer to process when performing binary classification: more than 10 times longer.
+   - However, compared to the first method, the second method takes longer to process when performing 
+     binary classification: more than 10 times longer.
  
