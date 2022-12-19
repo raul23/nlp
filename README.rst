@@ -455,7 +455,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-  * `pycountry <https://pypi.org/project/pycountry/>_`: **v22.3.5** it's optional. Used for converting the country 
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
 
