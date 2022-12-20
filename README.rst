@@ -792,6 +792,9 @@ Ouput::
 
 Method 3: identify text language with ``langdetect``
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
+``langdetect`` is a port of Nakatani Shuyo's language-detection library (version from 03/03/2014) to Python 
+(see `official documentation <https://pypi.org/project/langdetect/>`_).
+
 From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
 
  This library is not from NLTK either but certainly helps.
@@ -830,7 +833,7 @@ From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
       >>> detect("yay!")
       'so'
 
-`:warning:` As the `official documentation notes <https://pypi.org/project/langdetect/>`_, the algorithm is non-deterministic. 
+`:warning:` As the `official documentation notes <https://pypi.org/project/langdetect/>`_, the algorithm is **non-deterministic**. 
 Thus, if you run the code multiple times, you might get different results. Especially if the text is very short or ambiguous 
 (e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
 
