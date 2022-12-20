@@ -829,3 +829,13 @@ From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
       'en'
       >>> detect("yay!")
       'so'
+
+`:warning:` As the `official documentation notes <https://pypi.org/project/langdetect/>`_, the algorithm is non-deterministic. 
+Thus, if you run the code multiple times, you might get different results. Especially if the text is very short or ambiguous 
+(e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
+
+.. code-block:: python
+
+   from langdetect import DetectorFactory
+   DetectorFactory.seed = 0
+   
