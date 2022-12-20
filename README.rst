@@ -349,7 +349,7 @@ This script tests different NLP methods to detect text language:
   checks each unique word from a given text against the ``nltk`` English corpus and if the % of words that are unusual 
   (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
-- The `second method <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_ uses the
+- The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
   than the first method, but it is able to identify the text language which is returned as a country code in *ISO 639-3*, unlike the
   first method which can only tell if the text is English or not.
@@ -451,7 +451,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-* For `method 2 <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_:
+* For `method 2 <#method-2-identify-text-language-with-nltk-classify-textcat>`_:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
@@ -502,7 +502,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
   a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
 
-`:star:` By default, the `second method <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_ 
+`:star:` By default, the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ 
 performs multiclass classification but if the ``-v/--verbose`` option is used, then results for binary 
 classification are also shown.
 
@@ -790,8 +790,8 @@ Ouput::
 
    Total time: 22.53 seconds
 
-Method 3: identify the text language with ``langdetect``
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 3: identify text language with ``langdetect``
+''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
 
  This library is not from NLTK either but certainly helps.
