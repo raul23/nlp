@@ -789,3 +789,43 @@ Ouput::
    25.0% error classification
 
    Total time: 22.53 seconds
+
+Method 3: identify the text language with ``langdetect``
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
+
+ This library is not from NLTK either but certainly helps.
+
+ ``$ sudo pip install langdetect``
+
+ Supported Python versions 2.6, 2.7, 3.x.
+
+ .. code-block:: python
+ 
+    >>> from langdetect import detect
+
+    >>> detect("War doesn't show who's right, just who's left.")
+    'en'
+    >>> detect("Ein, zwei, drei, vier")
+    'de'
+    
+ https://pypi.org/project/langdetect/
+ 
+ P.S.: Don't expect this to work correctly always:
+ 
+ .. code-block:: python
+ 
+      >>> detect("today is a good day")
+      'so'
+      >>> detect("today is a good day.")
+      'so'
+      >>> detect("la vita e bella!")
+      'it'
+      >>> detect("khoobi? khoshi?")
+      'so'
+      >>> detect("wow")
+      'pl'
+      >>> detect("what a day")
+      'en'
+      >>> detect("yay!")
+      'so'
