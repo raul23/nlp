@@ -1209,3 +1209,105 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
    3. Not sensitive to domain-specific features (e.g. HTML/XML markup)
    4. Single .py file with minimal dependencies
    5. Deployable as a web service
+
+   ``langid.py`` comes pre-trained on 97 languages (ISO 639-1 codes given)
+
+Run method 4 (langid)
+'''''''''''''''''''''
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+To run method 5 (``langid``) on the `eight texts <./scripts/detect_lang.py#L5>`_::
+
+ $ python detect_lang.py -m 5
+ 
+Ouput::
+
+   Verbose option disabled
+   importing langid
+   importing pycountry
+
+   Detecting text language with method #5: langid
+
+   #############################
+   Text1: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 3.342 seconds
+
+   #############################
+   Text2: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.004 second
+
+   #############################
+   Text3: spanish (true language)
+   #############################
+   The text is classified as spanish [valid]
+   Took 0.006 second
+
+   #############################
+   Text4: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.005 second
+
+   #############################
+   Text5: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.007 second
+
+   #############################
+   Text6: german (true language)
+   #############################
+   The text is classified as german [valid]
+   Took 0.004 second
+
+   #############################
+   Text7: italian (true language)
+   #############################
+   The text is classified as italian [valid]
+   Took 0.003 second
+
+   #############################
+   Text8: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.004 second
+
+
+   ### Performance of method 5: langid ###
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 2.81 seconds
+
+`:star:` By default, the fifth method shows results for the multiclass classification 
+but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
+those of the other methods.
+
+We are only showing results for the last text analyzed::
+
+ $ python detect_lang.py -m 5 -v 
+ 
+Ouput::
+
+   #############################
+   Text8: french (true language)
+   #############################
+   Number of words in the text: 45
+   Guessed language: fr
+   Binary classification: the text is classified as non-english [valid]
+   The text is classified as french [valid]
+   Took 0.003 second
+
+
+   ### Performance of method 5: langid ###
+   task: binary classification
+   0.0% error classification
+
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 2.85 seconds
