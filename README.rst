@@ -492,8 +492,8 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     <https://www.nltk.org/install.html#mac-unix>`_ for ``nltk``
     
     ``pip install numpy``
-  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the country 
-    code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the language 
+    code returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
     
     ``pip install pycountry``
@@ -503,8 +503,8 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     library from Java to Python
     
     ``pip install langdetect``
-  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the country 
-    code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the language 
+    code returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
     
     ``pip install pycountry``
@@ -716,7 +716,8 @@ From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
 .. code-block:: python
 
    import nltk
-   import pycountry
+   import py
+   
    
    phrase_one = "good morning"
    phrase_two = "goeie more"
@@ -757,7 +758,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
    - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
-     returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+     returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
      
      To install it: ``pip install pycountry``
