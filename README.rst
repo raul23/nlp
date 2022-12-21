@@ -515,7 +515,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. NOTE: This is
-                           an option for method 1.(default: 25)
+                           an option for method 1. (default: 25)
      -d, --deterministic   Make the language detection algorithm used for method 3 (langdetect) 
                            deterministic. (default: False)
      -v, --verbose         Show more information for the given method such as the words considered 
