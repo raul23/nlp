@@ -224,6 +224,7 @@ if __name__ == '__main__':
     method_msg = f'Detecting text language with method #{args.method}: {CHOICES_NAMES[args.method-1]}'
     logger.info(method_msg)
     logger.info('')
+    total_words = 0
     binary_class_error = 0
     multiclass_error = 0
     total_time = 0
@@ -234,6 +235,7 @@ if __name__ == '__main__':
         logger.info("#############################")
         logger.info(f'Text{i}: {true_lang} (true language)')
         logger.info("#############################")
+        total_words += len(text.split())
         logger.debug(f'Number of words in the text: {len(text.split())}')
         start_time = time.time()
         if args.method == 1:
@@ -312,7 +314,8 @@ if __name__ == '__main__':
     logger.info(f'\n### Performance of method {args.method}: {CHOICES_NAMES[args.method-1]} ###')
     # Messages for methods 1, 2 and 3
     msg1 = 'task: binary classification'
-    msg2 = f'{binary_class_error/len(texts)*100}% error classification'
+    error = round(binary_class_error/len(texts)*100, 2)
+    msg2 = f'{error}% error classification'
     if args.method == 1:
         logger.info(msg1)
         logger.info(msg2)
@@ -327,5 +330,7 @@ if __name__ == '__main__':
             logger.info(msg2)
         if compute_multiclass:
             logger.info('task: multiclass classification')
-            logger.info(f'{multiclass_error/len(texts)*100}% error classification')
+            error = round(multiclass_error/len(texts)*100, 2)
+            logger.info(f'{error}% error classification')
     logger.info(f"\nTotal time: {round(total_time, 2)} second{'s' if total_time >= 2 else ''}")
+    logger.debug(f'Average number of words per text: {round(total_words/8)}')
