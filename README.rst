@@ -1005,3 +1005,26 @@ Ouput::
    Total time: 0.64 second
 
 `:information_source:` We also used the ``-d/--deterministic`` option. Hence, the seed is set to 0.
+
+Method 4: identify text language with **CLD-2**
+-----------------------------------------------
+From the  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_:
+
+ You might be interested in my paper `The WiLI benchmark dataset for written language identification 
+ <https://arxiv.org/pdf/1801.07779.pdf>`_. I also benchmarked a couple of tools.
+
+ TL;DR:
+
+ - CLD-2 is pretty good and extremely fast
+ - `lang-detect <https://pypi.python.org/pypi/langdetect>`_ is a tiny bit better, but much slower
+ - langid is good, but CLD-2 and lang-detect are much better
+ - NLTK's Textcat is neither efficient nor effective.
+   
+ You can install `lidtk <https://github.com/MartinThoma/lidtk>`_ and classify languages::
+ 
+   $ lidtk cld2 predict --text "this is some text written in English"
+   eng
+   $ lidtk cld2 predict --text "this is some more text written in English"
+   eng
+   $ lidtk cld2 predict --text "Ce n'est pas en anglais"                  
+   fra
