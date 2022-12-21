@@ -360,9 +360,9 @@ This script tests different NLP methods to detect text language:
   (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
   `Compact Langauge Detect 2 (CLD-2) <https://github.com/aboSamoor/pycld2>`_ to determine the text language. It is 
-  quicker to process than all the other methods: it is almost instantaneous. Like the second and third methods, it is 
-  able to identify a text language which it returns as a language full name and as a language code in *ISO 639-1* (`100 languages supported by 
-  CLD-2 <https://arxiv.org/pdf/1801.07779.pdf>`_).
+  quicker to process than all the other methods: it is almost instantaneous. It is able to identify multiple languages in text. 
+  For each language detected, it returns a tuple containing among other things the language full name and as a language code 
+  in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
 
 `:star:` 
 
@@ -1018,7 +1018,8 @@ Ouput::
 
 Method 4: identify text language with **CLD-2**
 -----------------------------------------------
-From the  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_:
+Tthe  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_ compared **CLD-2** with other NLP 
+tools for language identification:
 
  You might be interested in my paper `The WiLI benchmark dataset for written language identification 
  <https://arxiv.org/pdf/1801.07779.pdf>`_. I also benchmarked a couple of tools.
