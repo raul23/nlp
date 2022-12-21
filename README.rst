@@ -1043,6 +1043,10 @@ Ouput::
 
    Total time: 0.57 second
 
+`:warning:` There is an **overhead** when starting the language classification with ``langdetect`` as can be seen with the first text
+taken 0.562 second. When re-running the classification after the initial classification, the first text actually took 
+~ 0.007 second.
+
 `:star:` By default, the third method shows results for the multiclass classification (if the ``pycountry`` package is found) 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
 those of the other methods.
