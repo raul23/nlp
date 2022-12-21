@@ -353,7 +353,7 @@ This script tests different NLP methods to detect text language:
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
   than the first method, but it is able to identify the text language which is returned as a country code in *ISO 639-3*, unlike the
-  first method which can only tell if the text is English or not. The second method supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+  first method which can only tell if the text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
   ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
   method, it is able to identify the text language which is returned as a country code in *ISO 639-1* 
