@@ -359,19 +359,33 @@ This script tests different NLP methods to detect text language:
   checks each unique word from a given text against the ``nltk`` English corpus and if the % of words that are unusual 
   (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
+  
+  Running time: ~ 1.6 second
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
   than the first method, but it is able to identify a text language which is returned as a language code in *ISO 639-3*, unlike the
   first method which can only tell if a text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+  
+  Running time: ~ 21 seconds
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
   ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second and fourth
   methods, it is able to identify a text language which is returned as a language code in *ISO 639-1* 
   (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
+  
+  Running time: ~ 0.6 second
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
   `Compact Langauge Detect 2 (CLD-2) <https://github.com/aboSamoor/pycld2>`_ to determine the text language. It is 
   quicker to process than all the other methods: it is almost instantaneous. It is able to identify multiple languages in text. 
   For each language detected, it returns a tuple containing among other things the language full name and the language code 
   in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
+  
+  Running time: ~ 0.0 second
+- The `fifth method <#method-5-identify-text-language-with-langid>`_ uses
+  ``langid`` to determine the text language. It is quicker to process than the first and second methods. Like the second and fourth
+  methods, it is able to identify a text language which is returned as a language code in *ISO 639-1* 
+  (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
+  
+  Running time: ~ 2.8 seconds
 
 `:star:` 
 
@@ -761,11 +775,13 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
 
 `:information_source:` 
 
-   - This second method is capable of identifying many languages, unlike the `first method 
+   - The second method supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_, unlike the `first method 
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ which can only tell if the text is
      English or non-English.
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
+     
+     Running time: ~ 21 seconds
    - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
      returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
@@ -939,10 +955,11 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
 
 `:information_source:` 
 
-   - This third method is capable of identifying many languages, just like the `second method 
-     <#method-2-identify-text-language-with-nltk-classify-textcat>`_.
+   - The third method supports `55 languages <https://pypi.org/project/langdetect/>`_
    - However, compared to the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_, 
      the third method takes way less time to process when performing language classification: more than 30 times quicker.
+     
+     Running time: ~ 0.6 second
    - Also, the third method is quicker than the `first method  
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
      binary classification: more than twice faster.
@@ -1096,6 +1113,33 @@ tools for language identification:
 - Greg Bowyer et al.: https://github.com/GregBowyer/cld2-cffi
 
   ``$ pip install cld2-cffi``
+
+|
+
+`:information_source:` 
+
+   - The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_
+   - It is quicker to process than all the other methods: it is **almost instantaneous**.
+   - It is able to identify multiple languages in text, unlike the other methods::
+   
+     .. code-block:: python
+     
+         fr_en_Latn = """\
+         France is the largest country in Western Europe and the third-largest in Europe as a whole.
+         A accès aux chiens et aux frontaux qui lui ont été il peut consulter et modifier ses collections
+         et exporter Cet article concerne le pays européen aujourd’hui appelé République française.
+         Pour d’autres usages du nom France, Pour une aide rapide et effective, veuiller trouver votre aide
+         dans le menu ci-dessus.
+         Motoring events began soon after the construction of the first successful gasoline-fueled automobiles.
+         The quick brown fox jumped over the lazy dog."""
+
+         isReliable, textBytesFound, details, vectors = cld2.detect(
+             fr_en_Latn, returnVectors=True
+         )
+         print(vectors)
+         # ((0, 94, 'ENGLISH', 'en'), (94, 329, 'FRENCH', 'fr'), (423, 139, 'ENGLISH', 'en'))
+
+     From the `official documentation <https://github.com/aboSamoor/pycld2>`_
 
 Run method 4 (**CLD-2**)
 ''''''''''''''''''''''''
