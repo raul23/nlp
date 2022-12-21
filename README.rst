@@ -1212,7 +1212,7 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 
    ``langid.py`` comes pre-trained on 97 languages (ISO 639-1 codes given)
 
-Run method 4 (langid)
+Run method 5 (langid)
 '''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
