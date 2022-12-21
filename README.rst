@@ -1018,7 +1018,14 @@ Ouput::
 
 Method 4: identify text language with **CLD-2**
 -----------------------------------------------
-Tthe  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_ compared **CLD-2** with other NLP 
+From Dick Sites' `documentation <https://github.com/CLD2Owners/cld2>`_ for the ``cld2`` C++ library:
+
+ - CLD2 probabilistically detects over 80 languages in Unicode UTF-8 text, either plain text or HTML/XML.
+ - The design target is web pages of at least 200 characters (about two sentences); CLD2 is not designed 
+   to do well on very short text, lists of proper names, part numbers, etc.
+ - CLD2 is a Naïve Bayesian classifier, using one of three different token algorithms.
+
+The  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_ compared **CLD-2** with other NLP 
 tools for language identification:
 
  You might be interested in my paper `The WiLI benchmark dataset for written language identification 
