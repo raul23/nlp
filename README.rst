@@ -297,12 +297,12 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
 
-  1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
-  
-      $ python extract_names_from_text.py -d
-  2. Installing it separately from the script by running the following command on the terminal::
-  
-      $ python -m spacy download en_core_web_md
+1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
+
+   $ python extract_names_from_text.py -d
+2. Installing it separately from the script by running the following command on the terminal::
+
+   $ python -m spacy download en_core_web_md
 
 |
 
