@@ -532,12 +532,16 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
   a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
 
+|
+
 `:information_source:` The ``-d/--deterministic`` option sets the seed used by ``langdetect`` to 0 in order for the
 language detection algorithm to be `deterministic <https://pypi.org/project/langdetect/>`_. Hence, everytime you run 
 the code on a given text, you will get the same result.
 
+|
+
 `:star:` By default, the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ 
-performs multiclass classification but if the ``-v/--verbose`` option is used, then results for binary 
+performs multiclass classification (if ``pycountry`` is found) but if the ``-v/--verbose`` option is used, then results for binary 
 classification are also shown.
 
 Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
