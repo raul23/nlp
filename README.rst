@@ -215,7 +215,7 @@ Run method 1 (nltk)
 ```````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
-To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
+To run method 1 (``nltk``) on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
  $ python extract_names_from_text.py -m 1
  
@@ -305,7 +305,7 @@ Run method 2 (spacy)
 ````````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
-To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
+To run method 2 (``spacy``) on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
  $ python extract_names_from_text.py -m 2 -d
  
@@ -592,7 +592,7 @@ Run method 1 (nltk English corpus)
 ``````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 1 (``nltk`` English corpus) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
  $ python detect_lang.py -m 1
  
@@ -729,7 +729,7 @@ Run method 2 (nltk.classify.textcat)
 ````````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 2 (``nltk.classify.textcat``) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
  $ python detect_lang.py -m 2
  
@@ -908,7 +908,7 @@ Run method 3 (langdetect)
 `````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 3 (``langdetect``) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
  $ python detect_lang.py -m 3
  
