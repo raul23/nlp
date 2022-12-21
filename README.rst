@@ -1043,7 +1043,7 @@ Ouput::
 
    Total time: 0.57 second
 
-`:warning:` There is an **overhead** when starting the language classification with ``langdetect`` as can be seen with the first text
+`:warning:` There is an **overhead** when starting the language classification with ``langdetect`` as we can see with the first text
 taken 0.562 second. When re-running the classification on the first after the initial one, it actually took 
 ~ 0.007 second like other texts of similar length.
 
