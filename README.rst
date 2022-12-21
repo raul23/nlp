@@ -357,7 +357,7 @@ This script tests different NLP methods to detect text language:
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
   ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
   method, it is able to identify the text language which is returned as a country code in *ISO 639-1* 
-  (`_55 languages supported <https://pypi.org/project/langdetect/>`_).
+  (`55 languages supported <https://pypi.org/project/langdetect/>`_).
 
 `:star:` 
 
