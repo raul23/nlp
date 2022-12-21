@@ -8,10 +8,12 @@ logger = logging.getLogger('detect_lang')
 DetectorFactory = None
 langdetect = None
 nltk = None
+pycld2 = None
 pycountry = None
 
-CHOICES = [1, 2, 3]
-CHOICES_NAMES = ['nltk English corpus', 'nltk.classify.textcat', 'langdetect']
+CHOICES = [1, 2, 3, 4]
+CHOICES_NAMES = ['nltk English corpus', 'nltk.classify.textcat', 'langdetect', 'cld2']
+assert len(CHOICES) == len(CHOICES_NAMES)
 CHOICES_MSG = [a+": "+b for a, b in zip(list(map(str, CHOICES)), CHOICES_NAMES)]
 CHOICES_MSG = ', '.join(map(str, CHOICES_MSG))
 
@@ -101,7 +103,7 @@ def import_modules(method, deterministic=False):
                            "binary classification of text language will be performed.\n"
                            "Install it with: pip install pycountry")
 
-    global DetectorFactory, langdetect, nltk, pycountry
+    global DetectorFactory, langdetect, nltk, pycld2, pycountry
     if method in [1, 2]:
         logger.info('importing nltk')
         import nltk
@@ -115,6 +117,9 @@ def import_modules(method, deterministic=False):
             logger.info('Making the langdetect algorithm deterministic')
             from langdetect import DetectorFactory
             DetectorFactory.seed = 0
+    elif method == 4:
+        logger.info('importing pycld2')
+        import pycld2
     else:
         logger.info(f'Unsupported method #{method}')
 
@@ -213,6 +218,8 @@ if __name__ == '__main__':
     binary_class_error = 0
     multiclass_error = 0
     total_time = 0
+    compute_binary_class = (args.method in [2, 3] and pycountry is None) or args.verbose
+    compute_multiclass = (args.method in [2, 3] and pycountry) or args.method == 4
     for i, (text, true_lang) in enumerate(texts, start=1):
         logger.info("#############################")
         logger.info(f'Text{i}: {true_lang} (true language)')
@@ -227,15 +234,21 @@ if __name__ == '__main__':
                 logger.info('INVALID classification')
             else:
                 logger.info('VALID classification')
-        elif args.method in [2, 3]:
+        elif args.method in [2, 3, 4]:
+            guess_lang_name = None
             if args.method == 2:
                 logger.info('classifying ...')
                 tc = nltk.classify.textcat.TextCat()
                 guess_lang = tc.guess_language(text)
-            else:
+            elif args.method == 3:
                 if DetectorFactory:
                     logger.debug(f'Seed={DetectorFactory.seed}')
                 guess_lang = langdetect.detect(text)
+            else:
+                # Method 4
+                isReliable, textBytesFound, details = pycld2.detect(text)
+                guess_lang_name = details[0][0].lower()  # Full language name in capital, e.g. 'ENGLISH'
+                guess_lang = details[0][1]  # Two-letters code, e.g. 'en'
             logger.debug(f'Guessed language: {guess_lang}')
             # Binary classification
             binary_true_lang = 'non-english' if true_lang != 'english' else true_lang
@@ -245,7 +258,7 @@ if __name__ == '__main__':
                 valid_msg = '[invalid]'
             else:
                 valid_msg = '[valid]'
-            if args.verbose or pycountry is None:
+            if compute_binary_class:
                 msg = 'Binary classification: the text is classified as'
                 if binary_guess_lang != 'english':
                     logger.info(f'{msg} non-english {valid_msg}')
@@ -257,10 +270,13 @@ if __name__ == '__main__':
                     # method 2 = textcat
                     # nltk.classify.textcat returns a three-letter country code in ISO 639-3 (e.g. 'eng')
                     guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
-                else:
+                elif args.method == 3:
                     # method 3 = langdetect
                     # langdetect returns a two-letter codes in ISO 639-1 (e.g. 'en')
                     guess_lang_name = pycountry.languages.get(alpha_2=guess_lang).name.lower()
+                else:
+                    # Method 4: it should aleady be computed
+                    assert guess_lang_name
             except AttributeError as e:
                 if pycountry is None:
                     logger.debug('No multiclass classification performed because pycountry is not installed')
@@ -289,16 +305,16 @@ if __name__ == '__main__':
     if args.method == 1:
         logger.info(msg1)
         logger.info(msg2)
-    elif args.method in [2, 3]:
+    elif args.method in [2, 3, 4]:
         if args.verbose:
             logger.debug(msg1)
             logger.debug(msg2)
-            if pycountry:
+            if compute_multiclass:
                 logger.info('')
-        elif pycountry is None:
+        elif compute_binary_class:  # Methods 2 and 3
             logger.info(msg1)
             logger.info(msg2)
-        if pycountry:
+        if compute_multiclass:
             logger.info('task: multiclass classification')
             logger.info(f'{multiclass_error/len(texts)*100}% error classification')
     else:
