@@ -1041,7 +1041,7 @@ From the  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/484365
 
 `:information_source:` The GitHub page for `CLD-2`_ is https://github.com/aboSamoor/pycld2
 
-Run method 3 (CLD-2)
+Run method 4 (CLD-2)
 ''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
