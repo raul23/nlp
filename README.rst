@@ -1047,6 +1047,8 @@ tools for language identification:
    $ lidtk cld2 predict --text "Ce n'est pas en anglais"                  
    fra
 
+|
+
 `:information_source:` The GitHub pages of **CLD-2** Python bindings are 
 
 - Rami Al-Rfou et al.: https://github.com/aboSamoor/pycld2 [NOTE: this is the one used in method 4]
