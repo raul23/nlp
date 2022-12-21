@@ -784,7 +784,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
      
-     Running time: ~ 21 seconds
+     Running time: ~ 2.6 seconds per text (78 words per text on average)
    - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
      returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
@@ -962,7 +962,7 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
    - However, compared to the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_, 
      the third method takes way less time to process when performing language classification: more than 30 times quicker.
      
-     Running time: ~ 0.6 second
+     Running time: ~ 0.08 second (78 words per text on average)
    - Also, the third method is quicker than the `first method  
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
      binary classification: more than twice faster.
@@ -1268,7 +1268,7 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 - The fifth method (``langid``) supports `97 languages <https://github.com/saffsd/langid.py>`_.
 - It is the third quickest method for identifiying the language of a given text.
 
-  Running time: ~ 0.003 second per text
+  Running time: ~ 0.003 second per text (78 words per text on average)
 
 Run method 5 (langid)
 '''''''''''''''''''''
