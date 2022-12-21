@@ -159,12 +159,12 @@ To display the script's list of options and their descriptions, use the ``-h`` o
   
 `:star:` Ways to download and install the model 'en_core_web_md' necessary for `method 2 <#method-2-spacy>`_
 
-  1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
-  
-      $ python extract_names_from_text.py -d
-  2. Installing it separately from the script by running the following command on the terminal::
-  
-      $ python -m spacy download en_core_web_md
+1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
+
+   $ python extract_names_from_text.py -d
+2. Installing it separately from the script by running the following command on the terminal::
+
+   $ python -m spacy download en_core_web_md
 
 Method 1: ``nltk`` + part of speech tag **NNP**
 -----------------------------------------------
