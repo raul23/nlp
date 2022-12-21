@@ -819,6 +819,7 @@ Ouput::
    #############################
    Number of words in the text: 45
    classifying ...
+   Guessed language: fra
    Binary classification: the text is classified as non-english [valid]
    The text is classified as french [valid]
    Took 1.674 second
