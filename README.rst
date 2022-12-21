@@ -557,8 +557,10 @@ To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
  
 Ouput::
 
-   Detecting text language with method #1
+   Verbose option disabled
    importing nltk
+
+   Detecting text language with method #1: nltk English corpus
 
    #############################
    Text1: english (true language)
@@ -617,7 +619,7 @@ Ouput::
    Took 0.202 second
 
 
-   ### Performance of method 1 ###
+   ### Performance of method 1: nltk English corpus ###
    task: binary classification
    0.0% error classification
 
@@ -693,8 +695,10 @@ To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
 Ouput::
 
    Verbose option disabled
-   Detecting text language with method #2
    importing nltk
+   importing pycountry
+
+   Detecting text language with method #2: nltk.classify.textcat
 
    #############################
    Text1: english (true language)
@@ -753,7 +757,7 @@ Ouput::
    Took 1.604 second
 
 
-   ### Performance of method 2 ###
+   ### Performance of method 2: nltk.classify.textcat ###
    task: multiclass classification
    25.0% error classification
 
@@ -781,7 +785,7 @@ Ouput::
    Took 1.674 second
 
 
-   ### Performance of method 2 ###
+   ### Performance of method 2: nltk.classify.textcat ###
    task: binary classification
    12.5% error classification
 
@@ -870,9 +874,10 @@ To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
 Ouput::
 
    Verbose option disabled
-   Detecting text language with method #3
    importing langdetect.detect
    importing pycountry
+
+   Detecting text language with method #3: langdetect
 
    #############################
    Text1: english (true language)
@@ -923,7 +928,7 @@ Ouput::
    Took 0.006 second
 
 
-   ### Performance of method 3 ###
+   ### Performance of method 3: langdetect ###
    task: multiclass classification
    0.0% error classification
 
@@ -949,7 +954,7 @@ Ouput::
    Took 0.006 second
 
 
-   ### Performance of method 3 ###
+   ### Performance of method 3: langdetect ###
    task: binary classification
    0.0% error classification
 
