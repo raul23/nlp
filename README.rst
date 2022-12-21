@@ -507,11 +507,17 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
+                           Method to use to detect text language. Choices are 
+                           1: nltk English corpus, 
+                           2: nltk.classify.textcat, 
+                           3: langdetect 
+                           (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. NOTE: This is
                            an option for method 1.(default: 25)
+     -d, --deterministic   Make the language detection algorithm used for method 3 (langdetect) 
+                           deterministic. (default: False)
      -v, --verbose         Show more information for the given method such as the words considered 
                            as unusual (method 1). (default: False)
      --log-level {debug,info,warning,error}
