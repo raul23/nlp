@@ -248,7 +248,7 @@ if __name__ == '__main__':
                 # Method 4
                 isReliable, textBytesFound, details = pycld2.detect(text)
                 guess_lang_name = details[0][0].lower()  # Full language name in capital, e.g. 'ENGLISH'
-                guess_lang = details[0][1]  # Two-letters code, e.g. 'en'
+                guess_lang = details[0][1]  # Two-letter code, e.g. 'en'
             logger.debug(f'Guessed language: {guess_lang}')
             # Binary classification
             binary_true_lang = 'non-english' if true_lang != 'english' else true_lang
@@ -268,11 +268,11 @@ if __name__ == '__main__':
             try:
                 if args.method == 2:
                     # method 2 = textcat
-                    # nltk.classify.textcat returns a three-letter country code in ISO 639-3 (e.g. 'eng')
+                    # nltk.classify.textcat returns a three-letter language code in ISO 639-3 (e.g. 'eng')
                     guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
                 elif args.method == 3:
                     # method 3 = langdetect
-                    # langdetect returns a two-letter codes in ISO 639-1 (e.g. 'en')
+                    # langdetect returns a two-letter language code in ISO 639-1 (e.g. 'en')
                     guess_lang_name = pycountry.languages.get(alpha_2=guess_lang).name.lower()
                 else:
                     # Method 4: it should aleady be computed
