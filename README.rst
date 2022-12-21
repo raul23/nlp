@@ -523,7 +523,6 @@ To display the script's list of options and their descriptions, use the ``-h`` o
      --log-level {debug,info,warning,error}
                            Set logging level. (default: info)
 
-
 `:information_source:` The ``-t/--threshold`` option 
 
 - This option applies to `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_.
@@ -532,6 +531,10 @@ To display the script's list of options and their descriptions, use the ``-h`` o
   are unusual, then the text is most likely not English.
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
   a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
+
+`:information_source:` The ``-d/--deterministic`` option sets the seed used by ``langdetect`` to 0 in order for the
+language detection algorithm to be `deterministic <https://pypi.org/project/langdetect/>`_. Hence, everytime you run 
+the code on a given text, you will get the same result.
 
 `:star:` By default, the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ 
 performs multiclass classification but if the ``-v/--verbose`` option is used, then results for binary 
@@ -869,8 +872,8 @@ From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
       'so'
 
 `:warning:` As the `official documentation notes <https://pypi.org/project/langdetect/>`_, the algorithm is **non-deterministic**. 
-Thus, if you run the code multiple times, you might get different results. Especially if the text is very short or ambiguous 
-(e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
+Thus, if you run the code multiple times on a given text, you might get different results. Especially if the text is very short or 
+ambiguous (e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
 
 .. code-block:: python
 
