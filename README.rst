@@ -393,7 +393,7 @@ This script tests different NLP methods to detect text language:
 
    - The running time is based on the `eight Wikipedia texts tested <#texts-used-for-testing-detect-lang-py>`_ (78 words per text on average)
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
-   - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
+   - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the chosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
 
