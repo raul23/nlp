@@ -678,7 +678,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      binary classification: more than 10 times longer.
    - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the country code 
      returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
-     classification will be done (i.e. detect if a given text is English or non-English).
+     classification will be performed (i.e. detect if a given text is English or non-English).
      
      To install it: ``pip install pycountry``
  
@@ -763,7 +763,7 @@ Ouput::
 
 `:star:` By default, the second method shows results for the multiclass classification (if the ``pycountry`` package is found) 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
-those of `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_.
+those of the other methods.
 
 We are only showing results for the last text analyzed::
 
@@ -841,4 +841,118 @@ Thus, if you run the code multiple times, you might get different results. Espec
 
    from langdetect import DetectorFactory
    DetectorFactory.seed = 0
-   
+
+|
+
+`:information_source:` 
+
+   - This third method is capable of identifying many languages, just like the `second method 
+     <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_.
+   - However, compared to the `second method <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_, 
+     the third method takes way less time to process when performing language classification: more than 30 times quicker.
+   - Also, the third method is quicker than the `first method  
+     <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
+     binary classification: more than twice faster.
+   - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the country code 
+     returned by ``langdetect.detect`` into the country full name. If ``pycountry`` is not found, then only binary 
+     classification will be performed (i.e. detect if a given text is English or non-English).
+     
+     To install it: ``pip install pycountry``
+
+|
+ 
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+
+ $ python detect_lang.py -m 2
+ 
+Ouput::
+
+   Verbose option disabled
+   Detecting text language with method #3
+   importing langdetect.detect
+   importing pycountry
+
+   #############################
+   Text1: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.562 second
+
+   #############################
+   Text2: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.007 second
+
+   #############################
+   Text3: spanish (true language)
+   #############################
+   The text is classified as spanish [valid]
+   Took 0.013 second
+
+   #############################
+   Text4: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.007 second
+
+   #############################
+   Text5: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.007 second
+
+   #############################
+   Text6: german (true language)
+   #############################
+   The text is classified as german [valid]
+   Took 0.007 second
+
+   #############################
+   Text7: italian (true language)
+   #############################
+   The text is classified as italian [valid]
+   Took 0.006 second
+
+   #############################
+   Text8: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.006 second
+
+
+   ### Performance of method 3 ###
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 0.57 second
+
+`:star:` By default, the third method shows results for the multiclass classification (if the ``pycountry`` package is found) 
+but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
+those of the other methods.
+
+We are only showing results for the last text analyzed::
+
+ $ python detect_lang.py -m 2 -v
+ 
+Ouput::
+
+   #############################
+   Text8: french (true language)
+   #############################
+   Number of words in the text: 45
+   Binary classification: the text is classified as non-english [valid]
+   The text is classified as french [valid]
+   Took 0.006 second
+
+
+   ### Performance of method 3 ###
+   task: binary classification
+   0.0% error classification
+
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 0.64 second
