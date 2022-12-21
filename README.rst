@@ -352,15 +352,15 @@ This script tests different NLP methods to detect text language:
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
-  than the first method, but it is able to identify the text language which is returned as a language code in *ISO 639-3*, unlike the
-  first method which can only tell if the text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+  than the first method, but it is able to identify a text language which is returned as a language code in *ISO 639-3*, unlike the
+  first method which can only tell if a text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
-  ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
-  method, it is able to identify the text language which is returned as a language code in *ISO 639-1* 
+  ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second and fourth
+  methods, it is able to identify a text language which is returned as a language code in *ISO 639-1* 
   (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
-  **Compact Langauge Detect 2 (CLD-2)** to determine the text language. It is quicker to process than the all the other methods. 
-  Like the second method, it is able to identify the text language which is returned the language full name and as a 
+  **Compact Langauge Detect 2 (CLD-2)** to determine the text language. It is quicker to process than all the other methods. 
+  Like the second and third methods, it is able to identify a text language which it returns as a language full name and as a 
   language code in *ISO 639-1* (`100 languages supported by CLD-2 <https://arxiv.org/pdf/1801.07779.pdf>`_).
 
 `:star:` 
