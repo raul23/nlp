@@ -980,7 +980,7 @@ those of the other methods.
 
 We are only showing results for the last text analyzed::
 
- $ python detect_lang.py -m 3 -v
+ $ python detect_lang.py -m 3 -v -d
  
 Ouput::
 
@@ -989,6 +989,7 @@ Ouput::
    #############################
    Number of words in the text: 45
    Seed=0
+   Guessed language: fr
    Binary classification: the text is classified as non-english [valid]
    The text is classified as french [valid]
    Took 0.006 second
@@ -1002,3 +1003,5 @@ Ouput::
    0.0% error classification
 
    Total time: 0.64 second
+
+`:information_source:` We also used the ``-d/--deterministic`` option. Hence, the seed is set to 0.
