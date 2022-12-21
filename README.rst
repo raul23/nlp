@@ -1038,3 +1038,104 @@ From the  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/484365
    eng
    $ lidtk cld2 predict --text "Ce n'est pas en anglais"                  
    fra
+
+`:information_source:` The GitHub page for `CLD-2`_ is https://github.com/aboSamoor/pycld2
+
+Run method 3 (CLD-2)
+''''''''''''''''''''
+`:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
+
+To run method 4 (**CLD-2**) on the `eight texts <./scripts/detect_lang.py#L5>`_::
+
+ $ python detect_lang.py -m 4
+ 
+Ouput::
+
+   Verbose option disabled
+   importing pycld2
+
+   Detecting text language with method #4: cld2
+
+   #############################
+   Text1: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.001 second
+
+   #############################
+   Text2: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.0 second
+
+   #############################
+   Text3: spanish (true language)
+   #############################
+   The text is classified as spanish [valid]
+   Took 0.0 second
+
+   #############################
+   Text4: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.0 second
+
+   #############################
+   Text5: english (true language)
+   #############################
+   The text is classified as english [valid]
+   Took 0.0 second
+
+   #############################
+   Text6: german (true language)
+   #############################
+   The text is classified as german [valid]
+   Took 0.0 second
+
+   #############################
+   Text7: italian (true language)
+   #############################
+   The text is classified as italian [valid]
+   Took 0.0 second
+
+   #############################
+   Text8: french (true language)
+   #############################
+   The text is classified as french [valid]
+   Took 0.0 second
+
+
+   ### Performance of method 4: cld2 ###
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 0.0 second
+
+`:star:` By default, the fourth method shows results for the multiclass classification 
+but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
+those of the other methods.
+
+We are only showing results for the last text analyzed::
+
+ $ python detect_lang.py -m 4 -v 
+ 
+Ouput::
+
+   #############################
+   Text8: french (true language)
+   #############################
+   Number of words in the text: 45
+   Guessed language: fr
+   Binary classification: the text is classified as non-english [valid]
+   The text is classified as french [valid]
+   Took 0.0 second
+
+
+   ### Performance of method 4: cld2 ###
+   task: binary classification
+   0.0% error classification
+
+   task: multiclass classification
+   0.0% error classification
+
+   Total time: 0.0 second
