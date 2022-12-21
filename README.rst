@@ -482,7 +482,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     <https://www.nltk.org/install.html#mac-unix>`_ for ``nltk``
     
     ``pip install numpy``
-* For `method 2 <#method-2-identify-text-language-with-nltk-classify-textcat>`_(``nltk.classify.textcat``):
+* For `method 2 <#method-2-identify-text-language-with-nltk-classify-textcat>`_ (``nltk.classify.textcat``):
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**, "for building Python programs to work 
     with human language data"
