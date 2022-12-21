@@ -366,27 +366,26 @@ This script tests different NLP methods to detect text language:
   Running time: ~ 1.6 second
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
-  than the first method, but it is able to identify a text language which is returned as a language code in *ISO 639-3*, unlike the
-  first method which can only tell if a text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+  than the first method, but it supports many languages (`255 <https://arxiv.org/pdf/1801.07779.pdf>`_), unlike the first 
+  method which can only tell if a text is English or not. It returns the language of a given text as a language code in *ISO 639-3*.
   
   Running time: ~ 21 seconds
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
-  ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second and fourth
-  methods, it is able to identify a text language which is returned as a language code in *ISO 639-1* 
-  (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
+  ``langdetect`` to determine the text language. It is the second quickest method for classifiying a given text. ``langdetect`` 
+  supports `55 languages <https://pypi.org/project/langdetect/>`_ and it returns the language of a given text as a language code 
+  in *ISO 639-1*.
   
   Running time: ~ 0.6 second
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
   `Compact Langauge Detect 2 (CLD-2) <https://github.com/aboSamoor/pycld2>`_ to determine the text language. It is 
-  quicker to process than all the other methods: it is almost instantaneous. It is able to identify multiple languages in text. 
-  For each language detected, it returns a tuple containing among other things the language full name and the language code 
-  in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
+  the quickest of all the methods tested: it is almost instantaneous. Unlike all the other methods, it is able 
+  to identify multiple languages in text. For each language detected, it returns a tuple containing among other things 
+  the language full name and the language code in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
   
   Running time: ~ 0.0 second
 - The `fifth method <#method-5-identify-text-language-with-langid>`_ uses
-  ``langid`` to determine the text language. It is quicker to process than the first and second methods. Like the second and fourth
-  methods, it is able to identify a text language which is returned as a language code in *ISO 639-1* 
-  (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
+  ``langid`` to determine the text language. It is the third quickest method for classifiying a given text. ``langid`` supports
+  55 langues and it returns the language of a given text as a language code in *ISO 639-1*.
   
   Running time: ~ 2.8 seconds
 
