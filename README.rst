@@ -168,8 +168,10 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 
    $ python -m spacy download en_core_web_md
 
+Methods tested
+--------------
 Method 1: ``nltk`` + part of speech tag **NNP**
------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
  This is what I tried (code is below): I am using nltk to find everything marked as a 
@@ -221,7 +223,7 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text.
 
 Run method 1 (nltk)
-'''''''''''''''''''
+```````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 To run method 1 (``nltk``) on the `four texts <#texts-used-for-testing-extract-names-from-text-py>`_::
@@ -267,7 +269,7 @@ Ouput::
    Nick Colas
 
 Method 2: ``spacy``
--------------------
+'''''''''''''''''''
 Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/en#en_core_web_md>`_, ``spacy`` then produces a document containing among other things named entities. The entities that are of interest to us are those labeled as **PERSON**.
 
 .. code-block:: python
@@ -312,7 +314,7 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
   - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
 
 Run method 2 (spacy)
-''''''''''''''''''''
+````````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 To run method 2 (``spacy``) on the `four texts <#texts-used-for-testing-extract-names-from-text-py>`_::
@@ -616,8 +618,10 @@ the code on a given text, you will get the same result.
 performs multiclass classification (if ``pycountry`` is found) but if the ``-v/--verbose`` option is used, then results for binary 
 classification are also shown.
 
+Methods tested
+--------------
 Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
----------------------------------------------------------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
@@ -658,7 +662,7 @@ The way it does it is simple but still interesting depending on your use case:
      into a multiclass classifier capable of identifying many text languages.
 
 Run method 1 (nltk English corpus)
-''''''''''''''''''''''''''''''''''
+``````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 1 (``nltk`` English corpus) on the `eight texts <#texts-used-for-testing-detect-lang-py>`_::
@@ -736,7 +740,7 @@ Ouput::
    Total time: 1.63 second
 
 Method 2: identify text language with ``nltk.classify.textcat``
----------------------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
 
  Super late but, you could use ``textcat`` classifier in ``nltk``, `here 
@@ -798,7 +802,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      To install it: ``pip install pycountry``
  
 Run method 2 (nltk.classify.textcat)
-''''''''''''''''''''''''''''''''''''
+````````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 2 (``nltk.classify.textcat``) on the `eight texts <#texts-used-for-testing-detect-lang-py>`_::
@@ -913,7 +917,7 @@ Ouput::
    Total time: 22.53 seconds
 
 Method 3: identify text language with ``langdetect``
-----------------------------------------------------
+''''''''''''''''''''''''''''''''''''''''''''''''''''
 ``langdetect`` is a port of Nakatani Shuyo's language-detection library (version from 03/03/2014) from Java to Python 
 (see `official documentation <https://pypi.org/project/langdetect/>`_).
 
@@ -983,7 +987,7 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
      To install it: ``pip install pycountry``
 
 Run method 3 (langdetect)
-'''''''''''''''''''''''''
+`````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 3 (``langdetect``) on the `eight texts <#texts-used-for-testing-detect-lang-py>`_::
@@ -1090,7 +1094,7 @@ Ouput::
 `:information_source:` We also used the ``-d/--deterministic`` option. Hence, the seed is set to 0.
 
 Method 4: identify text language with **CLD-2**
------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''
 From Dick Sites' `documentation <https://github.com/CLD2Owners/cld2>`_ for the ``cld2`` C++ library:
 
  - CLD2 probabilistically detects over 80 languages in Unicode UTF-8 text, either plain text or HTML/XML.
@@ -1161,7 +1165,7 @@ tools for language identification:
   From the `official documentation <https://github.com/aboSamoor/pycld2>`_
 
 Run method 4 (**CLD-2**)
-''''''''''''''''''''''''
+````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 4 (**CLD-2**) on the `eight texts <#texts-used-for-testing-detect-lang-py>`_::
@@ -1260,7 +1264,7 @@ Ouput::
    Total time: 0.0 second
 
 Method 5: identify text language with ``langid``
-------------------------------------------------
+''''''''''''''''''''''''''''''''''''''''''''''''
 From the `official documentation <https://github.com/saffsd/langid.py>`_:
 
    ``langid.py`` is a standalone Language Identification (LangID) tool.
@@ -1285,7 +1289,7 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
   Running time: ~ 0.003 second per text (70 words per text on average)
 
 Run method 5 (langid)
-'''''''''''''''''''''
+`````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 5 (``langid``) on the `eight texts <#texts-used-for-testing-detect-lang-py>`_::
