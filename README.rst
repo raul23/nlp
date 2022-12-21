@@ -385,7 +385,7 @@ This script tests different NLP methods to detect text language:
   Running time: ~ 0.0 second
 - The `fifth method <#method-5-identify-text-language-with-langid>`_ uses
   ``langid`` to determine the text language. It is the third quickest method for identifiying the language of a given text. ``langid`` supports
-  55 languages and it returns the language of a given text as a language code in *ISO 639-1*.
+  `97 languages <https://github.com/saffsd/langid.py>`_ and it returns the language of a given text as a language code in *ISO 639-1*.
   
   Running time: ~ 2.8 seconds
 
