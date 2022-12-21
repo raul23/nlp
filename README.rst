@@ -498,7 +498,6 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``languid``
 
-
 Usage for **detect_lang.py**
 ----------------------------
 Run the script **detect_lang.py**
@@ -1171,8 +1170,8 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 
    The design principles are as follows:
 
-    1. Fast
-    2. Pre-trained over a large number of languages (currently 97)
-    3. Not sensitive to domain-specific features (e.g. HTML/XML markup)
-    4. Single .py file with minimal dependencies
-    5. Deployable as a web service
+   1. Fast
+   2. Pre-trained over a large number of languages (currently 97)
+   3. Not sensitive to domain-specific features (e.g. HTML/XML markup)
+   4. Single .py file with minimal dependencies
+   5. Deployable as a web service
