@@ -1058,8 +1058,8 @@ tools for language identification:
 
   ``$ pip install cld2-cffi``
 
-Run method 4 (CLD-2)
-''''''''''''''''''''
+Run method 4 (**CLD-2**)
+''''''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run method 4 (**CLD-2**) on the `eight texts <./scripts/detect_lang.py#L5>`_::
