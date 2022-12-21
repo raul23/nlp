@@ -777,7 +777,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
 
 `:information_source:` 
 
-   - The second method supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_, unlike the `first method 
+   - The second method (``textcat``) supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_, unlike the `first method 
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ which can only tell if the text is
      English or non-English.
    - However, compared to the first method, the second method takes longer to process when performing 
@@ -957,7 +957,7 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
 
 `:information_source:` 
 
-   - The third method supports `55 languages <https://pypi.org/project/langdetect/>`_
+   - The third method (``langdetect``) supports `55 languages <https://pypi.org/project/langdetect/>`_
    - However, compared to the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_, 
      the third method takes way less time to process when performing language classification: more than 30 times quicker.
      
@@ -1122,7 +1122,7 @@ tools for language identification:
 
 `:information_source:` 
 
-- The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_.
+- The fourth method (**CLD-2**) supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_.
 - It is quicker to process than all the other methods: it is **almost instantaneous**.
 - It is able to identify multiple languages in text, unlike the other methods:
 
@@ -1264,8 +1264,10 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 
 `:information_source:` 
 
-- The fifth method supports `97 languages <https://github.com/saffsd/langid.py>`_.
+- The fifth method (``langid``) supports `97 languages <https://github.com/saffsd/langid.py>`_.
 - It is the third quickest method for identifiying the language of a given text.
+
+  Running time: ~ 2.8 second
 
 Run method 5 (langid)
 '''''''''''''''''''''
