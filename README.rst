@@ -472,31 +472,55 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 
 * **Platforms:** macOS
 * **Python**: versions **3.7** and **3.8**
-* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_:
+* For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ (``nltk`` English corpus):
   
-  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
-  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-* For `method 2 <#method-2-identify-text-language-with-nltk-classify-textcat>`_:
+  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**, "for building Python programs to work 
+    with human language data"
   
-  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
-  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
+    ``pip install nltk``
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), `optional 
+    <https://www.nltk.org/install.html#mac-unix>`_ for ``nltk``
+    
+    ``pip install numpy``
+* For `method 2 <#method-2-identify-text-language-with-nltk-classify-textcat>`_(``nltk.classify.textcat``):
+  
+  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**, "for building Python programs to work 
+    with human language data"
+  
+    ``pip install nltk``
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), `optional 
+    <https://www.nltk.org/install.html#mac-unix>`_ for ``nltk``
+    
+    ``pip install numpy``
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
-* For `method 3 <#method-3-identify-text-language-with-langdetect>`_:
+    
+    ``pip install pycountry``
+* For `method 3 <#method-3-identify-text-language-with-langdetect>`_ (``langdetect``):
   
   * `langdetect <https://pypi.org/project/langdetect/>`_: **v1.0.9**, a direct port of Google's language-detection 
     library from Java to Python
-  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
+    
+    ``pip install langdetect``
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's **optional**. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
-* For `method 4 <#method-4-identify-text-language-with-cld-2>`_:
+    
+    ``pip install pycountry``
+* For `method 4 <#method-4-identify-text-language-with-cld-2>`_ (**CLD-2**):
   
   * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2)
-* For `method 5 <#method-5-identify-text-language-with-langid>`_:
   
-  * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**
-  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``languid``
+  ``pip install pycld2``
+* For `method 5 <#method-5-identify-text-language-with-langid>`_ (``langid``):
+  
+  * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**, a standalone Language Identification (LangID) tool.
+  
+    ``pip install pycld2``
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), **required** internally for ``languid``
+  
+  ``pip install numpy``
 
 Usage for **detect_lang.py**
 ----------------------------
