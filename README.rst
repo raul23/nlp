@@ -104,16 +104,25 @@ Dependencies for **extract_names_from_text.py**
 -----------------------------------------------
 This is the environment on which the script ``extract_names_from_text.py`` was tested:
 
-* **Platforms:** macOS
+* **Platform:** macOS
 * **Python**: versions **3.7** and **3.8**
 * For `method 1 <#method-1-nltk-part-of-speech-tag-nnp>`_:
   
-  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
-  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
-  * `nameparser <https://pypi.org/project/nameparser/>`_: **v1.1.2**, for parsing human names into their individual components
+  * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**, "for building Python programs to work with human language data"
+  
+    ``pip install nltk``
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), optional for ``nltk``
+  
+    ``pip install numpy``
+  * `nameparser <https://pypi.org/project/nameparser/>`_: **v1.1.2**, "for parsing human names into their individual components"
+  
+    ``pip install nameparser``
 * For `method 2 <#method-2-spacy>`_:
 
-  * `spacy <https://spacy.io/>`_: **v2.3.5** (Python 3.7) and **v3.3.1** (Python 3.8)
+  * `spacy <https://spacy.io/>`_: **v2.3.5** (Python 3.7) and **v3.3.1** (Python 3.8), "a library for advanced Natural 
+    Language Processing in Python and Cython"
+  
+    ``pip install spacy``
 
 Usage for **extract_names_from_text.py**
 ----------------------------------------
