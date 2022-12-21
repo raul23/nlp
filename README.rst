@@ -311,7 +311,6 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
   - ``str(ent) not in names``: to avoid displaying duplicated names
   - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
 
-|
 Run method 2 (spacy)
 ''''''''''''''''''''
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
