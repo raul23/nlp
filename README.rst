@@ -493,6 +493,11 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 * For `method 4 <#method-4-identify-text-language-with-cld-2>`_:
   
   * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2)
+* For `method 5 <#>`_:
+  
+  * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**
+  * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``languid``
+
 
 Usage for **detect_lang.py**
 ----------------------------
@@ -522,6 +527,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
                            2: nltk.classify.textcat, 
                            3: langdetect 
                            4: cld2
+                           5: langid
                            (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
@@ -1156,3 +1162,17 @@ Ouput::
    0.0% error classification
 
    Total time: 0.0 second
+
+Method 5: identify text language with ``langid``
+------------------------------------------------
+From the `official documentation <https://github.com/saffsd/langid.py>`_:
+
+   ``langid.py`` is a standalone Language Identification (LangID) tool.
+
+   The design principles are as follows:
+
+    1. Fast
+    2. Pre-trained over a large number of languages (currently 97)
+    3. Not sensitive to domain-specific features (e.g. HTML/XML markup)
+    4. Single .py file with minimal dependencies
+    5. Deployable as a web service
