@@ -371,7 +371,7 @@ This script tests different NLP methods to detect text language:
   
   Running time: ~ 21 seconds
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
-  ``langdetect`` to determine the text language. It is the second quickest method for classifiying a given text. ``langdetect`` 
+  ``langdetect`` to determine the text language. It is the second quickest method for identifiying the language of a given text. ``langdetect`` 
   supports `55 languages <https://pypi.org/project/langdetect/>`_ and it returns the language of a given text as a language code 
   in *ISO 639-1*.
   
@@ -384,7 +384,7 @@ This script tests different NLP methods to detect text language:
   
   Running time: ~ 0.0 second
 - The `fifth method <#method-5-identify-text-language-with-langid>`_ uses
-  ``langid`` to determine the text language. It is the third quickest method for classifiying a given text. ``langid`` supports
+  ``langid`` to determine the text language. It is the third quickest method for identifiying the language of a given text. ``langid`` supports
   55 langues and it returns the language of a given text as a language code in *ISO 639-1*.
   
   Running time: ~ 2.8 seconds
