@@ -507,7 +507,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are 
+                           Method to use for detecting text language. Choices are 
                            1: nltk English corpus, 
                            2: nltk.classify.textcat, 
                            3: langdetect 
