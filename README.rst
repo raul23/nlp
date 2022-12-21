@@ -352,7 +352,11 @@ This script tests different NLP methods to detect text language:
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
   than the first method, but it is able to identify the text language which is returned as a country code in *ISO 639-3*, unlike the
-  first method which can only tell if the text is English or not.
+  first method which can only tell if the text is English or not. The second method supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+- The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
+  ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
+  method, it is able to identify the text language which is returned as a country code in *ISO 639-1* 
+  (`_55 languages supported <https://pypi.org/project/langdetect/>`_).
 
 `:star:` 
 
@@ -360,7 +364,22 @@ This script tests different NLP methods to detect text language:
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
-     
+
+|
+
+`:information_source:` Comparison of the CLD-2, ``textcat``, ``langdetect`` and ``langid`` tools for language identification.
+
+.. raw:: html
+
+  <p align="center"><img src="./images/comparison.png"></p>
+
+This table is taken from Martin Thoma's excellent paper "The WiLI benchmark dataset for written 
+language identification" where many NLP tools for language detection are tested and compared against
+the `WiLI-2018 - Wikipedia Language Identification database <https://zenodo.org/record/841984>`_.
+
+**Reference:** Thoma, Martin. `"The WiLI benchmark dataset for written language identification." <https://arxiv.org/abs/1801.07779>`_ 
+*arXiv preprint arXiv:1801.07779* (2018).
+
 Texts used for testing
 ''''''''''''''''''''''
 The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia):
@@ -369,7 +388,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
 
    # Examples from Wikipedia
    # Ref.: https://en.wikipedia.org/wiki/Freeman_Dyson [ENGLISH]
-   text1 = """
+   text1_english = """
    Freeman John Dyson FRS (15 December 1923 – 28 February 2020) was an English-American 
    theoretical physicist and mathematician known for his works in quantum field theory, 
    astrophysics, random matrices, mathematical formulation of quantum mechanics, condensed 
@@ -379,7 +398,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://fr.wikipedia.org/wiki/Freeman_Dyson [FRENCH]
-   text2 = """
+   text2_french = """
    Il contribue notamment aux fondements de l'électrodynamique quantique en 1948. Il fait 
    également de nombreuses contributions à la physique des solides, l’astronomie et l’ingénierie 
    nucléaire. On lui doit plusieurs concepts qui portent son nom, tels que la transformée de 
@@ -387,7 +406,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://es.wikipedia.org/wiki/Enrico_Fermi [SPANISH]
-   text3 = """
+   text3_spanish = """
    Fermi mandó su tesis «Un teorema sobre probabilidad y algunas de sus aplicaciones» (en 
    italiano, Un teorema di calcolo delle probabilità ed alcune sue applicazioni) a la Scuola Normale 
    Superiore en julio de 1922, y recibió su licenciatura laureada a la temprana edad de 20 años. 
@@ -399,7 +418,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://en.wikipedia.org/wiki/Enrico_Fermi [ENGLISH]
-   text4 = """
+   text4_english = """
    Fermi was fond of pointing out that when Alessandro Volta was working in his laboratory, 
    Volta had no idea where the study of electricity would lead.[145] Fermi is generally 
    remembered for his work on nuclear power and nuclear weapons, especially the creation of 
@@ -411,7 +430,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://en.wikipedia.org/wiki/Theodor_Kaluza [ENGLISH]
-   text5 = """
+   text5_english = """
    Kaluza's insight is remembered as the Kaluza–Klein theory (also named after physicist Oskar 
    Klein). However, the work was neglected for many years, as attention was directed towards 
    quantum mechanics. His idea that fundamental forces can be explained by additional dimensions 
@@ -421,7 +440,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://de.wikipedia.org/wiki/Theodor_Kaluza_(Physiker) [German]
-   text6 = """
+   text6_german = """
    Kaluza entstammte einer deutschen katholischen Familie aus der Stadt Ratibor in Oberschlesien 
    (jetzt Racibórz in Polen). Er selbst wurde in Wilhelmsthal, einem Dorf, das 1899 der Stadt Oppeln 
    (heute Opole) eingemeindet wurde, geboren. Seine Jugend verlebte er in Königsberg (Preußen), wo 
@@ -429,13 +448,13 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://it.wikipedia.org/wiki/Makoto_Kobayashi_(fisico) [ITALIAN]
-   text7 = """
+   text7_italian = """
    Makoto Kobayashi (小林誠 Kobayashi Makoto; Nagoya, 7 aprile 1944) è un fisico giapponese, 
    molto conosciuto per il suo lavoro sulla violazione CP.
    """
 
    # Ref: https://fr.wikipedia.org/wiki/Makoto_Kobayashi_(physicien) [FRENCH]
-   text8 = """
+   text8_french = """
    Il est co-lauréat avec Toshihide Maskawa du prix Nobel de physique de 2008 (l'autre moitié a 
    été remise à Yoichiro Nambu) « pour la découverte de l'origine de la brisure de symétrie qui 
    prédit l'existence d'au moins trois familles de quarks dans la nature ».
@@ -455,6 +474,12 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `nltk (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``nltk``
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
+    code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+    classification will be done (i.e. detect if a given text is English or non-English).
+* For `method 3 <#method-3-identify-text-language-with-langdetect>`_:
+  
+  * `langdetect (Natural Language Toolkit) <https://nltk.org/>`_: **v3.7**
   * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
