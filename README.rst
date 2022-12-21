@@ -512,7 +512,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   
   * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2)
   
-  ``pip install pycld2``
+    ``pip install pycld2``
 * For `method 5 <#method-5-identify-text-language-with-langid>`_ (``langid``):
   
   * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**, a standalone Language Identification (LangID) tool.
@@ -520,7 +520,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     ``pip install pycld2``
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), **required** internally for ``languid``
   
-  ``pip install numpy``
+    ``pip install numpy``
 
 Usage for **detect_lang.py**
 ----------------------------
