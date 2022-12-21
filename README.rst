@@ -1039,7 +1039,7 @@ From the  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/484365
    $ lidtk cld2 predict --text "Ce n'est pas en anglais"                  
    fra
 
-`:information_source:` The GitHub page for `CLD-2`_ is https://github.com/aboSamoor/pycld2
+`:information_source:` The GitHub page for **CLD-2** is https://github.com/aboSamoor/pycld2
 
 Run method 4 (CLD-2)
 ''''''''''''''''''''
