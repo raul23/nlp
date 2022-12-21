@@ -480,10 +480,14 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     classification will be done (i.e. detect if a given text is English or non-English).
 * For `method 3 <#method-3-identify-text-language-with-langdetect>`_:
   
-  * `langdetect <https://pypi.org/project/langdetect/>`_: **v1.0.9**
+  * `langdetect <https://pypi.org/project/langdetect/>`_: **v1.0.9**, a direct port of Google's language-detection 
+    library from Java to Python
   * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
+* For `method 4 <#method-4-identify-text-language-with-cld-2>`_:
+  
+  * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2).
 
 Usage for **detect_lang.py**
 ----------------------------
