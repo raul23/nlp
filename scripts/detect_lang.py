@@ -20,7 +20,7 @@ CHOICES_MSG = ', '.join(map(str, CHOICES_MSG))
 
 # Examples from Wikipedia
 # Ref.: https://en.wikipedia.org/wiki/Freeman_Dyson [ENGLISH]
-text1_english = """
+TEXT1_ENGLISH = """
 Freeman John Dyson FRS (15 December 1923 – 28 February 2020) was an English-American 
 theoretical physicist and mathematician known for his works in quantum field theory, 
 astrophysics, random matrices, mathematical formulation of quantum mechanics, condensed 
@@ -30,7 +30,7 @@ Bulletin of the Atomic Scientists.
 """
 
 # Ref.: https://fr.wikipedia.org/wiki/Freeman_Dyson [FRENCH]
-text2_french = """
+TEXT2_FRENCH = """
 Il contribue notamment aux fondements de l'électrodynamique quantique en 1948. Il fait 
 également de nombreuses contributions à la physique des solides, l’astronomie et l’ingénierie 
 nucléaire. On lui doit plusieurs concepts qui portent son nom, tels que la transformée de 
@@ -38,7 +38,7 @@ Dyson (en) , l'arbre de Dyson (en) , la série de Dyson (en) et la sphère de Dy
 """
 
 # Ref.: https://es.wikipedia.org/wiki/Enrico_Fermi [SPANISH]
-text3_spanish = """
+TEXT3_SPANISH = """
 Fermi mandó su tesis «Un teorema sobre probabilidad y algunas de sus aplicaciones» (en 
 italiano, Un teorema di calcolo delle probabilità ed alcune sue applicazioni) a la Scuola Normale 
 Superiore en julio de 1922, y recibió su licenciatura laureada a la temprana edad de 20 años. 
@@ -50,7 +50,7 @@ haciendo trabajo experimental, esto no supuso mayor problema para él.
 """
 
 # Ref.: https://en.wikipedia.org/wiki/Enrico_Fermi [ENGLISH]
-text4_english = """
+TEXT4_ENGLISH = """
 Fermi was fond of pointing out that when Alessandro Volta was working in his laboratory, 
 Volta had no idea where the study of electricity would lead.[145] Fermi is generally 
 remembered for his work on nuclear power and nuclear weapons, especially the creation of 
@@ -62,7 +62,7 @@ particle pointed the way towards the study of quarks and leptons.
 """
 
 # Ref.: https://en.wikipedia.org/wiki/Theodor_Kaluza [ENGLISH]
-text5_english = """
+TEXT5_ENGLISH = """
 Kaluza's insight is remembered as the Kaluza–Klein theory (also named after physicist Oskar 
 Klein). However, the work was neglected for many years, as attention was directed towards 
 quantum mechanics. His idea that fundamental forces can be explained by additional dimensions 
@@ -72,7 +72,7 @@ work also went unnoticed and was not recognized when the ideas re-emerged.
 """
 
 # Ref.: https://de.wikipedia.org/wiki/Theodor_Kaluza_(Physiker) [German]
-text6_german = """
+TEXT6_GERMAN = """
 Kaluza entstammte einer deutschen katholischen Familie aus der Stadt Ratibor in Oberschlesien 
 (jetzt Racibórz in Polen). Er selbst wurde in Wilhelmsthal, einem Dorf, das 1899 der Stadt Oppeln 
 (heute Opole) eingemeindet wurde, geboren. Seine Jugend verlebte er in Königsberg (Preußen), wo 
@@ -80,13 +80,13 @@ sein Vater Max Kaluza Professor für Anglistik war.
 """
 
 # Ref.: https://it.wikipedia.org/wiki/Makoto_Kobayashi_(fisico) [ITALIAN]
-text7_italian = """
+TEXT7_ITALIAN = """
 Makoto Kobayashi (小林誠 Kobayashi Makoto; Nagoya, 7 aprile 1944) è un fisico giapponese, 
 molto conosciuto per il suo lavoro sulla violazione CP.
 """
 
 # Ref: https://fr.wikipedia.org/wiki/Makoto_Kobayashi_(physicien) [FRENCH]
-text8_french = """
+TEXT8_FRENCH = """
 Il est co-lauréat avec Toshihide Maskawa du prix Nobel de physique de 2008 (l'autre moitié a 
 été remise à Yoichiro Nambu) « pour la découverte de l'origine de la brisure de symétrie qui 
 prédit l'existence d'au moins trois familles de quarks dans la nature ».
@@ -217,7 +217,7 @@ if __name__ == '__main__':
     parser = setup_argparser()
     args = parser.parse_args()
     setup_log(args.verbose, args.logging_level)
-    texts = [(v, k.split('_')[-1]) for k, v in globals().items() if k.startswith('text')]
+    texts = [(v, k.split('_')[-1].lower()) for k, v in globals().items() if k.startswith('TEXT')]
     time.sleep(1)
     import_modules(args.method, args.deterministic)
     logger.info('')
