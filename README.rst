@@ -493,7 +493,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
 * For `method 4 <#method-4-identify-text-language-with-cld-2>`_:
   
   * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2)
-* For `method 5 <#>`_:
+* For `method 5 <#method-5-identify-text-language-with-langid>`_:
   
   * `languid <https://pypi.org/project/langid/>`_: **v1.1.6**
   * `numpy <https://numpy.org/>`_: **v1.21.5** (Python 3.7) and **v1.23.4** (Python 3.8), necessary internally for ``languid``
