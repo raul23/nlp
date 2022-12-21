@@ -18,7 +18,7 @@ This script tests different NLP methods to extract names from text:
 
 `:star:` 
 
-   - The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_
+   - The Python script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_.
    - The script ``extract_names_from_text.py`` only imports the third-party libraries/modules necessary for the chosen method, 
      e.g. if you choose the `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you 
      are just interested in one particular method, you won't need to download unnecessary libraries.
@@ -132,7 +132,7 @@ Run the script by specifying the method to use for extracting names from text::
 
    $ pyton extract_names_from_text.py -m 1
 
-`:information_source:` By default, the `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ is used
+`:information_source:` By default, the `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ is used.
 
 List of options for **extract_names_from_text.py**
 ''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -217,8 +217,8 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
   - The `stackoverflow user 'Gihan Gamage' 
     <https://stackoverflow.com/questions/20290870/improving-the-extraction-of-human-names-with-nltk#comment108366804_20290870>`_ 
     suggests downloading the following NLTK packages after the import statements: punkt, averaged_perceptron_tagger, 
-    maxent_ne_chunker, words
-  - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
+    maxent_ne_chunker, words.
+  - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text.
 
 Run method 1 (nltk)
 '''''''''''''''''''
@@ -391,7 +391,7 @@ This script tests different NLP methods to detect text language:
 
 `:star:` 
 
-   - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_
+   - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
@@ -1122,7 +1122,7 @@ tools for language identification:
 
 `:information_source:` 
 
-- The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_
+- The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_.
 - It is quicker to process than all the other methods: it is **almost instantaneous**.
 - It is able to identify multiple languages in text, unlike the other methods:
 
@@ -1259,6 +1259,13 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
    5. Deployable as a web service
 
    ``langid.py`` comes pre-trained on 97 languages (ISO 639-1 codes given)
+
+|
+
+`:information_source:` 
+
+- The fifth method supports `97 languages <https://github.com/saffsd/langid.py>`_.
+- It is the third quickest method for identifiying the language of a given text.
 
 Run method 5 (langid)
 '''''''''''''''''''''
