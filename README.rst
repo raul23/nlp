@@ -1346,8 +1346,8 @@ Ouput::
    Total time: 2.81 seconds
 
 `:warning:` Actually, the first text didn't take 3.342 seconds to process. It really took 0.003 second like the other
-texts of similar length (when re-running the classificiation again afterward). It is just that it takes more than 2 
-seconds to start classifying. Thus, it is an **overhead** that we must take into account when using ``langid``.
+texts of similar length (when re-running the classification again  on the first text after the initial one). It is just 
+that it takes more than 2 seconds to start classifying. Thus, it is an **overhead** that we must take into account when using ``langid``.
 
 `:star:` By default, the fifth method shows results for the multiclass classification 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
