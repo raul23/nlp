@@ -10,6 +10,11 @@ langdetect = None
 nltk = None
 pycountry = None
 
+CHOICES = [1, 2, 3]
+CHOICES_NAMES = ['nltk English corpus', 'nltk.classify.textcat', 'langdetect']
+CHOICES_MSG = [a+": "+b for a, b in zip(list(map(str, CHOICES)), CHOICES_NAMES)]
+CHOICES_MSG = ', '.join(map(str, CHOICES_MSG))
+
 # Examples from Wikipedia
 # Ref.: https://en.wikipedia.org/wiki/Freeman_Dyson [ENGLISH]
 text1_english = """
@@ -152,13 +157,9 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    choices = [1, 2, 3]
-    choices_names = ['nltk English corpus', 'nltk.classify.textcat', 'langdetect']
-    choices_msg = [a+": "+b for a, b in zip(list(map(str, choices)), choices_names)]
-    choices_msg = ', '.join(map(str, choices_msg))
-    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
+    parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=CHOICES,
                         default=1, type=int,
-                        help=f'Method to use to detect text language. Choices are {choices_msg}')
+                        help=f'Method to use for detecting text language. Choices are {CHOICES_MSG}')
     parser.add_argument('-t', '--threshold', metavar='THRESHOLD', dest='threshold',
                         default=25, type=range_type,
                         help='If this threshold (%% of words in the text vocabulary that are unusual) '
@@ -203,10 +204,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     setup_log(args.verbose, args.logging_level)
     texts = [(v, k.split('_')[-1]) for k, v in globals().items() if k.startswith('text')]
-    method_msg = f'Detecting text language with method #{args.method}'
-    logger.info(method_msg)
     time.sleep(1)
     import_modules(args.method, args.deterministic)
+    logger.info('')
+    method_msg = f'Detecting text language with method #{args.method}: {CHOICES_NAMES[args.method-1]}'
+    logger.info(method_msg)
     logger.info('')
     binary_class_error = 0
     multiclass_error = 0
@@ -234,9 +236,11 @@ if __name__ == '__main__':
                 if DetectorFactory:
                     logger.debug(f'Seed={DetectorFactory.seed}')
                 guess_lang = langdetect.detect(text)
+            logger.debug(f'Guessed language: {guess_lang}')
             # Binary classification
-            binary_guess_lang = 'english' if guess_lang == 'eng' else true_lang
-            if binary_guess_lang != true_lang:
+            binary_true_lang = 'non-english' if true_lang != 'english' else true_lang
+            binary_guess_lang = 'english' if guess_lang in ['en', 'eng'] else 'non-english'
+            if binary_guess_lang != binary_true_lang:
                 binary_class_error += 1
                 valid_msg = '[invalid]'
             else:
@@ -257,8 +261,13 @@ if __name__ == '__main__':
                     # method 3 = langdetect
                     # langdetect returns a two-letter codes in ISO 639-1 (e.g. 'en')
                     guess_lang_name = pycountry.languages.get(alpha_2=guess_lang).name.lower()
-            except AttributeError:
-                pass
+            except AttributeError as e:
+                if pycountry is None:
+                    logger.debug('No multiclass classification performed because pycountry is not installed')
+                elif pycountry.languages.get(alpha_2=guess_lang) is None:
+                    logger.debug(f"The language code '{guess_lang}' is not a valid ISO 639 code")
+                else:
+                    logger.error(e)
             else:
                 if guess_lang_name != true_lang:
                     multiclass_error += 1
@@ -273,7 +282,7 @@ if __name__ == '__main__':
         total_time += time_current_text
         logger.info(f"Took {round(time_current_text, 3)} second{'s' if time_current_text >= 2 else ''}")
         logger.info('')
-    logger.info(f'\n### Performance of method {args.method} ###')
+    logger.info(f'\n### Performance of method {args.method}: {CHOICES_NAMES[args.method-1]} ###')
     # Messages for methods 1, 2 and 3
     msg1 = 'task: binary classification'
     msg2 = f'{binary_class_error/len(texts)*100}% error classification'
