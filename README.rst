@@ -365,8 +365,8 @@ This script tests different NLP methods to detect text language:
   
   Running time: ~ 1.6 second
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
-  ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
-  than the first method, but it supports many languages (`255 <https://arxiv.org/pdf/1801.07779.pdf>`_), unlike the first 
+  ``textcat`` classifier from ``nltk`` to determine the text language. It is the slowest of all the methods but it 
+  supports many languages (`255 <https://arxiv.org/pdf/1801.07779.pdf>`_), unlike the first 
   method which can only tell if a text is English or not. It returns the language of a given text as a language code in *ISO 639-3*.
   
   Running time: ~ 21 seconds
