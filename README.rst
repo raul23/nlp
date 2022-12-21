@@ -293,6 +293,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
 
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
+|
+
 `:star:` Ways to download and install the model 'en_core_web_md' which is necessary for method 2
 
   1. running the script ``extract_names_from_text.py`` with the ``-d`` flag::
