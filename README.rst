@@ -879,7 +879,7 @@ Ouput::
 |
 
 `:warning:` There is an **overhead** when starting the language classification with ``textcat`` as we can see with the first text
-taken 5.247 second. When re-running the classification on the first text after the initial one, it actually took 
+taken 5.247 seconds. When re-running the classification on the first text after the initial one, it actually took 
 ~ 2.6 seconds like other texts of similar length.
 
 `:star:` By default, the second method shows results for the multiclass classification (if the ``pycountry`` package is found) 
