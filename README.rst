@@ -361,7 +361,7 @@ This script tests different NLP methods to detect text language:
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
   `Compact Langauge Detect 2 (CLD-2) <https://github.com/aboSamoor/pycld2>`_ to determine the text language. It is 
   quicker to process than all the other methods: it is almost instantaneous. It is able to identify multiple languages in text. 
-  For each language detected, it returns a tuple containing among other things the language full name and as a language code 
+  For each language detected, it returns a tuple containing among other things the language full name and the language code 
   in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
 
 `:star:` 
