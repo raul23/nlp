@@ -23,8 +23,8 @@ This script tests different NLP methods to extract names from text:
      e.g. if you choose the `second method <#method-2-spacy>`_, only the ``spacy`` library is imported. Hence, if you 
      are just interested in one particular method, you won't need to download unnecessary libraries.
 
-Texts used for testing
-----------------------
+Texts used for testing extract_names_from_text.py
+-------------------------------------------------
 The script ``extract_names_from_text.py`` is tested on the following four texts (taken from Wikpedia and stackoverflow):
 
 .. code-block:: python
@@ -391,7 +391,7 @@ This script tests different NLP methods to detect text language:
 
 `:star:` 
 
-   - The running time is based on the `eight Wikipedia texts tested <>`_ (78 words per text on average)
+   - The running time is based on the `eight Wikipedia texts tested <#texts-used-for-testing-detect_lang-py>`_ (78 words per text on average)
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
@@ -412,8 +412,8 @@ the `WiLI-2018 - Wikipedia Language Identification database <https://zenodo.org/
 **Reference:** Thoma, Martin. `"The WiLI benchmark dataset for written language identification." <https://arxiv.org/abs/1801.07779>`_ 
 *arXiv preprint arXiv:1801.07779* (2018).
 
-Texts used for testing
-----------------------
+Texts used for testing detect_lang.py
+-------------------------------------
 The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia):
 
 .. code-block:: python
