@@ -5,6 +5,8 @@ import time
 
 logger = logging.getLogger('detect_lang')
 
+DetectorFactory = None
+langdetect = None
 nltk = None
 pycountry = None
 
@@ -83,18 +85,31 @@ prédit l'existence d'au moins trois familles de quarks dans la nature ».
 """
 
 
-def import_modules(method):
-    global nltk, pycountry
+def import_modules(method, deterministic=False):
+    def import_pycountry():
+        try:
+            global pycountry
+            logger.info('importing pycountry')
+            import pycountry
+        except ImportError:
+            logger.warning("WARNING: The package pycountry is not installed. Thus only "
+                           "binary classification of text language will be performed.\n"
+                           "Install it with: pip install pycountry")
+
+    global DetectorFactory, langdetect, nltk, pycountry
     if method in [1, 2]:
         logger.info('importing nltk')
         import nltk
         if method == 2:
-            try:
-                import pycountry
-            except ImportError:
-                logger.warning("WARNING: The package pycountry is not installed. Thus only "
-                               "binary classification of text language will be performed.\n"
-                               "Install it with: pip install pycountry")
+            import_pycountry()
+    elif method == 3:
+        logger.info('importing langdetect.detect')
+        import langdetect
+        import_pycountry()
+        if deterministic:
+            logger.info('Making the langdetect algorithm deterministic')
+            from langdetect import DetectorFactory
+            DetectorFactory.seed = 0
     else:
         logger.info(f'Unsupported method #{method}')
 
@@ -137,16 +152,21 @@ def setup_argparser():
         # HelpFormatter
         # RawDescriptionHelpFormatter
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    choices = [1, 2]
-    choices_msg = ', '.join(map(str, choices))
+    choices = [1, 2, 3]
+    choices_names = ['nltk English corpus', 'nltk.classify.textcat', 'langdetect']
+    choices_msg = [a+": "+b for a, b in zip(list(map(str, choices)), choices_names)]
+    choices_msg = ', '.join(map(str, choices_msg))
     parser.add_argument('-m', '--method', metavar='METHOD', dest='method', choices=choices,
                         default=1, type=int,
-                        help=f'Method to use to detect text language. Choices are: [{choices_msg}]')
+                        help=f'Method to use to detect text language. Choices are {choices_msg}')
     parser.add_argument('-t', '--threshold', metavar='THRESHOLD', dest='threshold',
                         default=25, type=range_type,
                         help='If this threshold (%% of words in the text vocabulary that are unusual) '
                              'is exceeded, then the language of the text is not English. NOTE: This '
                              'is an option for method 1.')
+    parser.add_argument(
+        '-d', '--deterministic', action='store_true',
+        help='Make the language detection algorithm used for method 3 (langdetect) deterministic.')
     parser.add_argument(
         '-v', '--verbose', action='store_true',
         help='Show more information for the given method such as the words considered as unusual (method 1).')
@@ -186,7 +206,7 @@ if __name__ == '__main__':
     method_msg = f'Detecting text language with method #{args.method}'
     logger.info(method_msg)
     time.sleep(1)
-    import_modules(args.method)
+    import_modules(args.method, args.deterministic)
     logger.info('')
     binary_class_error = 0
     multiclass_error = 0
@@ -205,10 +225,15 @@ if __name__ == '__main__':
                 logger.info('INVALID classification')
             else:
                 logger.info('VALID classification')
-        elif args.method == 2:
-            logger.info('classifying ...')
-            tc = nltk.classify.textcat.TextCat()
-            guess_lang = tc.guess_language(text)
+        elif args.method in [2, 3]:
+            if args.method == 2:
+                logger.info('classifying ...')
+                tc = nltk.classify.textcat.TextCat()
+                guess_lang = tc.guess_language(text)
+            else:
+                if DetectorFactory:
+                    logger.debug(f'Seed={DetectorFactory.seed}')
+                guess_lang = langdetect.detect(text)
             # Binary classification
             binary_guess_lang = 'english' if guess_lang == 'eng' else true_lang
             if binary_guess_lang != true_lang:
@@ -224,7 +249,14 @@ if __name__ == '__main__':
                     logger.info(f'{msg} english {valid_msg}')
             # Multiclass classification
             try:
-                guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
+                if args.method == 2:
+                    # method 2 = textcat
+                    # nltk.classify.textcat returns a three-letter country code in ISO 639-3 (e.g. 'eng')
+                    guess_lang_name = pycountry.languages.get(alpha_3=guess_lang).name.lower()
+                else:
+                    # method 3 = langdetect
+                    # langdetect returns a two-letter codes in ISO 639-1 (e.g. 'en')
+                    guess_lang_name = pycountry.languages.get(alpha_2=guess_lang).name.lower()
             except AttributeError:
                 pass
             else:
@@ -242,13 +274,13 @@ if __name__ == '__main__':
         logger.info(f"Took {round(time_current_text, 3)} second{'s' if time_current_text >= 2 else ''}")
         logger.info('')
     logger.info(f'\n### Performance of method {args.method} ###')
-    # Messages for methods 1 and 2
+    # Messages for methods 1, 2 and 3
     msg1 = 'task: binary classification'
     msg2 = f'{binary_class_error/len(texts)*100}% error classification'
     if args.method == 1:
         logger.info(msg1)
         logger.info(msg2)
-    elif args.method == 2:
+    elif args.method in [2, 3]:
         if args.verbose:
             logger.debug(msg1)
             logger.debug(msg2)
