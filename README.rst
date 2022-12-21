@@ -392,7 +392,7 @@ This script tests different NLP methods to detect text language:
 `:star:` 
 
    - The running time is based on the `eight Wikipedia texts tested <#texts-used-for-testing-detect-lang-py>`_ (70 words per text on average)
-   - Methods 2 and 5 have an **overhead** when startng the language classification. Method 3 also has an overhead but it is less
+   - Methods 2 and 5 have an **overhead** when starting the language classification. Method 3 also has an overhead but it is less
      noticeable.
    
      - Method 2 has an overhead of about 2.6 seconds
