@@ -943,6 +943,7 @@ Ouput::
    Text8: french (true language)
    #############################
    Number of words in the text: 45
+   Seed=0
    Binary classification: the text is classified as non-english [valid]
    The text is classified as french [valid]
    Took 0.006 second
