@@ -352,12 +352,16 @@ This script tests different NLP methods to detect text language:
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
-  than the first method, but it is able to identify the text language which is returned as a country code in *ISO 639-3*, unlike the
+  than the first method, but it is able to identify the text language which is returned as a language code in *ISO 639-3*, unlike the
   first method which can only tell if the text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
   ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
-  method, it is able to identify the text language which is returned as a country code in *ISO 639-1* 
+  method, it is able to identify the text language which is returned as a language code in *ISO 639-1* 
   (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
+- The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
+  **Compact Langauge Detect 2 (CLD-2)** to determine the text language. It is quicker to process than the all the other methods. 
+  Like the second method, it is able to identify the text language which is returned the language full name and as a 
+  language code in *ISO 639-1* (`100 languages supported by CLD-2 <https://arxiv.org/pdf/1801.07779.pdf>`_).
 
 `:star:` 
 
@@ -487,7 +491,7 @@ This is the environment on which the script ``detect_lang.py`` was tested:
     classification will be done (i.e. detect if a given text is English or non-English).
 * For `method 4 <#method-4-identify-text-language-with-cld-2>`_:
   
-  * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2).
+  * `pycld2 <https://github.com/aboSamoor/pycld2>`_: **v0.41**, Python bindings for the Compact Langauge Detect 2 (CLD2)
 
 Usage for **detect_lang.py**
 ----------------------------
@@ -516,6 +520,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
                            1: nltk English corpus, 
                            2: nltk.classify.textcat, 
                            3: langdetect 
+                           4: cld2
                            (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
@@ -676,7 +681,7 @@ From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
  <https://www.nltk.org/api/nltk.classify.html#nltk.classify.textcat.TextCat>`_. 
  This `paper <http://www.let.rug.nl/~vannoord/TextCat/textcat.pdf>`_ discusses the algorithm.
 
- It returns a country code in ISO 639-3, so I would use ``pycountry`` to get the full name.
+ It returns a language code in ISO 639-3, so I would use ``pycountry`` to get the full name.
 
 .. code-block:: python
 
@@ -721,7 +726,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      English or non-English.
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
-   - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the country code 
+   - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
      returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
      
@@ -901,8 +906,8 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
    - Also, the third method is quicker than the `first method  
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
      binary classification: more than twice faster.
-   - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the country code 
-     returned by ``langdetect.detect`` into the country full name. If ``pycountry`` is not found, then only binary 
+   - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
+     returned by ``langdetect.detect`` into the language full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
      
      To install it: ``pip install pycountry``
