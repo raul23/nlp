@@ -391,7 +391,13 @@ This script tests different NLP methods to detect text language:
 
 `:star:` 
 
-   - The running time is based on the `eight Wikipedia texts tested <#texts-used-for-testing-detect-lang-py>`_ (78 words per text on average)
+   - The running time is based on the `eight Wikipedia texts tested <#texts-used-for-testing-detect-lang-py>`_ (70 words per text on average)
+   - Methods 2 and 5 have an **overhead** when startng the language classification. Method 3 also has an overhead but it is less
+     noticeable.
+   
+     - Method 2 has an overhead of about 2.6 seconds
+     - Method 3 has an overhead of about 0.5 second
+     - Method 5 has an overhead of about 2.8 seconds
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the chosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
@@ -414,7 +420,7 @@ the `WiLI-2018 - Wikipedia Language Identification database <https://zenodo.org/
 
 Texts used for testing detect_lang.py
 -------------------------------------
-The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia) with an average of 78 words per text:
+The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia) with an average of 70 words per text:
 
 .. code-block:: python
 
@@ -784,7 +790,7 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
    - However, compared to the first method, the second method takes longer to process when performing 
      binary classification: more than 10 times longer.
      
-     Running time: ~ 2.6 seconds per text (78 words per text on average)
+     Running time: ~ 2.6 seconds per text (70 words per text on average)
    - `pycountry <https://pypi.org/project/pycountry/>`_ is optional. It is used for converting the language code 
      returned by ``nltk.classify.textcat`` into the language full name. If ``pycountry`` is not found, then only binary 
      classification will be performed (i.e. detect if a given text is English or non-English).
@@ -871,6 +877,10 @@ Ouput::
    Total time: 21.74 seconds
 
 |
+
+`:warning:` There is an **overhead** when starting the language classification with ``textcat`` as we can see with the first text
+taken 5.247 second. When re-running the classification on the first text after the initial one, it actually took 
+~ 2.6 seconds like other texts of similar length.
 
 `:star:` By default, the second method shows results for the multiclass classification (if the ``pycountry`` package is found) 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
@@ -962,7 +972,7 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
    - However, compared to the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_, 
      the third method takes way less time to process when performing language classification: more than 30 times quicker.
      
-     Running time: ~ 0.08 second (78 words per text on average)
+     Running time: ~ 0.08 second (70 words per text on average)
    - Also, the third method is quicker than the `first method  
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
      binary classification: more than twice faster.
@@ -1272,7 +1282,7 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 - The fifth method (``langid``) supports `97 languages <https://github.com/saffsd/langid.py>`_.
 - It is the third quickest method for identifiying the language of a given text.
 
-  Running time: ~ 0.003 second per text (78 words per text on average)
+  Running time: ~ 0.003 second per text (70 words per text on average)
 
 Run method 5 (langid)
 '''''''''''''''''''''
@@ -1294,60 +1304,61 @@ Ouput::
    Text1: english (true language)
    #############################
    The text is classified as english [valid]
-   Took 3.342 seconds
+   Took 3.394 seconds
 
    #############################
    Text2: french (true language)
    #############################
    The text is classified as french [valid]
-   Took 0.004 second
+   Took 0.003 second
 
    #############################
    Text3: spanish (true language)
    #############################
    The text is classified as spanish [valid]
-   Took 0.006 second
+   Took 0.004 second
 
    #############################
    Text4: english (true language)
    #############################
    The text is classified as english [valid]
-   Took 0.005 second
+   Took 0.003 second
 
    #############################
    Text5: english (true language)
    #############################
    The text is classified as english [valid]
-   Took 0.007 second
+   Took 0.003 second
 
    #############################
    Text6: german (true language)
    #############################
    The text is classified as german [valid]
-   Took 0.004 second
+   Took 0.003 second
 
    #############################
    Text7: italian (true language)
    #############################
    The text is classified as italian [valid]
-   Took 0.003 second
+   Took 0.002 second
 
    #############################
    Text8: french (true language)
    #############################
    The text is classified as french [valid]
-   Took 0.004 second
+   Took 0.003 second
 
 
    ### Performance of method 5: langid ###
    task: multiclass classification
    0.0% error classification
 
-   Total time: 2.81 seconds
+   Total time: 3.41 seconds
 
-`:warning:` Actually, the first text didn't take 3.342 seconds to process. It really took 0.003 second like the other
+
+`:warning:` Actually, the first text didn't take 3.394 seconds to process. It really took 0.003 second like the other
 texts of similar length (when re-running the classification again  on the first text after the initial one). It is just 
-that it takes more than 2 seconds to start classifying. Thus, it is an **overhead** that we must take into account when using ``langid``.
+that it takes more than 3 seconds to start classifying. Thus, it is an **overhead** that we must take into account when using ``langid``.
 
 `:star:` By default, the fifth method shows results for the multiclass classification 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
