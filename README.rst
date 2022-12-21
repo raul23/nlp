@@ -6,8 +6,8 @@ NLP
    :local:
    :backlinks: top
 
-Script #1: ``extract_names_from_text.py``: Extract names from text
-==================================================================
+Script #1 - ``extract_names_from_text.py``: Extract names from text
+===================================================================
 This script tests different NLP methods to extract names from text:
 
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NNP (proper noun, 
@@ -356,8 +356,8 @@ Ouput::
    Larry Summers
    Nick Colas
 
-Script #2: ``detect_lang.py``: Detect text language
-===================================================
+Script #2 - ``detect_lang.py``: Detect text language
+====================================================
 This script tests different NLP methods to detect text language:
 
 - The `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ 
