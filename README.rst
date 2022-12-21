@@ -1081,6 +1081,8 @@ From Dick Sites' `documentation <https://github.com/CLD2Owners/cld2>`_ for the `
    to do well on very short text, lists of proper names, part numbers, etc.
  - CLD2 is a Naïve Bayesian classifier, using one of three different token algorithms.
 
+|
+
 The  `stackoverflow user 'Martin Thoma' <https://stackoverflow.com/a/48436520>`_ compared **CLD-2** with other NLP 
 tools for language identification:
 
@@ -1118,28 +1120,28 @@ tools for language identification:
 
 `:information_source:` 
 
-   - The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_
-   - It is quicker to process than all the other methods: it is **almost instantaneous**.
-   - It is able to identify multiple languages in text, unlike the other methods::
-   
-     .. code-block:: python
-     
-         fr_en_Latn = """\
-         France is the largest country in Western Europe and the third-largest in Europe as a whole.
-         A accès aux chiens et aux frontaux qui lui ont été il peut consulter et modifier ses collections
-         et exporter Cet article concerne le pays européen aujourd’hui appelé République française.
-         Pour d’autres usages du nom France, Pour une aide rapide et effective, veuiller trouver votre aide
-         dans le menu ci-dessus.
-         Motoring events began soon after the construction of the first successful gasoline-fueled automobiles.
-         The quick brown fox jumped over the lazy dog."""
+- The fourth method supports `over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_
+- It is quicker to process than all the other methods: it is **almost instantaneous**.
+- It is able to identify multiple languages in text, unlike the other methods:
 
-         isReliable, textBytesFound, details, vectors = cld2.detect(
-             fr_en_Latn, returnVectors=True
-         )
-         print(vectors)
-         # ((0, 94, 'ENGLISH', 'en'), (94, 329, 'FRENCH', 'fr'), (423, 139, 'ENGLISH', 'en'))
+  .. code-block:: python
 
-     From the `official documentation <https://github.com/aboSamoor/pycld2>`_
+      fr_en_Latn = """\
+      France is the largest country in Western Europe and the third-largest in Europe as a whole.
+      A accès aux chiens et aux frontaux qui lui ont été il peut consulter et modifier ses collections
+      et exporter Cet article concerne le pays européen aujourd’hui appelé République française.
+      Pour d’autres usages du nom France, Pour une aide rapide et effective, veuiller trouver votre aide
+      dans le menu ci-dessus.
+      Motoring events began soon after the construction of the first successful gasoline-fueled automobiles.
+      The quick brown fox jumped over the lazy dog."""
+
+      isReliable, textBytesFound, details, vectors = cld2.detect(
+          fr_en_Latn, returnVectors=True
+      )
+      print(vectors)
+      # ((0, 94, 'ENGLISH', 'en'), (94, 329, 'FRENCH', 'fr'), (423, 139, 'ENGLISH', 'en'))
+
+  From the `official documentation <https://github.com/aboSamoor/pycld2>`_
 
 Run method 4 (**CLD-2**)
 ''''''''''''''''''''''''
