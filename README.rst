@@ -414,7 +414,7 @@ the `WiLI-2018 - Wikipedia Language Identification database <https://zenodo.org/
 
 Texts used for testing detect_lang.py
 -------------------------------------
-The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia):
+The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia) with an average of 78 words per text:
 
 .. code-block:: python
 
