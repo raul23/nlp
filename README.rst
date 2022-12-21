@@ -6,10 +6,8 @@ NLP
    :local:
    :backlinks: top
 
-Scripts
-=======
-``extract_names_from_text.py``: Extract names from text
--------------------------------------------------------
+Script #1: ``extract_names_from_text.py``: Extract names from text
+==================================================================
 This script tests different NLP methods to extract names from text:
 
 - The `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ makes use of ``nltk`` to get all NNP (proper noun, 
@@ -26,7 +24,7 @@ This script tests different NLP methods to extract names from text:
      are just interested in one particular method, you won't need to download unnecessary libraries.
 
 Texts used for testing
-''''''''''''''''''''''
+----------------------
 The script ``extract_names_from_text.py`` is tested on the following four texts (taken from Wikpedia and stackoverflow):
 
 .. code-block:: python
@@ -103,7 +101,7 @@ The script ``extract_names_from_text.py`` is tested on the following four texts 
    """
 
 Dependencies for **extract_names_from_text.py**
-'''''''''''''''''''''''''''''''''''''''''''''''
+-----------------------------------------------
 This is the environment on which the script ``extract_names_from_text.py`` was tested:
 
 * **Platforms:** macOS
@@ -118,9 +116,9 @@ This is the environment on which the script ``extract_names_from_text.py`` was t
   * `spacy <https://spacy.io/>`_: **v2.3.5** (Python 3.7) and **v3.3.1** (Python 3.8)
 
 Usage for **extract_names_from_text.py**
-''''''''''''''''''''''''''''''''''''''''
+----------------------------------------
 Run the script **extract_names_from_text.py**
-`````````````````````````````````````````````
+'''''''''''''''''''''''''''''''''''''''''''''
 Run the script by specifying the method to use for extracting names from text::
 
    $ pyton extract_names_from_text.py -m 1
@@ -128,7 +126,7 @@ Run the script by specifying the method to use for extracting names from text::
 `:information_source:` By default, the `first method <#method-1-nltk-part-of-speech-tag-nnp>`_ is used
 
 List of options for **extract_names_from_text.py**
-``````````````````````````````````````````````````
+''''''''''''''''''''''''''''''''''''''''''''''''''
 To display the script's list of options and their descriptions, use the ``-h`` option::
 
    $ python extract_names_from_text.py -h
@@ -160,7 +158,7 @@ To display the script's list of options and their descriptions, use the ``-h`` o
       $ python -m spacy download en_core_web_md
 
 Method 1: ``nltk`` + part of speech tag **NNP**
-'''''''''''''''''''''''''''''''''''''''''''''''
+-----------------------------------------------
 From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
 
  This is what I tried (code is below): I am using nltk to find everything marked as a 
@@ -211,11 +209,11 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
     maxent_ne_chunker, words
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
-|
-
+Run method 1 (nltk)
+'''''''''''''''''''
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
-To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
+To run method 1 (``nltk``) on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
  $ python extract_names_from_text.py -m 1
  
@@ -258,7 +256,7 @@ Ouput::
    Nick Colas
 
 Method 2: ``spacy``
-'''''''''''''''''''
+-------------------
 Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/en#en_core_web_md>`_, ``spacy`` then produces a document containing among other things named entities. The entities that are of interest to us are those labeled as **PERSON**.
 
 .. code-block:: python
@@ -301,8 +299,11 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
   - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
 
 |
+Run method 2 (spacy)
+''''''''''''''''''''
+`:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
-To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
+To run method 2 (``spacy``) on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
 
  $ python extract_names_from_text.py -m 2 -d
  
@@ -341,8 +342,8 @@ Ouput::
    Larry Summers
    Nick Colas
 
-``detect_lang.py``: Detect text language
-----------------------------------------
+Script #2: ``detect_lang.py``: Detect text language
+===================================================
 This script tests different NLP methods to detect text language:
 
 - The `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ 
@@ -352,7 +353,11 @@ This script tests different NLP methods to detect text language:
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It takes longer to process
   than the first method, but it is able to identify the text language which is returned as a country code in *ISO 639-3*, unlike the
-  first method which can only tell if the text is English or not.
+  first method which can only tell if the text is English or not. ``textcat`` supports `255 languages <https://arxiv.org/pdf/1801.07779.pdf>`_.
+- The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
+  ``langdetect`` to determine the text language. It is quicker to process than the first and second methods. Like the second
+  method, it is able to identify the text language which is returned as a country code in *ISO 639-1* 
+  (`55 languages supported by langdetect <https://pypi.org/project/langdetect/>`_).
 
 `:star:` 
 
@@ -360,16 +365,31 @@ This script tests different NLP methods to detect text language:
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
-     
+
+|
+
+`:information_source:` Comparison of the CLD-2, ``textcat``, ``langdetect`` and ``langid`` tools for language identification.
+
+.. raw:: html
+
+  <p align="center"><img src="./images/comparison.png"></p>
+
+This table is taken from Martin Thoma's excellent paper "The WiLI benchmark dataset for written 
+language identification" where many NLP tools for language detection are tested and compared against
+the `WiLI-2018 - Wikipedia Language Identification database <https://zenodo.org/record/841984>`_.
+
+**Reference:** Thoma, Martin. `"The WiLI benchmark dataset for written language identification." <https://arxiv.org/abs/1801.07779>`_ 
+*arXiv preprint arXiv:1801.07779* (2018).
+
 Texts used for testing
-''''''''''''''''''''''
+----------------------
 The script ``detect_lang.py`` is tested on the following eight texts (all taken from Wikpedia):
 
 .. code-block:: python
 
    # Examples from Wikipedia
    # Ref.: https://en.wikipedia.org/wiki/Freeman_Dyson [ENGLISH]
-   text1 = """
+   text1_english = """
    Freeman John Dyson FRS (15 December 1923 – 28 February 2020) was an English-American 
    theoretical physicist and mathematician known for his works in quantum field theory, 
    astrophysics, random matrices, mathematical formulation of quantum mechanics, condensed 
@@ -379,7 +399,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://fr.wikipedia.org/wiki/Freeman_Dyson [FRENCH]
-   text2 = """
+   text2_french = """
    Il contribue notamment aux fondements de l'électrodynamique quantique en 1948. Il fait 
    également de nombreuses contributions à la physique des solides, l’astronomie et l’ingénierie 
    nucléaire. On lui doit plusieurs concepts qui portent son nom, tels que la transformée de 
@@ -387,7 +407,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://es.wikipedia.org/wiki/Enrico_Fermi [SPANISH]
-   text3 = """
+   text3_spanish = """
    Fermi mandó su tesis «Un teorema sobre probabilidad y algunas de sus aplicaciones» (en 
    italiano, Un teorema di calcolo delle probabilità ed alcune sue applicazioni) a la Scuola Normale 
    Superiore en julio de 1922, y recibió su licenciatura laureada a la temprana edad de 20 años. 
@@ -399,7 +419,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://en.wikipedia.org/wiki/Enrico_Fermi [ENGLISH]
-   text4 = """
+   text4_english = """
    Fermi was fond of pointing out that when Alessandro Volta was working in his laboratory, 
    Volta had no idea where the study of electricity would lead.[145] Fermi is generally 
    remembered for his work on nuclear power and nuclear weapons, especially the creation of 
@@ -411,7 +431,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://en.wikipedia.org/wiki/Theodor_Kaluza [ENGLISH]
-   text5 = """
+   text5_english = """
    Kaluza's insight is remembered as the Kaluza–Klein theory (also named after physicist Oskar 
    Klein). However, the work was neglected for many years, as attention was directed towards 
    quantum mechanics. His idea that fundamental forces can be explained by additional dimensions 
@@ -421,7 +441,7 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://de.wikipedia.org/wiki/Theodor_Kaluza_(Physiker) [German]
-   text6 = """
+   text6_german = """
    Kaluza entstammte einer deutschen katholischen Familie aus der Stadt Ratibor in Oberschlesien 
    (jetzt Racibórz in Polen). Er selbst wurde in Wilhelmsthal, einem Dorf, das 1899 der Stadt Oppeln 
    (heute Opole) eingemeindet wurde, geboren. Seine Jugend verlebte er in Königsberg (Preußen), wo 
@@ -429,20 +449,20 @@ The script ``detect_lang.py`` is tested on the following eight texts (all taken 
    """
 
    # Ref.: https://it.wikipedia.org/wiki/Makoto_Kobayashi_(fisico) [ITALIAN]
-   text7 = """
+   text7_italian = """
    Makoto Kobayashi (小林誠 Kobayashi Makoto; Nagoya, 7 aprile 1944) è un fisico giapponese, 
    molto conosciuto per il suo lavoro sulla violazione CP.
    """
 
    # Ref: https://fr.wikipedia.org/wiki/Makoto_Kobayashi_(physicien) [FRENCH]
-   text8 = """
+   text8_french = """
    Il est co-lauréat avec Toshihide Maskawa du prix Nobel de physique de 2008 (l'autre moitié a 
    été remise à Yoichiro Nambu) « pour la découverte de l'origine de la brisure de symétrie qui 
    prédit l'existence d'au moins trois familles de quarks dans la nature ».
    """
 
 Dependencies for **detect_lang.py**
-'''''''''''''''''''''''''''''''''''''''''''''''
+-----------------------------------
 This is the environment on which the script ``detect_lang.py`` was tested:
 
 * **Platforms:** macOS
@@ -458,11 +478,17 @@ This is the environment on which the script ``detect_lang.py`` was tested:
   * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
     code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
     classification will be done (i.e. detect if a given text is English or non-English).
+* For `method 3 <#method-3-identify-text-language-with-langdetect>`_:
+  
+  * `langdetect <https://pypi.org/project/langdetect/>`_: **v1.0.9**
+  * `pycountry <https://pypi.org/project/pycountry/>`_: **v22.3.5** it's optional. Used for converting the country 
+    code returned by ``nltk.classify.textcat`` into the country full name. If ``pycountry`` is not found, then only binary 
+    classification will be done (i.e. detect if a given text is English or non-English).
 
 Usage for **detect_lang.py**
-''''''''''''''''''''''''''''''''''''''''
+----------------------------
 Run the script **detect_lang.py**
-`````````````````````````````````````````````
+'''''''''''''''''''''''''''''''''
 Run the script by specifying the method to use for detecting the text language::
 
    $ pyton extract_names_from_text.py -m 1
@@ -470,7 +496,7 @@ Run the script by specifying the method to use for detecting the text language::
 `:information_source:` By default, the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ is used.
 
 List of options for **detect_lang.py**
-``````````````````````````````````````````````````
+''''''''''''''''''''''''''''''''''''''
 To display the script's list of options and their descriptions, use the ``-h`` option::
 
    $ python detect_lang.py -h
@@ -482,16 +508,21 @@ To display the script's list of options and their descriptions, use the ``-h`` o
    optional arguments:
      -h, --help            show this help message and exit
      -m METHOD, --method METHOD
-                           Method to use to detect text language. Choices are: [1, 2] (default: 1)
+                           Method to use for detecting text language. Choices are 
+                           1: nltk English corpus, 
+                           2: nltk.classify.textcat, 
+                           3: langdetect 
+                           (default: 1)
      -t THRESHOLD, --threshold THRESHOLD
                            If this threshold (% of words in the text vocabulary that are unusual) 
                            is exceeded, then the language of the text is not English. NOTE: This is
-                           an option for method 1.(default: 25)
+                           an option for method 1. (default: 25)
+     -d, --deterministic   Make the language detection algorithm used for method 3 (langdetect) 
+                           deterministic. (default: False)
      -v, --verbose         Show more information for the given method such as the words considered 
                            as unusual (method 1). (default: False)
      --log-level {debug,info,warning,error}
                            Set logging level. (default: info)
-
 
 `:information_source:` The ``-t/--threshold`` option 
 
@@ -502,12 +533,20 @@ To display the script's list of options and their descriptions, use the ``-h`` o
 - As explained in `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
   a given text is considered unusual if there are words that are not part of the ``nltk`` English corpus. 
 
+|
+
+`:information_source:` The ``-d/--deterministic`` option sets the seed used by ``langdetect`` to 0 in order for the
+language detection algorithm to be `deterministic <https://pypi.org/project/langdetect/>`_. Hence, everytime you run 
+the code on a given text, you will get the same result.
+
+|
+
 `:star:` By default, the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ 
-performs multiclass classification but if the ``-v/--verbose`` option is used, then results for binary 
+performs multiclass classification (if ``pycountry`` is found) but if the ``-v/--verbose`` option is used, then results for binary 
 classification are also shown.
 
 Method 1: detect only if it is English or not, i.e. binary classification (``nltk`` English corpus)
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+---------------------------------------------------------------------------------------------------
 From the  `stackoverflow user 'William Niu' <https://stackoverflow.com/a/3384659>`_:
 
  Have you come across the following code snippet?
@@ -547,18 +586,20 @@ The way it does it is simple but still interesting depending on your use case:
    - Another possible addition is to use corpora from other languages (e.g. French, Spanish) so you can convert this binary classifier
      into a multiclass classifier capable of identifying many text languages.
 
-|
-
+Run method 1 (nltk English corpus)
+''''''''''''''''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 1 (``nltk`` English corpus) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
  $ python detect_lang.py -m 1
  
 Ouput::
 
-   Detecting text language with method #1
+   Verbose option disabled
    importing nltk
+
+   Detecting text language with method #1: nltk English corpus
 
    #############################
    Text1: english (true language)
@@ -617,14 +658,14 @@ Ouput::
    Took 0.202 second
 
 
-   ### Performance of method 1 ###
+   ### Performance of method 1: nltk English corpus ###
    task: binary classification
    0.0% error classification
 
    Total time: 1.63 second
 
-Method 2: identify the text language with ``nltk.classify.textcat``
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Method 2: identify text language with ``nltk.classify.textcat``
+---------------------------------------------------------------
 From the  `stackoverflow user 'RK1' <https://stackoverflow.com/a/58432286>`_:
 
  Super late but, you could use ``textcat`` classifier in ``nltk``, `here 
@@ -682,19 +723,21 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      
      To install it: ``pip install pycountry``
  
-|
- 
+Run method 2 (nltk.classify.textcat)
+''''''''''''''''''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 2 (``nltk.classify.textcat``) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
  $ python detect_lang.py -m 2
  
 Ouput::
 
    Verbose option disabled
-   Detecting text language with method #2
    importing nltk
+   importing pycountry
+
+   Detecting text language with method #2: nltk.classify.textcat
 
    #############################
    Text1: english (true language)
@@ -753,7 +796,7 @@ Ouput::
    Took 1.604 second
 
 
-   ### Performance of method 2 ###
+   ### Performance of method 2: nltk.classify.textcat ###
    task: multiclass classification
    25.0% error classification
 
@@ -781,7 +824,7 @@ Ouput::
    Took 1.674 second
 
 
-   ### Performance of method 2 ###
+   ### Performance of method 2: nltk.classify.textcat ###
    task: binary classification
    12.5% error classification
 
@@ -791,7 +834,7 @@ Ouput::
    Total time: 22.53 seconds
 
 Method 3: identify text language with ``langdetect``
-''''''''''''''''''''''''''''''''''''''''''''''''''''
+----------------------------------------------------
 ``langdetect`` is a port of Nakatani Shuyo's language-detection library (version from 03/03/2014) from Java to Python 
 (see `official documentation <https://pypi.org/project/langdetect/>`_).
 
@@ -834,8 +877,8 @@ From the  `stackoverflow user 'SVK' <https://stackoverflow.com/a/38752290>`_:
       'so'
 
 `:warning:` As the `official documentation notes <https://pypi.org/project/langdetect/>`_, the algorithm is **non-deterministic**. 
-Thus, if you run the code multiple times, you might get different results. Especially if the text is very short or ambiguous 
-(e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
+Thus, if you run the code multiple times on a given text, you might get different results. Especially if the text is very short or 
+ambiguous (e.g. using two languages). To make sure you get the same results, set the seed to 0 before running the language detection code:
 
 .. code-block:: python
 
@@ -847,8 +890,8 @@ Thus, if you run the code multiple times, you might get different results. Espec
 `:information_source:` 
 
    - This third method is capable of identifying many languages, just like the `second method 
-     <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_.
-   - However, compared to the `second method <#method-2-identify-the-text-language-with-nltk-classify-textcat>`_, 
+     <#method-2-identify-text-language-with-nltk-classify-textcat>`_.
+   - However, compared to the `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_, 
      the third method takes way less time to process when performing language classification: more than 30 times quicker.
    - Also, the third method is quicker than the `first method  
      <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ when performing 
@@ -859,20 +902,21 @@ Thus, if you run the code multiple times, you might get different results. Espec
      
      To install it: ``pip install pycountry``
 
-|
- 
+Run method 3 (langdetect)
+'''''''''''''''''''''''''
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
-To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
+To run method 3 (``langdetect``) on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
- $ python detect_lang.py -m 2
+ $ python detect_lang.py -m 3
  
 Ouput::
 
    Verbose option disabled
-   Detecting text language with method #3
    importing langdetect.detect
    importing pycountry
+
+   Detecting text language with method #3: langdetect
 
    #############################
    Text1: english (true language)
@@ -923,7 +967,7 @@ Ouput::
    Took 0.006 second
 
 
-   ### Performance of method 3 ###
+   ### Performance of method 3: langdetect ###
    task: multiclass classification
    0.0% error classification
 
@@ -949,7 +993,7 @@ Ouput::
    Took 0.006 second
 
 
-   ### Performance of method 3 ###
+   ### Performance of method 3: langdetect ###
    task: binary classification
    0.0% error classification
 
