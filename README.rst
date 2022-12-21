@@ -910,7 +910,7 @@ Run method 3 (langdetect)
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
 
- $ python detect_lang.py -m 2
+ $ python detect_lang.py -m 3
  
 Ouput::
 
