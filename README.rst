@@ -935,7 +935,7 @@ those of the other methods.
 
 We are only showing results for the last text analyzed::
 
- $ python detect_lang.py -m 2 -v
+ $ python detect_lang.py -m 3 -v
  
 Ouput::
 
