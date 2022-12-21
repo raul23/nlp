@@ -479,7 +479,7 @@ Dependencies for **detect_lang.py**
 -----------------------------------
 This is the environment on which the script ``detect_lang.py`` was tested:
 
-* **Platforms:** macOS
+* **Platform:** macOS
 * **Python**: versions **3.7** and **3.8**
 * For `method 1 <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_ (``nltk`` English corpus):
   
