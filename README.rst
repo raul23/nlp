@@ -363,34 +363,35 @@ This script tests different NLP methods to detect text language:
   (i.e. not part of the corpus) exceeds a threshold, then the text is English. Otherwise, it is non-English. It is thus
   a simple binary classifier. Its application might be limited but depending on your use case, it might actually do the job.
   
-  Running time: ~ 1.6 second
+  Running time: ~ 0.2 second per text 
 - The `second method <#method-2-identify-text-language-with-nltk-classify-textcat>`_ uses the
   ``textcat`` classifier from ``nltk`` to determine the text language. It is the slowest method for identifiying the language of a 
   given text but it supports many languages (`255 <https://arxiv.org/pdf/1801.07779.pdf>`_), unlike the first 
   method which can only tell if a text is English or not. It returns the language of a given text as a language code in *ISO 639-3*.
   
-  Running time: ~ 21 seconds
+  Running time: ~ 2.6 seconds per text
 - The `third method <#method-3-identify-text-language-with-langdetect>`_ uses
   ``langdetect`` to determine the text language. It is the second quickest method for identifiying the language of a given text. ``langdetect`` 
   supports `55 languages <https://pypi.org/project/langdetect/>`_ and it returns the language of a given text as a language code 
   in *ISO 639-1*.
   
-  Running time: ~ 0.6 second
+  Running time: ~ 0.08 second per text
 - The `fourth method <#method-4-identify-text-language-with-cld-2>`_ uses
   `Compact Langauge Detect 2 (CLD-2) <https://github.com/aboSamoor/pycld2>`_ to determine the text language. It is 
   the quickest of all the methods tested: it is almost instantaneous. Unlike all the other methods, it is able 
   to identify multiple languages in a text. For each language detected, it returns a tuple containing among other things 
   the language full name and the language code in *ISO 639-1* (`over 165 languages supported by CLD-2 <https://github.com/aboSamoor/pycld2>`_).
   
-  Running time: ~ 0.0 second
+  Running time: ~ 0.0 second per text
 - The `fifth method <#method-5-identify-text-language-with-langid>`_ uses
   ``langid`` to determine the text language. It is the third quickest method for identifiying the language of a given text. ``langid`` supports
   `97 languages <https://github.com/saffsd/langid.py>`_ and it returns the language of a given text as a language code in *ISO 639-1*.
   
-  Running time: ~ 2.8 seconds
+  Running time: ~ 0.003 second per text
 
 `:star:` 
 
+   - The running time is based on the `eight Wikipedia texts tested <>`_ (78 words per text on average)
    - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the choosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
@@ -1267,7 +1268,7 @@ From the `official documentation <https://github.com/saffsd/langid.py>`_:
 - The fifth method (``langid``) supports `97 languages <https://github.com/saffsd/langid.py>`_.
 - It is the third quickest method for identifiying the language of a given text.
 
-  Running time: ~ 2.8 second
+  Running time: ~ 0.003 second per text
 
 Run method 5 (langid)
 '''''''''''''''''''''
@@ -1339,6 +1340,10 @@ Ouput::
    0.0% error classification
 
    Total time: 2.81 seconds
+
+`:warning:` Actually, the first text didn't take 3.342 seconds to process. It really took 0.003 second like the other
+texts of similar length (when re-running the classificiation again afterward). It is just that it takes more than 2 
+seconds to start classifying. Thus, it is an **overhead** that we must take into account when using ``langid``.
 
 `:star:` By default, the fifth method shows results for the multiclass classification 
 but if the ``-v/--verbose`` option is used, then results for binary classification are also shown so you can compare them with 
