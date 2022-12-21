@@ -211,8 +211,8 @@ From the  `stackoverflow user 'e h' <https://stackoverflow.com/q/20290870>`_:
     maxent_ne_chunker, words
   - The Python code returns the first and last name (e.g. Albert Einstein) for each person found in the text
 
-Run method 1 (``nltk``)
-```````````````````````
+Run method 1 (nltk)
+```````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
@@ -301,8 +301,8 @@ Feeding the raw text to the NLP model `en_core_web_md <https://spacy.io/models/e
   - ``len(ent) > 1``: to avoid displaying names with only one part (e.g. Anderson)
 
 |
-Run method 2 (``spacy``)
-````````````````````````
+Run method 2 (spacy)
+````````````````````
 `:star:` The script can be found at `extract_names_from_text.py <./scripts/extract_names_from_text.py>`_. 
 
 To run the script on the `four texts <./scripts/extract_names_from_text.py#L2>`_::
@@ -588,8 +588,8 @@ The way it does it is simple but still interesting depending on your use case:
    - Another possible addition is to use corpora from other languages (e.g. French, Spanish) so you can convert this binary classifier
      into a multiclass classifier capable of identifying many text languages.
 
-Run method 1 (``nltk`` English corpus)
-``````````````````````````````````````
+Run method 1 (nltk English corpus)
+``````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
@@ -725,8 +725,8 @@ However, `RK1 <https://stackoverflow.com/a/58432286>`_ also warns that this meth
      
      To install it: ``pip install pycountry``
  
-Run method 2 (``nltk.classify.textcat``)
-````````````````````````````````````````
+Run method 2 (nltk.classify.textcat)
+````````````````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
@@ -904,8 +904,8 @@ ambiguous (e.g. using two languages). To make sure you get the same results, set
      
      To install it: ``pip install pycountry``
 
-Run method 3 (``langdetect``)
-`````````````````````````````
+Run method 3 (langdetect)
+`````````````````````````
 `:star:` The script can be found at `detect_lang.py <./scripts/detect_lang.py>`_. 
 
 To run the script on the `eight texts <./scripts/detect_lang.py#L5>`_::
