@@ -415,7 +415,7 @@ This script tests different NLP methods to detect text language:
      - Method 3 has an initial overhead of about 0.5 second
      - Method 5 has an initial overhead of about 2.8 seconds
    - The binary classification refers to the simple task of determining if a given text is English or not.
-   - The multiclass classification refers to the more complex task of determining the language of a given text.
+   - The multiclass classification refers to the more complex task of determining the language of a given text (e.g. French, Spanish).
    - Both binary and multiclass classification was tested on the `eight texts <#texts-used-for-testing-detect-lang-py>`_ from Wikipedia.
    - The Python script testing all these methods can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the chosen method, 
