@@ -414,7 +414,7 @@ This script tests different NLP methods to detect text language:
      - Method 2 has an initial overhead of about 2.6 seconds
      - Method 3 has an initial overhead of about 0.5 second
      - Method 5 has an initial overhead of about 2.8 seconds
-   - The Python script can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
+   - The Python script testing all these methods can be found at `detect_lang.py <./scripts/detect_lang.py>`_.
    - The script ``detect_lang.py`` only imports the third-party libraries/modules necessary for the chosen method, 
      e.g. if you choose the `first method <#method-1-detect-only-if-it-is-english-or-not-i-e-binary-classification-nltk-english-corpus>`_, 
      only the ``nltk`` library is imported.
